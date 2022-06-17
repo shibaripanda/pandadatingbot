@@ -2,7 +2,7 @@ const commands = `
 /start - Перезапуск
 /help - Помощь
 `
-const name1 = `Введите ваше имя`
+const baza1 = `www`
 
 module.exports.commands = commands
-module.exports.name1 = name1
+module.exports.baza1 = baza1

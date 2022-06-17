@@ -1,7 +1,7 @@
 const { Telegraf, Markup } = require('telegraf')
 require('dotenv').config()
-const name1 = require('./const')
 const bot = new Telegraf(process.env.BOT_TOKEN)
+const baza1 = require('./const')
 
 let info = ""
 let prev_action = ""
@@ -17,6 +17,9 @@ let infiwords = ""
 let end1 = ""
 let del1 = ""
 let post = ""
+let email1 = ""
+let emailon = "0"
+let baza2 = "test@mail.com"
 
 bot.start(async (ctx) => {console.log(ctx.message),
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\nWelcome to Panda's Telegram Universe!\n<b>ShibaripandaClub</b>`,
@@ -31,9 +34,8 @@ bot.start(async (ctx) => {console.log(ctx.message),
 await ctx.replyWithHTML(`<b>Bonuses available by subscription.</b>\nDating, exclusive content,\ncommunity, chat, online trainings.`,
 Markup.inlineKeyboard(
 [
-   [Markup.button.callback('Sign up for a paid subscription 💵', 'btn_204')],
-   [Markup.button.callback('ShibaripandaClub XL $1 🐼', 'btn_202')],
-   [Markup.button.callback('Shibari course for beginners 📚', 'btn_203')],
+   [Markup.button.callback('Here you can subscribe 💵', 'btn_204')],
+   [Markup.button.callback('Login to closed sections after subscription', 'btn_400')],
    [Markup.button.callback('info 📖', 'btn_205')]
 ]) 
 )
@@ -43,6 +45,15 @@ del1 = "0"
 post = "0"
 }
 )   
+
+
+
+bot.action ('btn_400', (ctx) => {
+  ctx.reply("Write your email that you use on patreon.(use only small letters)")},
+  emailon = "1"
+  )
+
+
 
 
 bot.action ('btn_201', async (ctx) => {
@@ -66,6 +77,28 @@ bot.action ('btn_300', (ctx) => {ctx.replyWithHTML(`<a href="https://web.telegra
 bot.action ('btn_204', (ctx) => {
   ctx.replyWithHTML(`To subscribe, go to <a href="https://www.patreon.com/shibaripanda">Patreon</a>.`)    
 })
+
+bot.action ('btn_401', (ctx) => {
+  if (email1 == baza2) {
+  ctx.replyWithHTML(`Welcome!\nChoose the section you need and enjoy.`,
+  Markup.inlineKeyboard(
+    [
+
+       [Markup.button.callback('ShibaripandaClub XL $1 🐼', 'btn_202')],
+       [Markup.button.callback('Shibari course for beginners 📚', 'btn_203')]
+    ]) )
+}
+else { 
+  ctx.replyWithHTML(`The entered email is not registered or entered incorrectly.`,
+  Markup.inlineKeyboard(
+    [ 
+      [Markup.button.callback('Edit email', 'btn_400')],
+      [Markup.button.callback('Here you can subscribe 💵', 'btn_204')]
+    ]))
+}
+})
+
+
 
 bot.action ('btn_1', (ctx) => {
   if (end1 == "0") {
@@ -245,6 +278,17 @@ bot.on('text', async(ctx) => {
            [Markup.button.callback('See what your profile will look like', 'btn_100')]
       ])))
     infiwords = ctx.message.text
+
+  }; 
+
+  if (emailon == "1") {
+    await ctx.reply(`Email from patreon: ${ctx.message.text}`,
+    (Markup.inlineKeyboard(
+      [
+           [Markup.button.callback('Edit', 'btn_400')],
+           [Markup.button.callback('Email is correct', 'btn_401')]
+      ])))
+    email1 = ctx.message.text
     }  
    else { 
     
@@ -252,7 +296,8 @@ bot.on('text', async(ctx) => {
 })
 
 
-bot.launch()
+
+ bot.launch()
 
 
 // Enable graceful stop
