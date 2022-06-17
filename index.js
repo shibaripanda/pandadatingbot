@@ -289,6 +289,7 @@ bot.on('text', async(ctx) => {
            [Markup.button.callback('Email is correct', 'btn_401')]
       ])))
     email1 = ctx.message.text
+    emailon = "0"
     }  
    else { 
     
