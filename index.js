@@ -50,10 +50,10 @@ emailon = "0"
 
 
 bot.action ('btn_400', (ctx) => {
-  ctx.reply("Write your email that you use on patreon.(use only small letters)")},
-  emailon = "1",
+  ctx.reply("Write your email that you use on patreon.(use only small letters)")
+  emailon = "1"
   prev_action = "step_0"
-  )
+  })
 
 
 
