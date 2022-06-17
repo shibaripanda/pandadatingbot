@@ -18,7 +18,7 @@ let end1 = ""
 let del1 = ""
 let post = ""
 let email1 = ""
-let emailon = "0"
+let emailon = ""
 let baza2 = "test@mail.com"
 
 bot.start(async (ctx) => {console.log(ctx.message),
@@ -43,6 +43,7 @@ end1 = "0"
 username1 = ctx.message.from.username
 del1 = "0"
 post = "0"
+emailon = "0"
 }
 )   
 
