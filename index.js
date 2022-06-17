@@ -170,7 +170,7 @@ bot.on('text', async(ctx) => {
     (Markup.inlineKeyboard(
       [
            [Markup.button.callback('Edit', 'btn_1')],
-           [Markup.button.callback('Next step', 'btn_2')]
+           [Markup.button.callback('Next step 2/8', 'btn_2')]
       ])))
     nameman = ctx.message.text
     
@@ -181,7 +181,7 @@ bot.on('text', async(ctx) => {
       (Markup.inlineKeyboard(
         [
              [Markup.button.callback('Edit', 'btn_2')],
-             [Markup.button.callback('Next step', 'btn_3')]
+             [Markup.button.callback('Next step 3/8', 'btn_3')]
         ])))
       sexman = ctx.message.text
       };
@@ -191,7 +191,7 @@ bot.on('text', async(ctx) => {
         (Markup.inlineKeyboard(
           [
                [Markup.button.callback('Edit', 'btn_3')],
-               [Markup.button.callback('Next step', 'btn_4')]
+               [Markup.button.callback('Next step 4/8', 'btn_4')]
           ])))
         ageman = ctx.message.text
         }; 
@@ -202,7 +202,7 @@ bot.on('text', async(ctx) => {
           (Markup.inlineKeyboard(
             [
                  [Markup.button.callback('Edit', 'btn_4')],
-                 [Markup.button.callback('Next step', 'btn_5')]
+                 [Markup.button.callback('Next step 5/8', 'btn_5')]
             ])))
           countryman = ctx.message.text
           }; 
@@ -213,7 +213,7 @@ bot.on('text', async(ctx) => {
             (Markup.inlineKeyboard(
               [
                    [Markup.button.callback('Edit', 'btn_5')],
-                   [Markup.button.callback('Next step', 'btn_6')]
+                   [Markup.button.callback('Next step 6/8', 'btn_6')]
               ])))
             cityman = ctx.message.text
             }
@@ -223,7 +223,7 @@ bot.on('text', async(ctx) => {
             (Markup.inlineKeyboard(
               [
                    [Markup.button.callback('Edit', 'btn_6')],
-                   [Markup.button.callback('Next step', 'btn_7')]
+                   [Markup.button.callback('Next step 7/8', 'btn_7')]
               ])))
             interes = ctx.message.text
             };
@@ -233,7 +233,7 @@ bot.on('text', async(ctx) => {
               (Markup.inlineKeyboard(
                 [
                      [Markup.button.callback('Edit', 'btn_7')],
-                     [Markup.button.callback('Next step', 'btn_8')]
+                     [Markup.button.callback('Last step', 'btn_8')]
                 ])))
              whofind = ctx.message.text
               };        
