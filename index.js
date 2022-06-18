@@ -19,9 +19,9 @@ let del1 = ""
 let post = ""
 let email1 = ""
 let emailon = ""
-const bazaall = new Telegraf(process.env.bazaall)
-const bazashcf1 = new Telegraf(process.env.bazashcf1)
-const bazashcf2 = new Telegraf(process.env.bazashcf2)
+const bazaall = ["test@mail.com", "vip2@mail.com", "vip@mail.com", "2vip@mail.com"]
+const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
+const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
 
 
 bot.start(async (ctx) => {console.log(ctx.message),
