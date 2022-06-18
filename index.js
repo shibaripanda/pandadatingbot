@@ -34,7 +34,7 @@ bot.start(async (ctx) => {console.log(ctx.message),
      [Markup.button.callback('info 📖', 'btn_206')]
 ]) 
 ),
-await ctx.replyWithHTML(`<b>Bonuses available by subscription.</b>\nDating, exclusive content,\ncommunity, chat, online trainings.`,
+await ctx.replyWithHTML(`<b>ShibaripandaClub XL.</b>\nDating, exclusive content,\ncommunity, chat, online trainings.`,
 Markup.inlineKeyboard(
 [
    [Markup.button.callback('Here you can subscribe 💵', 'btn_204')],
@@ -121,7 +121,8 @@ bot.action ('btn_401', async (ctx) => {
     ]))} 
 })
 
-bot.action ('btn_900')
+bot.action ('btn_900'
+ )
 
 bot.action ('btn_1', (ctx) => {
   if (end1 == "0") {
