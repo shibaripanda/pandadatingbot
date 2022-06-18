@@ -25,18 +25,18 @@ const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
 
 
 bot.start(async (ctx) => {console.log(ctx.message),
-  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\nWelcome to Panda's Telegram Universe!\n<b>ShibaripandaClub</b>`,
+  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\nWelcome to Panda's Telegram Universe!\n<b>🐼 ShibaripandaClub</b>`,
   Markup.inlineKeyboard(
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
      [Markup.button.callback('Delete dating profile ❌', 'btn_200')],
-     [Markup.button.callback('🐼 ShibaripandaClub Free channel  🐼', 'btn_201')]
+     [Markup.button.callback('ShibaripandaClub Free channel', 'btn_201')]
 ]) 
 ),
-await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nDating, exclusive content,\ncommunity, chat, online trainings.`,
+await ctx.replyWithHTML(`<b>🐼 ShibaripandaClub XL</b>\nDating, exclusive content,\ncommunity, chat, online trainings.`,
 Markup.inlineKeyboard(
 [
-   [Markup.button.callback('💵 Here you can subscribe 💵', 'btn_204')],
+   [Markup.button.callback('Here you can subscribe 💵', 'btn_204')],
    [Markup.button.callback('Login', 'btn_400')]
 ]) 
 )
