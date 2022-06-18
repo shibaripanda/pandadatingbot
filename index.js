@@ -1,7 +1,7 @@
 const { Telegraf, Markup } = require('telegraf')
 require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
-const baza1 = require('./const')
+const baza = require('./const')
 
 let info = ""
 let prev_action = ""
@@ -19,7 +19,10 @@ let del1 = ""
 let post = ""
 let email1 = ""
 let emailon = ""
-let baza2 = "test@mail.com"
+const bazaall = ["test@mail.com", "vip2@mail.com", "vip@mail.com", "2vip@mail.com"]
+const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
+const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
+
 
 bot.start(async (ctx) => {console.log(ctx.message),
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\nWelcome to Panda's Telegram Universe!\n<b>ShibaripandaClub</b>`,
@@ -80,24 +83,42 @@ bot.action ('btn_204', (ctx) => {
   ctx.replyWithHTML(`To subscribe, go to <a href="https://www.patreon.com/shibaripanda">Patreon</a>.`)    
 })
 
-bot.action ('btn_401', (ctx) => {
-  if (email1 == baza2) {
-  ctx.replyWithHTML(`Welcome!\nChoose the section you need and enjoy.`,
+
+bot.action ('btn_401', async (ctx) => { 
+    if (bazaall.includes(email1))
+    
+    { 
+         if (bazaall.includes(email1)) {
+  await ctx.replyWithHTML(`Welcome!\nBonuses for you:`,
   Markup.inlineKeyboard(
     [
+       [Markup.button.callback('ShibaripandaClub XL 🐼', 'btn_900')],
+       [Markup.button.callback('ShibaripandaDating 🐼', 'btn_901')],
+       [Markup.button.callback('ShibaripandaLive 🐼', 'btn_902')],
+       [Markup.button.callback('ShibaripandaChat 🐼', 'btn_903')]
+    ]) )}
 
-       [Markup.button.callback('ShibaripandaClub XL $1 🐼', 'btn_202')],
-       [Markup.button.callback('Shibari course for beginners 📚', 'btn_203')]
-    ]) )
-}
-else { 
-  ctx.replyWithHTML(`The entered email is not registered or entered incorrectly.`,
+      if (bazashcf1.includes(email1)){
+        await ctx.reply('Joining a learning group:',
+  Markup.inlineKeyboard(
+    [
+       [Markup.button.callback('Shibari course for beginners 📚', 'btn_904')]
+    ]))
+      }    
+    if (bazashcf2.includes(email1)){
+      await ctx.reply('Joining a learning group:',
+      Markup.inlineKeyboard(
+        [
+           [Markup.button.callback('Shibari course for beginners2 📚', 'btn_905')]
+        ]) )} 
+  }
+    if (!bazaall.includes(email1)) {
+  ctx.reply(`The entered email is not registered or entered incorrectly.`,
   Markup.inlineKeyboard(
     [ 
       [Markup.button.callback('Edit email', 'btn_400')],
       [Markup.button.callback('Here you can subscribe 💵', 'btn_204')]
-    ]))
-}
+    ]))} 
 })
 
 
