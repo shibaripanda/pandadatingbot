@@ -1,6 +1,7 @@
 const commands = `
-/start - Перезапуск
-/help - Помощь
+/start - restart
+/info - info
+/help - help
 `
 const baza = "www"
 
