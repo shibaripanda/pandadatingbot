@@ -89,7 +89,7 @@ bot.action ('btn_401', async (ctx) => {
     
     { 
          if (bazaall.includes(email1)) {
-  await ctx.replyWithHTML(`Welcome!\nBonuses for you:`,
+  await ctx.replyWithHTML(`Welcome!\nHere are all the sections available for you, enjoy:`,
   Markup.inlineKeyboard(
     [
        [Markup.button.callback('ShibaripandaClub XL 🐼', 'btn_900')],
@@ -99,14 +99,14 @@ bot.action ('btn_401', async (ctx) => {
     ]) )}
 
       if (bazashcf1.includes(email1)){
-        await ctx.reply('Joining a learning group:',
+        await ctx.reply('And here are the training groups available for you:',
   Markup.inlineKeyboard(
     [
        [Markup.button.callback('Shibari course for beginners 📚', 'btn_904')]
     ]))
       }    
     if (bazashcf2.includes(email1)){
-      await ctx.reply('Joining a learning group:',
+      await ctx.reply('And here are the training groups available for you:',
       Markup.inlineKeyboard(
         [
            [Markup.button.callback('Shibari course for beginners2 📚', 'btn_905')]
@@ -121,7 +121,7 @@ bot.action ('btn_401', async (ctx) => {
     ]))} 
 })
 
-
+bot.action ('btn_900')
 
 bot.action ('btn_1', (ctx) => {
   if (end1 == "0") {
