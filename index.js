@@ -38,7 +38,7 @@ await ctx.replyWithHTML(`<b>ShibaripandaClub XL.</b>\nDating, exclusive content,
 Markup.inlineKeyboard(
 [
    [Markup.button.callback('Here you can subscribe 💵', 'btn_204')],
-   [Markup.button.callback('Login to closed sections after subscription', 'btn_400')],
+   [Markup.button.callback('Login', 'btn_400')],
    [Markup.button.callback('info 📖', 'btn_205')]
 ]) 
 )
