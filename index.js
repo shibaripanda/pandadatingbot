@@ -30,13 +30,13 @@ bot.start(async (ctx) => {console.log(ctx.message),
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
      [Markup.button.callback('Delete dating profile ❌', 'btn_200')],
-     [Markup.button.callback('ShibaripandaClub Free channel', 'btn_201')]
+     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
-await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nDating, exclusive content,\ncommunity, chat, online trainings.`,
+await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nDating, exclusive content,\ncommunity, chat, trainings.`,
 Markup.inlineKeyboard(
 [
-   [Markup.button.callback('Here you can subscribe 💵', 'btn_204')],
+   [Markup.button.callback('Subscribe 💵', 'btn_204')],
    [Markup.button.callback('Login', 'btn_400')]
 ]) 
 )
@@ -97,25 +97,25 @@ bot.action ('btn_401', async (ctx) => {
     ]) )}
 
       if (bazashcf1.includes(email1)){
-        await ctx.reply('And here are the training groups available for you:',
+        await ctx.reply('Your learning class:',
   Markup.inlineKeyboard(
     [
        [Markup.button.callback('Shibari course for beginners 📚', 'btn_904')]
     ]))
       }    
     if (bazashcf2.includes(email1)){
-      await ctx.reply('And here are the training groups available for you:',
+      await ctx.reply('Your learning class:',
       Markup.inlineKeyboard(
         [
            [Markup.button.callback('Shibari course for beginners2 📚', 'btn_905')]
         ]) )} 
   }
     if (!bazaall.includes(email1)) {
-  ctx.reply(`The entered email is not registered or entered incorrectly.`,
+  ctx.reply(`You didn't subscribe or entered your email incorrectly.`,
   Markup.inlineKeyboard(
     [ 
       [Markup.button.callback('Edit email', 'btn_400')],
-      [Markup.button.callback('Here you can subscribe 💵', 'btn_204')]
+      [Markup.button.callback('Subscribe 💵', 'btn_204')]
     ]))} 
 })
 
@@ -124,7 +124,7 @@ bot.action ('btn_900'
 
 bot.action ('btn_1', (ctx) => {
   if (end1 == "0") {
-  ctx.reply("Write your name.")
+  ctx.reply("What is your name?")
   prev_action = "step_1"}
  else { 
 }})
@@ -132,7 +132,7 @@ bot.action ('btn_1', (ctx) => {
 
 bot.action ('btn_2', (ctx) => {
   if (end1 == "0") {
-  ctx.reply("Write your gender.")
+  ctx.reply("What's your gender?")
   prev_action = "step_2"}
   else { 
   }})
@@ -140,14 +140,14 @@ bot.action ('btn_2', (ctx) => {
 
 bot.action ('btn_3', (ctx) => {
   if (end1 == "0") {
-  ctx.reply("Write your age.")
+  ctx.reply("How old are you?")
   prev_action = "step_3"}
   else { 
   }})
 
 bot.action ('btn_4', (ctx) => {
   if (end1 == "0") {
-  ctx.reply("Write your country.")
+  ctx.reply("What country are you from?")
   prev_action = "step_4"
   post = "1"}
   else { 
@@ -155,7 +155,7 @@ bot.action ('btn_4', (ctx) => {
 
   bot.action ('btn_5', (ctx) => {
     if (end1 == "0") {
-    ctx.reply("Write your city.")
+    ctx.reply("Which city are you from?")
     prev_action = "step_5"
     post = "1"}
     else { 
@@ -179,7 +179,7 @@ bot.action ('btn_4', (ctx) => {
 
         bot.action ('btn_8', (ctx) => {
           if (end1 == "0") {
-          ctx.reply("A few words about you")
+          ctx.reply("That tell about yourself?")
           prev_action = "step_8"
           post = "1"}
           else { 
@@ -190,8 +190,8 @@ bot.action ('btn_100', (ctx) => {
   ctx.reply (nameman +' '+ ageman +'\n'+ countryman +' '+ cityman +'\nGender: '+ sexman +'\n'+ 'My interests: '+ interes+'\n'+ 'Who I want to find: '+ whofind +'\n'+ 'About me: '+ infiwords +'\n@'+ username1,
   Markup.inlineKeyboard(
     [
-         [Markup.button.callback('Change information', 'btn_1')],
-         [Markup.button.callback('Post', 'btn_101')]
+         [Markup.button.callback('Edit information', 'btn_1')],
+         [Markup.button.callback('Publish my profile', 'btn_101')]
          
     ]))
     info = nameman +' '+ ageman +'\n'+ countryman +' '+ cityman +'\nGender: '+ sexman +'\n'+ 'My interests: '+ interes+'\n'+ 'Who I want to find: '+ whofind +'\n'+ 'About me: '+ infiwords +'\n@'+ username1
@@ -202,7 +202,7 @@ bot.action ('btn_100', (ctx) => {
 bot.action ('btn_101', async (ctx) => {
   if (post == "1"){
   await ctx.telegram.sendMessage(-1001738151348, info)
-  await ctx.reply("Profile added!\n\nAfter publishing the profile, restart the bot to change the information!.")
+  await ctx.reply("Your profile has been published!\n\nAfter publishing the profile, restart the bot to edit information!.")
   end1 = "1"
   post = "0"
 }
@@ -293,7 +293,7 @@ bot.on('text', async(ctx) => {
              whofind = ctx.message.text
               };        
   if (prev_action == "step_8") {
-    await ctx.reply(`About me: ${ctx.message.text}`,
+    await ctx.reply(`About you: ${ctx.message.text}`,
     (Markup.inlineKeyboard(
       [
            [Markup.button.callback('Edit', 'btn_8')],
@@ -304,7 +304,7 @@ bot.on('text', async(ctx) => {
   }; 
 
   if (emailon == "1") {
-    await ctx.reply(`Email from patreon: ${ctx.message.text}`,
+    await ctx.reply(`Is your patreon email?: ${ctx.message.text}`,
     (Markup.inlineKeyboard(
       [
            [Markup.button.callback('Edit', 'btn_400')],
