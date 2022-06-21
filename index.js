@@ -59,10 +59,9 @@ username1.push({id: ctx.from.id, username1: ctx.from.username})
 post.push({id: ctx.from.id, post: 0})
 emailon.push({id: ctx.from.id, emailon: 0})
 del1.push({id: ctx.from.id, del1: 0})
-console.log (ctx.from.id)
 console.log (ctx.from.username)
-console.log (nameman.length)
-console.log (nameman[(nameman.findIndex(item => item.id == ctx.from.id))].id)}
+console.log (ctx.from.id)
+console.log (nameman.length)}
 ) 
 
 
