@@ -32,13 +32,13 @@ bot.start(async (ctx) => {
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
      [Markup.button.callback('Delete dating profile ❌', 'btn_200')],
-     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
+//     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
 await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nDating, exclusive content,\ncommunity, chat, trainings.`,
 Markup.inlineKeyboard(
 [
-   [Markup.button.callback('Subscribe 💵', 'btn_204')],
+  // [Markup.button.callback('Subscribe 💵', 'btn_204')],
    [Markup.button.callback('Login', 'btn_400')]
 ]) 
 )  
