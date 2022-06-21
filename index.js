@@ -3,28 +3,30 @@ require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
 const baza = require('./const')
 
-let info = ""
-let prev_action = ""
-let nameman = ""
-let sexman = ""
-let ageman = ""
-let countryman = ""
-let username1 = ""
-let cityman = ""
-let interes = ""
-let whofind = ""
-let infiwords = ""
-let end1 = ""
-let del1 = ""
-let post = ""
-let email1 = ""
-let emailon = ""
+let info = []
+let prev_action = []
+let nameman = []
+let sexman = []
+let ageman = []
+let countryman = []
+let username1 = []
+let cityman = []
+let interes = []
+let whofind = []
+let infiwords = []
+let end1 = []
+let del1 = []
+let post = []
+let email1 = []
+let emailon = []
+
+
 const bazaall = ["test@mail.com", "vip2@mail.com", "vip@mail.com", "2vip@mail.com"]
 const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
 const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
 
 
-bot.start(async (ctx) => {console.log(ctx.message),
+bot.start(async (ctx) => {
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\nWelcome to Panda's Telegram Universe!\n<b>ShibaripandaClub</b>`,
   Markup.inlineKeyboard(
 [
@@ -39,21 +41,35 @@ Markup.inlineKeyboard(
    [Markup.button.callback('Subscribe 💵', 'btn_204')],
    [Markup.button.callback('Login', 'btn_400')]
 ]) 
-)
-end1 = "0"
-username1 = ctx.message.from.username
-del1 = "0"
-post = "0"
-emailon = "0"
-}
-)   
-
+)  
+nameman.push({id: ctx.from.id, namenman: 0})
+sexman.push({id: ctx.from.id, sexman: 0})
+ageman.push({id: ctx.from.id, ageman: 0})
+countryman.push({id: ctx.from.id, countryman: 0})
+cityman.push({id: ctx.from.id, cityman: 0})
+interes.push({id: ctx.from.id, interes: 0})
+whofind.push({id: ctx.from.id, whofind: 0})
+infiwords.push({id:ctx.from.id, infiwords: 0})
+end1.push({id: ctx.from.id, end1: 0})
+post.push({id: ctx.from.id, post: 0})
+email1.push({id: ctx.from.id.id, email1: 0})
+emailon.push({id: ctx.from.id, emailon: 0})
+end1.push({id: ctx.from.id, end1: 0})
+username1.push({id: ctx.from.id, username1: ctx.from.username})
+post.push({id: ctx.from.id, post: 0})
+emailon.push({id: ctx.from.id, emailon: 0})
+del1.push({id: ctx.from.id, del1: 0})
+console.log (ctx.from.id)
+console.log (ctx.from.username)
+console.log (nameman.length)
+console.log (nameman[(nameman.findIndex(item => item.id == ctx.from.id))].id)}
+) 
 
 
 bot.action ('btn_400', (ctx) => {
   ctx.reply("Write your email that you use on patreon.(use only small letters)")
-  emailon = "1"
-  prev_action = "step_0"
+  emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
   })
 
 
@@ -83,10 +99,10 @@ bot.action ('btn_204', (ctx) => {
 
 
 bot.action ('btn_401', async (ctx) => { 
-    if (bazaall.includes(email1))
+    if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1))
     
     { 
-         if (bazaall.includes(email1)) {
+         if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
   await ctx.replyWithHTML(`Welcome!\nHere are all the sections available for you, enjoy:`,
   Markup.inlineKeyboard(
     [
@@ -96,21 +112,21 @@ bot.action ('btn_401', async (ctx) => {
        [Markup.button.callback('ShibaripandaChat 🐼', 'btn_903')]
     ]) )}
 
-      if (bazashcf1.includes(email1)){
+      if (bazashcf1.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)){
         await ctx.reply('Your learning class:',
   Markup.inlineKeyboard(
     [
        [Markup.button.callback('Shibari course for beginners 📚', 'btn_904')]
     ]))
       }    
-    if (bazashcf2.includes(email1)){
+    if (bazashcf2.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)){
       await ctx.reply('Your learning class:',
       Markup.inlineKeyboard(
         [
            [Markup.button.callback('Shibari course for beginners2 📚', 'btn_905')]
         ]) )} 
   }
-    if (!bazaall.includes(email1)) {
+    if (!bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
   ctx.reply(`You didn't subscribe or entered your email incorrectly.`,
   Markup.inlineKeyboard(
     [ 
@@ -119,199 +135,215 @@ bot.action ('btn_401', async (ctx) => {
     ]))} 
 })
 
-bot.action ('btn_900'
- )
+bot.action ('btn_900')
 
-bot.action ('btn_1', (ctx) => {
-  if (end1 == "0") {
-  ctx.reply("What is your name?")
-  prev_action = "step_1"}
+bot.action ('btn_1', async (ctx) => {
+  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+  await ctx.reply("What is your name?")
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_1'})}
  else { 
 }})
 
 
 bot.action ('btn_2', (ctx) => {
-  if (end1 == "0") {
+  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("What's your gender?")
-  prev_action = "step_2"}
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_2'})}
   else { 
   }})
 
 
 bot.action ('btn_3', (ctx) => {
-  if (end1 == "0") {
+  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("How old are you?")
-  prev_action = "step_3"}
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_3'})}
   else { 
   }})
 
 bot.action ('btn_4', (ctx) => {
-  if (end1 == "0") {
+  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("What country are you from?")
-  prev_action = "step_4"
-  post = "1"}
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_4'})
+  post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
   else { 
   }})
 
   bot.action ('btn_5', (ctx) => {
-    if (end1 == "0") {
+    if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
     ctx.reply("Which city are you from?")
-    prev_action = "step_5"
-    post = "1"}
+    prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_5'})
+    post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
     else { 
     }})
 
     bot.action ('btn_6', (ctx) => {
-      if (end1 == "0") {
+      if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
       ctx.reply("What interests do you have?")
-      prev_action = "step_6"
-      post = "1"}
+      prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id.id, prev_action: 'step_6'})
+      post[([(post.findIndex(item => item.id == ctx.from.id.id))])] = ({id: ctx.from.id, post: 1})}
       else { 
       }})
 
       bot.action ('btn_7', (ctx) => {
-        if (end1 == "0") {
+        if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
         ctx.reply("Who would you like to find?")
-        prev_action = "step_7"
-        post = "1"}
+        prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_7'})
+        post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
         else { 
         }})
 
         bot.action ('btn_8', (ctx) => {
-          if (end1 == "0") {
+          if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
           ctx.reply("That tell about yourself?")
-          prev_action = "step_8"
-          post = "1"}
+          prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_8'})
+          post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
           else { 
           }})  
 
 bot.action ('btn_100', (ctx) => {
-  if (end1 == "0"){
-  ctx.reply (nameman +' '+ ageman +'\n'+ countryman +' '+ cityman +'\nGender: '+ sexman +'\n'+ 'My interests: '+ interes+'\n'+ 'Who I want to find: '+ whofind +'\n'+ 'About me: '+ infiwords +'\n@'+ username1,
+  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){
+  ctx.reply ((nameman[(nameman.findIndex(item => item.id == ctx.from.id))].nameman) +' '+ 
+  (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n'+ 
+  (countryman[(countryman.findIndex(item => item.id == ctx.from.id))].countryman) +' '+ 
+  (cityman[(cityman.findIndex(item => item.id == ctx.from.id))].cityman) +'\nGender: '+ 
+  (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ 'My interests: '+ 
+  (interes[(interes.findIndex(item => item.id == ctx.from.id))].interes)+'\n'+ 'Who I want to find: '+ 
+  (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
+  (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\n@'+ 
+  (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1),
+
+
   Markup.inlineKeyboard(
     [
          [Markup.button.callback('Edit information', 'btn_1')],
          [Markup.button.callback('Publish my profile', 'btn_101')]
          
     ]))
-    info = nameman +' '+ ageman +'\n'+ countryman +' '+ cityman +'\nGender: '+ sexman +'\n'+ 'My interests: '+ interes+'\n'+ 'Who I want to find: '+ whofind +'\n'+ 'About me: '+ infiwords +'\n@'+ username1
-} else { 
+    info[([(info.findIndex(item => item.id == ctx.from.id))])] =
+    ({id: ctx.from.id, info: (nameman[(nameman.findIndex(item => item.id == ctx.from.id))].nameman) +' '+ 
+    (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n\n'+ 
+    (countryman[(countryman.findIndex(item => item.id == ctx.from.id))].countryman) +' '+ 
+    (cityman[(cityman.findIndex(item => item.id == ctx.from.id))].cityman) +'\nGender: '+ 
+    (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ 'My interests: '+ 
+    (interes[(interes.findIndex(item => item.id == ctx.from.id))].interes)+'\n'+ 'Who I want to find: '+ 
+    (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
+    (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\n@'+ 
+    (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1)})}
+ else { 
 } }
 )
 
 bot.action ('btn_101', async (ctx) => {
-  if (post == "1"){
-  await ctx.telegram.sendMessage(-1001738151348, info)
+  if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
+  await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info))
   await ctx.reply("Your profile has been published!\n\nAfter publishing the profile, restart the bot to edit information!.")
-  end1 = "1"
-  post = "0"
-}
+  end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 0})
+  post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})}
   else { 
   } 
 })
 
 bot.action ('btn_200', async (ctx) => {
-  if (del1 == "0"){
-  await ctx.telegram.sendMessage(-1001738151348,`Delete @` + username1)
+  if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
+  await ctx.telegram.sendMessage(-1001738151348,`Delete @` + (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1))
   await ctx.reply("Your profile will be deleted shortly.")
-  del1 = "1"}
+  del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})}
   else { 
   } 
 })
 
 bot.on('text', async(ctx) => {
-  if (prev_action == "step_1") {
+  if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_1") {
     await ctx.reply(`Your name : ${ctx.message.text}`,
     (Markup.inlineKeyboard(
       [
            [Markup.button.callback('Edit', 'btn_1')],
            [Markup.button.callback('Next step 2/8', 'btn_2')]
       ])))
-    nameman = ctx.message.text
-    
+  
+    nameman[([(nameman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, nameman: ctx.message.text})
     }; 
 
-    if (prev_action == "step_2") {
+    if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_2") {
       await ctx.reply(`Your gender : ${ctx.message.text}`,
       (Markup.inlineKeyboard(
         [
              [Markup.button.callback('Edit', 'btn_2')],
              [Markup.button.callback('Next step 3/8', 'btn_3')]
         ])))
-      sexman = ctx.message.text
+    sexman[([(sexman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, sexman: ctx.message.text})
       };
 
-      if (prev_action == "step_3") {
+      if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_3") {
         await ctx.reply(`Your age : ${ctx.message.text}`,
         (Markup.inlineKeyboard(
           [
                [Markup.button.callback('Edit', 'btn_3')],
                [Markup.button.callback('Next step 4/8', 'btn_4')]
           ])))
-        ageman = ctx.message.text
+        ageman[([(ageman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, ageman: ctx.message.text})
         }; 
 
 
-        if (prev_action == "step_4") {
+        if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_4") {
           await ctx.reply(`Your country : ${ctx.message.text}`,
           (Markup.inlineKeyboard(
             [
                  [Markup.button.callback('Edit', 'btn_4')],
                  [Markup.button.callback('Next step 5/8', 'btn_5')]
             ])))
-          countryman = ctx.message.text
-          }; 
+          countryman[([(countryman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, countryman: ctx.message.text})};
 
 
-          if (prev_action == "step_5") {
+          if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_5") {
             await ctx.reply(`Your city : ${ctx.message.text}`,
             (Markup.inlineKeyboard(
               [
                    [Markup.button.callback('Edit', 'btn_5')],
                    [Markup.button.callback('Next step 6/8', 'btn_6')]
               ])))
-            cityman = ctx.message.text
-            }
+            cityman[([(cityman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, cityman: ctx.message.text})
+            };
 
-          if (prev_action == "step_6") {
+          if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_6") {
             await ctx.reply(`Your interests: ${ctx.message.text}`,
             (Markup.inlineKeyboard(
               [
                    [Markup.button.callback('Edit', 'btn_6')],
                    [Markup.button.callback('Next step 7/8', 'btn_7')]
               ])))
-            interes = ctx.message.text
+            interes[([(interes.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, interes: ctx.message.text})
             };
 
-            if (prev_action == "step_7") {
+            if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_7") {
               await ctx.reply(`You are looking for: ${ctx.message.text}`,
               (Markup.inlineKeyboard(
                 [
                      [Markup.button.callback('Edit', 'btn_7')],
                      [Markup.button.callback('Last step', 'btn_8')]
                 ])))
-             whofind = ctx.message.text
+             whofind[([(whofind.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, whofind: ctx.message.text})
               };        
-  if (prev_action == "step_8") {
+  if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_8") {
     await ctx.reply(`About you: ${ctx.message.text}`,
     (Markup.inlineKeyboard(
       [
            [Markup.button.callback('Edit', 'btn_8')],
            [Markup.button.callback('See what your profile will look like', 'btn_100')]
       ])))
-    infiwords = ctx.message.text
+    infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text})
 
   }; 
 
-  if (emailon == "1") {
-    await ctx.reply(`Is your patreon email?: ${ctx.message.text}`,
+  if ((emailon[(emailon.findIndex(item => item.id == ctx.from.id))].emailon) == "1") {
+    await ctx.reply(`Is your patreon email?\n${ctx.message.text}`,
     (Markup.inlineKeyboard(
       [
            [Markup.button.callback('Edit', 'btn_400')],
            [Markup.button.callback('Email is correct', 'btn_401')]
       ])))
-    email1 = ctx.message.text
-    emailon = "0"
+    email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text})
+    emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
     }  
    else { 
     
