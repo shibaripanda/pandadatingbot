@@ -383,10 +383,6 @@ bot.on('text', async(ctx) => {
     username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
 
   }
-   })
-
-
-bot.on('text', async(ctx) => {
   if ((emailon.find(item => item.email1 == 0)) == undefined){}  
    else {if ((emailon[(emailon.findIndex(item => item.id == ctx.from.id))].emailon) == "1") {
     await ctx.reply(`Is your patreon email?\n${ctx.message.text}`,
@@ -400,7 +396,7 @@ bot.on('text', async(ctx) => {
     
   } 
 }
-    })
+   })
 
 
  bot.launch()
