@@ -382,11 +382,12 @@ bot.on('text', async(ctx) => {
     infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text})
     username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
 
-  }; 
-  emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1}) 
-   if ((emailon.find(item => item.email1 == 0)) == undefined){ 
-    ctx.reply('10Restart the bot to continue working.\n\n/start')
-    }  
+  }
+   })
+
+
+bot.on('text', async(ctx) => {
+  if ((emailon.find(item => item.email1 == 0)) == undefined){}  
    else {if ((emailon[(emailon.findIndex(item => item.id == ctx.from.id))].emailon) == "1") {
     await ctx.reply(`Is your patreon email?\n${ctx.message.text}`,
     (Markup.inlineKeyboard(
@@ -398,8 +399,8 @@ bot.on('text', async(ctx) => {
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0}) 
     
   } 
-}})
-
+}
+    })
 
 
  bot.launch()
