@@ -114,8 +114,8 @@ bot.action ('btn_204', (ctx) => {
 
 
 bot.action ('btn_401', async (ctx) => { 
-  if ((emailon.find(item => item.emailon == 1)) == undefined){ 
-    ctx.reply('8Restart the bot to continue working.\n\n/start')
+  if ((emailon.find(item => item.emailon == 0)) == undefined){ 
+    ctx.reply('401Restart the bot to continue working.\n\n/start')
   }
     else{
         if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1))
