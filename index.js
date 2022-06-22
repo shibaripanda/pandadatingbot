@@ -114,7 +114,11 @@ bot.action ('btn_204', (ctx) => {
 
 
 bot.action ('btn_401', async (ctx) => { 
-    if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1))
+  if ((emailon.find(item => item.emailon == 1)) == undefined){ 
+    ctx.reply('8Restart the bot to continue working.\n\n/start')
+  }
+    else{
+        if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1))
     
     { 
          if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
@@ -148,6 +152,7 @@ bot.action ('btn_401', async (ctx) => {
       [Markup.button.callback('Edit email', 'btn_400')],
       [Markup.button.callback('Subscribe 💵', 'btn_204')]
     ]))} 
+    }
 })
 
 bot.action ('btn_900')
@@ -383,8 +388,7 @@ bot.on('text', async(ctx) => {
     username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
 
   }
-  if ((emailon.find(item => item.email1 == 0)) == undefined){}  
-   else {if ((emailon[(emailon.findIndex(item => item.id == ctx.from.id))].emailon) == "1") {
+ if ((emailon[(emailon.findIndex(item => item.id == ctx.from.id))].emailon) == "1") {
     await ctx.reply(`Is your patreon email?\n${ctx.message.text}`,
     (Markup.inlineKeyboard(
       [
@@ -394,9 +398,12 @@ bot.on('text', async(ctx) => {
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text})
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0}) 
     
-  } 
-}
+   }
+   if ((emailon.find(item => item.emailon == 1)) == undefined){ 
+  
+  }
    })
+
 
 
  bot.launch()
