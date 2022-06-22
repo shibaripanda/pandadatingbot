@@ -2,6 +2,14 @@ const { Telegraf, Markup } = require('telegraf')
 require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
 const baza = require('./const')
+const mongoose = require('mongoose')
+const db = (process.env.BD_TOKEN)
+const Post = require('./models/post')
+
+mongoose
+.connect(db, {useNewUrlParser: true})
+.then((res)=> console.log('connect to DB'))
+.catch((error) => console.log(error))
 
 let info = []
 let prev_action = []
