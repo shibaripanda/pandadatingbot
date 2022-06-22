@@ -71,12 +71,10 @@ email1.push({id: ctx.from.id.id})
 emailon.push({id: ctx.from.id})
 username1.push({id: ctx.from.id})
 post.push({id: ctx.from.id})
-prev_action.push({id: ctx.from.id})
+prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
 del1.push({id: ctx.from.id})
 
 console.log (ctx.from.username, ctx.from.id, nameman.length)
-console.log (([(nameman.findIndex(item => item.id == ctx.from.id))]))
-console.log (nameman)
 }
 ) 
 
