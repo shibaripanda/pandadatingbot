@@ -165,7 +165,7 @@ bot.action ('btn_1', async (ctx) => {
 
 bot.action ('btn_2', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Restart the bot to continue working.\n\n/start')
+    ctx.reply('1Restart the bot to continue working.\n\n/start')
   }
   else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("What's your gender?")
@@ -177,7 +177,7 @@ bot.action ('btn_2', (ctx) => {
 
 bot.action ('btn_3', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Restart the bot to continue working.\n\n/start')
+    ctx.reply('2Restart the bot to continue working.\n\n/start')
   }
   
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -187,7 +187,7 @@ bot.action ('btn_3', (ctx) => {
 
 bot.action ('btn_4', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Restart the bot to continue working.\n\n/start')
+    ctx.reply('3Restart the bot to continue working.\n\n/start')
   }
   
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -198,7 +198,7 @@ bot.action ('btn_4', (ctx) => {
 
   bot.action ('btn_5', (ctx) => {
     if ((end1.find(item => item.end1 == 0)) == undefined){ 
-      ctx.reply('Restart the bot to continue working.\n\n/start')
+      ctx.reply('4Restart the bot to continue working.\n\n/start')
     }
     
     else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -209,7 +209,7 @@ bot.action ('btn_4', (ctx) => {
 
     bot.action ('btn_6', (ctx) => {
       if ((end1.find(item => item.end1 == 0)) == undefined){ 
-        ctx.reply('Restart the bot to continue working.\n\n/start')
+        ctx.reply('5Restart the bot to continue working.\n\n/start')
       }
       
       else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -220,7 +220,7 @@ bot.action ('btn_4', (ctx) => {
 
       bot.action ('btn_7', (ctx) => {
         if ((end1.find(item => item.end1 == 0)) == undefined){ 
-          ctx.reply('Restart the bot to continue working.\n\n/start')
+          ctx.reply('6Restart the bot to continue working.\n\n/start')
         }
         
         else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -231,7 +231,7 @@ bot.action ('btn_4', (ctx) => {
 
         bot.action ('btn_8', (ctx) => {
           if ((end1.find(item => item.end1 == 0)) == undefined){ 
-            ctx.reply('Restart the bot to continue working.\n\n/start')
+            ctx.reply('7Restart the bot to continue working.\n\n/start')
           }
           
           else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -242,7 +242,7 @@ bot.action ('btn_4', (ctx) => {
 
 bot.action ('btn_100', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Restart the bot to continue working.\n\n/start')
+    ctx.reply('8Restart the bot to continue working.\n\n/start')
   }
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){
   ctx.reply ((nameman[(nameman.findIndex(item => item.id == ctx.from.id))].nameman) +' '+ 
@@ -292,7 +292,7 @@ bot.action ('btn_200', async (ctx) => {
   username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 0})
   if ((del1.find(item => item.del1 == 0)) == undefined){ 
-    ctx.reply('Restart the bot to continue working.\n\n/start')
+    ctx.reply('9Restart the bot to continue working.\n\n/start')
   }
   else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
   await ctx.telegram.sendMessage(-1001738151348,`Delete @` + (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1))
@@ -385,7 +385,7 @@ bot.on('text', async(ctx) => {
   }; 
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1}) 
    if ((emailon.find(item => item.email1 == 0)) == undefined){ 
-    ctx.reply('Restart the bot to continue working.\n\n/start')
+    ctx.reply('10Restart the bot to continue working.\n\n/start')
     }  
    else {if ((emailon[(emailon.findIndex(item => item.id == ctx.from.id))].emailon) == "1") {
     await ctx.reply(`Is your patreon email?\n${ctx.message.text}`,
