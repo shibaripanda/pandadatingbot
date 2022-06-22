@@ -20,11 +20,9 @@ let post = []
 let email1 = []
 let emailon = []
 
-
 const bazaall = ["test@mail.com", "vip2@mail.com", "vip@mail.com", "2vip@mail.com"]
 const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
 const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
-
 
 bot.start(async (ctx) => {
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\nWelcome to Panda's Telegram Universe!\n<b>ShibaripandaClub</b>`,
@@ -41,25 +39,44 @@ Markup.inlineKeyboard(
   // [Markup.button.callback('Subscribe 💵', 'btn_204')],
    [Markup.button.callback('Login', 'btn_400')]
 ]) 
-)  
-nameman.push({id: ctx.from.id, namenman: 0})
-sexman.push({id: ctx.from.id, sexman: 0})
-ageman.push({id: ctx.from.id, ageman: 0})
-countryman.push({id: ctx.from.id, countryman: 0})
-cityman.push({id: ctx.from.id, cityman: 0})
-interes.push({id: ctx.from.id, interes: 0})
-whofind.push({id: ctx.from.id, whofind: 0})
-infiwords.push({id:ctx.from.id, infiwords: 0})
-end1.push({id: ctx.from.id, end1: 0})
-post.push({id: ctx.from.id, post: 0})
-email1.push({id: ctx.from.id.id, email1: 0})
-emailon.push({id: ctx.from.id, emailon: 0})
-end1.push({id: ctx.from.id, end1: 0})
-username1.push({id: ctx.from.id, username1: ctx.from.username})
-post.push({id: ctx.from.id, post: 0})
-emailon.push({id: ctx.from.id, emailon: 0})
-del1.push({id: ctx.from.id, del1: 0})
+)
+//nameman.splice([([(nameman.findIndex(item => item.id == ctx.from.id))])], 1)
+//info.splice(info.findIndex(item => item.id == ctx.from.id), 1) 
+//sexman.splice(sexman.findIndex(item => item.id == ctx.from.id), 1)
+//ageman.splice(ageman.findIndex(item => item.id == ctx.from.id), 1)
+//countryman.splice(countryman.findIndex(item => item.id == ctx.from.id), 1)
+//cityman.splice(cityman.findIndex(item => item.id == ctx.from.id), 1)
+//interes.splice(interes.findIndex(item => item.id == ctx.from.id), 1)
+//whofind.splice(whofind.findIndex(item => item.id == ctx.from.id), 1)
+//infiwords.splice(infiwords.findIndex(item => item.id == ctx.from.id), 1)
+//end1.splice(end1.findIndex(item => item.id == ctx.from.id), 1)
+//email1.splice(email1.findIndex(item => item.id == ctx.from.id), 1)
+//emailon.splice(emailon.findIndex(item => item.id == ctx.from.id), 1)
+//username1.splice(username1.findIndex(item => item.id == ctx.from.id), 1)
+//post.splice(post.findIndex(item => item.id == ctx.from.id), 1)
+//prev_action.splice(prev_action.findIndex(item => item.id == ctx.from.id), 1)
+//del1.splice(del1.findIndex(item => item.id == ctx.from.id), 1)
+
+nameman.push({id: ctx.from.id})
+info.push({id: ctx.from.id})
+sexman.push({id: ctx.from.id})
+ageman.push({id: ctx.from.id})
+countryman.push({id: ctx.from.id})
+cityman.push({id: ctx.from.id})
+interes.push({id: ctx.from.id})
+whofind.push({id: ctx.from.id})
+infiwords.push({id:ctx.from.id})
+end1.push({id: ctx.from.id})
+email1.push({id: ctx.from.id.id})
+emailon.push({id: ctx.from.id})
+username1.push({id: ctx.from.id})
+post.push({id: ctx.from.id})
+prev_action.push({id: ctx.from.id})
+del1.push({id: ctx.from.id})
+
 console.log (ctx.from.username, ctx.from.id, nameman.length)
+console.log (([(nameman.findIndex(item => item.id == ctx.from.id))]))
+console.log (nameman)
 }
 ) 
 
@@ -136,70 +153,98 @@ bot.action ('btn_401', async (ctx) => {
 bot.action ('btn_900')
 
 bot.action ('btn_1', async (ctx) => {
-  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
-  await ctx.reply("What is your name?")
-  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_1'})}
- else { 
-}})
+  end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 0})
+  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){ 
+    await ctx.reply("What is your name?")
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_1'})
+  }
+ else {
+  }
+})
 
 
 bot.action ('btn_2', (ctx) => {
-  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+  if ((end1.find(item => item.end1 == 0)) == undefined){ 
+    ctx.reply('Restart the bot to continue working.\n\n/start')
+  }
+  else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("What's your gender?")
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_2'})}
-  else { 
+  else {
+  } 
   }})
 
 
 bot.action ('btn_3', (ctx) => {
-  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+  if ((end1.find(item => item.end1 == 0)) == undefined){ 
+    ctx.reply('Restart the bot to continue working.\n\n/start')
+  }
+  
+  else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("How old are you?")
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_3'})}
-  else { 
   }})
 
 bot.action ('btn_4', (ctx) => {
-  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+  if ((end1.find(item => item.end1 == 0)) == undefined){ 
+    ctx.reply('Restart the bot to continue working.\n\n/start')
+  }
+  
+  else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("What country are you from?")
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_4'})
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
-  else { 
   }})
 
   bot.action ('btn_5', (ctx) => {
-    if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+    if ((end1.find(item => item.end1 == 0)) == undefined){ 
+      ctx.reply('Restart the bot to continue working.\n\n/start')
+    }
+    
+    else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
     ctx.reply("Which city are you from?")
     prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_5'})
     post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
-    else { 
     }})
 
     bot.action ('btn_6', (ctx) => {
-      if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+      if ((end1.find(item => item.end1 == 0)) == undefined){ 
+        ctx.reply('Restart the bot to continue working.\n\n/start')
+      }
+      
+      else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
       ctx.reply("What interests do you have?")
-      prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id.id, prev_action: 'step_6'})
+      prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_6'})
       post[([(post.findIndex(item => item.id == ctx.from.id.id))])] = ({id: ctx.from.id, post: 1})}
-      else { 
       }})
 
       bot.action ('btn_7', (ctx) => {
-        if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+        if ((end1.find(item => item.end1 == 0)) == undefined){ 
+          ctx.reply('Restart the bot to continue working.\n\n/start')
+        }
+        
+        else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
         ctx.reply("Who would you like to find?")
         prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_7'})
         post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
-        else { 
         }})
 
         bot.action ('btn_8', (ctx) => {
-          if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
+          if ((end1.find(item => item.end1 == 0)) == undefined){ 
+            ctx.reply('Restart the bot to continue working.\n\n/start')
+          }
+          
+          else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
           ctx.reply("That tell about yourself?")
           prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_8'})
-          post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
-          else { 
+          post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})} 
           }})  
 
 bot.action ('btn_100', (ctx) => {
-  if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){
+  if ((end1.find(item => item.end1 == 0)) == undefined){ 
+    ctx.reply('Restart the bot to continue working.\n\n/start')
+  }
+  else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){
   ctx.reply ((nameman[(nameman.findIndex(item => item.id == ctx.from.id))].nameman) +' '+ 
   (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n'+ 
   (countryman[(countryman.findIndex(item => item.id == ctx.from.id))].countryman) +' '+ 
@@ -226,29 +271,34 @@ bot.action ('btn_100', (ctx) => {
     (interes[(interes.findIndex(item => item.id == ctx.from.id))].interes)+'\n'+ 'Who I want to find: '+ 
     (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
     (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\n@'+ 
-    (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1)})}
+    (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1)})
+
+    prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})}
  else { 
-} }
+} }}
 )
 
 bot.action ('btn_101', async (ctx) => {
   if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
   await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info))
   await ctx.reply("Your profile has been published!\n\nAfter publishing the profile, restart the bot to edit information!.")
-  end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 0})
+  end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})}
   else { 
   } 
 })
 
 bot.action ('btn_200', async (ctx) => {
-  if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
+  username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
+  del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 0})
+  if ((del1.find(item => item.del1 == 0)) == undefined){ 
+    ctx.reply('Restart the bot to continue working.\n\n/start')
+  }
+  else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
   await ctx.telegram.sendMessage(-1001738151348,`Delete @` + (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1))
   await ctx.reply("Your profile will be deleted shortly.")
-  del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})}
-  else { 
-  } 
-})
+  del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})} 
+}})
 
 bot.on('text', async(ctx) => {
   if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_1") {
@@ -330,6 +380,7 @@ bot.on('text', async(ctx) => {
            [Markup.button.callback('See what your profile will look like', 'btn_100')]
       ])))
     infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text})
+    username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
 
   }; 
 
