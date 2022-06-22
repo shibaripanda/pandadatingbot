@@ -113,7 +113,7 @@ bot.action ('btn_204', (ctx) => {
 
 bot.action ('btn_401', async (ctx) => { 
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
-    ctx.reply('401Restart the bot to continue working.\n\n/start')
+    ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
     else{
         if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1))
@@ -168,7 +168,7 @@ bot.action ('btn_1', async (ctx) => {
 
 bot.action ('btn_2', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('1Restart the bot to continue working.\n\n/start')
+    ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
   else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("What's your gender?")
@@ -180,7 +180,7 @@ bot.action ('btn_2', (ctx) => {
 
 bot.action ('btn_3', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('2Restart the bot to continue working.\n\n/start')
+    ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
   
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -190,7 +190,7 @@ bot.action ('btn_3', (ctx) => {
 
 bot.action ('btn_4', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('3Restart the bot to continue working.\n\n/start')
+    ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
   
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -201,7 +201,7 @@ bot.action ('btn_4', (ctx) => {
 
   bot.action ('btn_5', (ctx) => {
     if ((end1.find(item => item.end1 == 0)) == undefined){ 
-      ctx.reply('4Restart the bot to continue working.\n\n/start')
+      ctx.reply('Please restart the bot to continue.\n/start - restart\n')
     }
     
     else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -212,7 +212,7 @@ bot.action ('btn_4', (ctx) => {
 
     bot.action ('btn_6', (ctx) => {
       if ((end1.find(item => item.end1 == 0)) == undefined){ 
-        ctx.reply('5Restart the bot to continue working.\n\n/start')
+        ctx.reply('Please restart the bot to continue.\n/start - restart\n')
       }
       
       else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -223,7 +223,7 @@ bot.action ('btn_4', (ctx) => {
 
       bot.action ('btn_7', (ctx) => {
         if ((end1.find(item => item.end1 == 0)) == undefined){ 
-          ctx.reply('6Restart the bot to continue working.\n\n/start')
+          ctx.reply('Please restart the bot to continue.\n/start - restart\n')
         }
         
         else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -234,7 +234,7 @@ bot.action ('btn_4', (ctx) => {
 
         bot.action ('btn_8', (ctx) => {
           if ((end1.find(item => item.end1 == 0)) == undefined){ 
-            ctx.reply('7Restart the bot to continue working.\n\n/start')
+            ctx.reply('Please restart the bot to continue.\n/start - restart\n')
           }
           
           else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -245,7 +245,7 @@ bot.action ('btn_4', (ctx) => {
 
 bot.action ('btn_100', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('8Restart the bot to continue working.\n\n/start')
+    ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){
   ctx.reply ((nameman[(nameman.findIndex(item => item.id == ctx.from.id))].nameman) +' '+ 
@@ -284,7 +284,7 @@ bot.action ('btn_100', (ctx) => {
 bot.action ('btn_101', async (ctx) => {
   if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
   await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info))
-  await ctx.reply("Your profile has been published!\n\nAfter publishing the profile, restart the bot to edit information!.")
+  await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start - restart\n")
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})}
   else { 
@@ -295,11 +295,11 @@ bot.action ('btn_200', async (ctx) => {
   username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 0})
   if ((del1.find(item => item.del1 == 0)) == undefined){ 
-    ctx.reply('9Restart the bot to continue working.\n\n/start')
+    ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
   else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
   await ctx.telegram.sendMessage(-1001738151348,`Delete @` + (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1))
-  await ctx.reply("Your profile will be deleted shortly.")
+  await ctx.reply("Your profile will be deleted shortly.❌")
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})} 
 }})
 
