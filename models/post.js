@@ -9,9 +9,15 @@ username: {
 id: {
     type: String,
     required: true,
+},
+idmes: {
+    type: String,
+    required: true,
 }
-}, { timestamps: true})
+}, { timestamps: true});
 
-const Post = mongoose.model('Post', postSchema)
 
-module.exports = Post;
+
+const Post = mongoose.model('Post', postSchema);
+
+module.exports = Post

@@ -37,6 +37,7 @@ bot.start(async (ctx) => {
  Post.create({
  username: ctx.from.username,
  id: ctx.from.id,
+ idmes: 0,
   })
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
   Markup.inlineKeyboard(
@@ -296,13 +297,17 @@ bot.action ('btn_100', (ctx) => {
 
 bot.action ('btn_101', async (ctx) => {
   if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
-  await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info))
+  await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info)) 
+  
   await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start - restart\n\n🐼🐼🐼🐼🐼🐼🐼🐼🐼")
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
-  post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})}
+  post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})
+}
   else { 
   } 
 })
+
+
 
 bot.action ('btn_200', async (ctx) => {
   username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
@@ -317,6 +322,9 @@ bot.action ('btn_200', async (ctx) => {
 }})
 
 bot.on('text', async(ctx) => {
+  if (ctx.message.chat.id == -1001738151348) {Post.create({username: ctx.from.username,
+    id: ctx.message.id,
+    idmes: 0,})};
   if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_1") {
     await ctx.reply(`Your name : ${ctx.message.text}`,
     (Markup.inlineKeyboard(
