@@ -33,7 +33,7 @@ bot.start(async (ctx) => {
 //     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
-await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nDating, exclusive content,\ncommunity, chat, trainings.`,
+await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nExclusive content\nDating, community, chat, trainings.`,
 Markup.inlineKeyboard(
 [
   // [Markup.button.callback('Subscribe 💵', 'btn_204')],
@@ -284,7 +284,7 @@ bot.action ('btn_100', (ctx) => {
 bot.action ('btn_101', async (ctx) => {
   if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
   await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info))
-  await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start - restart\n🐼🐼🐼🐼🐼🐼🐼🐼🐼")
+  await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start - restart\n\n🐼🐼🐼🐼🐼🐼🐼🐼🐼")
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})}
   else { 
