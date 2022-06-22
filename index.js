@@ -11,6 +11,7 @@ mongoose
 .then((res)=> console.log('connect to DB'))
 .catch((error) => console.log(error))
 
+
 let info = []
 let prev_action = []
 let nameman = []
@@ -33,6 +34,10 @@ const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
 const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
 
 bot.start(async (ctx) => {
+ Post.create({
+ username: ctx.from.username,
+ id: ctx.from.id,
+  })
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
   Markup.inlineKeyboard(
 [
