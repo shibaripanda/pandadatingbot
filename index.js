@@ -25,7 +25,7 @@ const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
 const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
 
 bot.start(async (ctx) => {
-  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub</b>`,
+  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
   Markup.inlineKeyboard(
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
@@ -80,7 +80,7 @@ console.log (ctx.from.username, ctx.from.id, nameman.length)
 
 
 bot.action ('btn_400', (ctx) => {
-  ctx.reply("Write your email that you use on patreon.(use only small letters)")
+  ctx.reply("Write your email that you use on patreon.\n(use only small letters)")
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
   })
