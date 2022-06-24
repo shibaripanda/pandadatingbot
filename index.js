@@ -11,7 +11,8 @@ mongoose
 .then((res)=> console.log('connect to DB'))
 .catch((error) => console.log(error))
 
-
+let bdinfo = []
+let dell2 = []
 let info = []
 let prev_action = []
 let nameman = []
@@ -27,50 +28,14 @@ let end1 = []
 let del1 = []
 let post = []
 let email1 = []
-let emailon = []
+let emailon  = []
 
 const bazaall = ["test@mail.com", "vip2@mail.com", "vip@mail.com", "2vip@mail.com"]
 const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
 const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
 
 bot.start(async (ctx) => {
- Post.create({
- username: ctx.from.username,
- id: ctx.from.id,
- idmes: 0,
-  })
-  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
-  Markup.inlineKeyboard(
-[
-     [Markup.button.callback('Add dating profile ✅', 'btn_1')],
-     [Markup.button.callback('Delete dating profile ❌', 'btn_200')],
-     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
-]) 
-),
-await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nExclusive content\nDating, community, chat, trainings`,
-Markup.inlineKeyboard(
-[
-   [Markup.button.callback('Subscribe 💵', 'btn_204')],
-   [Markup.button.callback('Login', 'btn_400')]
-]) 
-)
-//nameman.splice([([(nameman.findIndex(item => item.id == ctx.from.id))])], 1)
-//info.splice(info.findIndex(item => item.id == ctx.from.id), 1) 
-//sexman.splice(sexman.findIndex(item => item.id == ctx.from.id), 1)
-//ageman.splice(ageman.findIndex(item => item.id == ctx.from.id), 1)
-//countryman.splice(countryman.findIndex(item => item.id == ctx.from.id), 1)
-//cityman.splice(cityman.findIndex(item => item.id == ctx.from.id), 1)
-//interes.splice(interes.findIndex(item => item.id == ctx.from.id), 1)
-//whofind.splice(whofind.findIndex(item => item.id == ctx.from.id), 1)
-//infiwords.splice(infiwords.findIndex(item => item.id == ctx.from.id), 1)
-//end1.splice(end1.findIndex(item => item.id == ctx.from.id), 1)
-//email1.splice(email1.findIndex(item => item.id == ctx.from.id), 1)
-//emailon.splice(emailon.findIndex(item => item.id == ctx.from.id), 1)
-//username1.splice(username1.findIndex(item => item.id == ctx.from.id), 1)
-//post.splice(post.findIndex(item => item.id == ctx.from.id), 1)
-//prev_action.splice(prev_action.findIndex(item => item.id == ctx.from.id), 1)
-//del1.splice(del1.findIndex(item => item.id == ctx.from.id), 1)
-
+  await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username}, {upsert: true})
 nameman.push({id: ctx.from.id})
 info.push({id: ctx.from.id})
 sexman.push({id: ctx.from.id})
@@ -89,9 +54,90 @@ prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
 del1.push({id: ctx.from.id})
 
 console.log (ctx.from.username, ctx.from.id, nameman.length)
-}
-) 
 
+bdinfo = [{id: ctx.from.id}]
+bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
+console.log (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile)
+
+ //  Post.create({
+ // profiledating: 'profiledating',
+ //            id: ctx.from.id,
+ //      username: ctx.from.username,
+//        profile: false,
+ //         idmes: false,
+ //         email: false
+ //       }),
+
+  if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'deleted') {
+  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
+  Markup.inlineKeyboard(
+[
+     [Markup.button.callback('Add dating profile ✅', 'btn_1')],
+     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
+]) 
+),
+await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nExclusive content\nDating, community, chat, trainings`,
+Markup.inlineKeyboard(
+[
+   [Markup.button.callback('Subscribe 💵', 'btn_204')],
+   [Markup.button.callback('Login', 'btn_400')]
+]))}
+
+else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'ok') {
+  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
+  
+  Markup.inlineKeyboard(
+[
+     [Markup.button.callback('View my profile', 'btn_250')],
+     [Markup.button.callback('Delete or edit my dating profile ❌', 'btn_200')],
+     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
+]) 
+),
+await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nExclusive content\nDating, community, chat, trainings`,
+Markup.inlineKeyboard(
+[
+   [Markup.button.callback('Subscribe 💵', 'btn_204')],
+   [Markup.button.callback('Login', 'btn_400')]
+]))}
+
+else{
+  await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
+  Markup.inlineKeyboard(
+[
+     [Markup.button.callback('Add dating profile ✅', 'btn_1')],
+     
+     [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
+]) 
+),
+await ctx.replyWithHTML(`<b>ShibaripandaClub XL</b>\nExclusive content\nDating, community, chat, trainings`,
+Markup.inlineKeyboard(
+[
+   [Markup.button.callback('Subscribe 💵', 'btn_204')],
+   [Markup.button.callback('Login', 'btn_400')]
+]))}
+}
+)
+
+//nameman.splice([([(nameman.findIndex(item => item.id == ctx.from.id))])], 1)
+//info.splice(info.findIndex(item => item.id == ctx.from.id), 1) 
+//sexman.splice(sexman.findIndex(item => item.id == ctx.from.id), 1)
+//ageman.splice(ageman.findIndex(item => item.id == ctx.from.id), 1)
+//countryman.splice(countryman.findIndex(item => item.id == ctx.from.id), 1)
+//cityman.splice(cityman.findIndex(item => item.id == ctx.from.id), 1)
+//interes.splice(interes.findIndex(item => item.id == ctx.from.id), 1)
+//whofind.splice(whofind.findIndex(item => item.id == ctx.from.id), 1)
+//infiwords.splice(infiwords.findIndex(item => item.id == ctx.from.id), 1)
+//end1.splice(end1.findIndex(item => item.id == ctx.from.id), 1)
+//email1.splice(email1.findIndex(item => item.id == ctx.from.id), 1)
+//emailon.splice(emailon.findIndex(item => item.id == ctx.from.id), 1)
+//username1.splice(username1.findIndex(item => item.id == ctx.from.id), 1)
+//post.splice(post.findIndex(item => item.id == ctx.from.id), 1)
+//prev_action.splice(prev_action.findIndex(item => item.id == ctx.from.id), 1)
+//del1.splice(del1.findIndex(item => item.id == ctx.from.id), 1)
+
+bot.action ('btn_250', (ctx) => {
+  ctx.reply(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profiledata)
+  })
 
 bot.action ('btn_400', (ctx) => {
   ctx.reply("Write your email that you use on patreon.\n(use only small letters)")
@@ -125,7 +171,10 @@ bot.action ('btn_204', (ctx) => {
 })
 
 
-bot.action ('btn_401', async (ctx) => { 
+bot.action ('btn_401', async (ctx) => {
+  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+      email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1
+    }) 
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
     ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
@@ -173,7 +222,7 @@ bot.action ('btn_1', async (ctx) => {
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 0})
   if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){ 
     await ctx.reply("What is your name?")
-  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_1'})
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_7'})
   }
  else {
   }
@@ -193,7 +242,7 @@ bot.action ('btn_2', (ctx) => {
 
 
 bot.action ('btn_3', (ctx) => {
-  if ((end1.find(item => item.end1 == 0)) == undefined){ 
+   if ((end1.find(item => item.end1 == 0)) == undefined){ 
     ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
   
@@ -257,6 +306,9 @@ bot.action ('btn_4', (ctx) => {
           post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})} 
           }})  
 
+
+
+
 bot.action ('btn_100', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
     ctx.reply('Please restart the bot to continue.\n/start - restart\n')
@@ -296,16 +348,38 @@ bot.action ('btn_100', (ctx) => {
 )
 
 bot.action ('btn_101', async (ctx) => {
-  if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
-  await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info)) 
-  
-  await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start - restart\n\n🐼🐼🐼🐼🐼🐼🐼🐼🐼")
+  bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
+  if ((post.find(item => item.post == 1)) == undefined){
+    await ctx.reply('Please restart the bot to continue.\n/start - restart\n') 
+  }  
+  else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'ok'){
+  ctx.reply("You already have a dating profile!\n\nPlease restart the bot to continue.\n/start - restart")
+}
+  else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'delete', (post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
+  let mes = []
+  mes = await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
+  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+          profile: 'ok',
+            idmes: mes.message_id,
+      profiledata: mes.text
+          })
+  await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start - restart")
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})
 }
-  else { 
-  } 
-})
+else { if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
+    let mes = []
+    mes = await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
+    await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+            profile: 'ok',
+              idmes: mes.message_id,
+        profiledata: mes.text
+            })
+    await ctx.reply("1Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start - restart")
+    end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
+    post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})
+  }}} 
+)
 
 
 
@@ -316,15 +390,22 @@ bot.action ('btn_200', async (ctx) => {
     ctx.reply('Please restart the bot to continue.\n/start - restart\n')
   }
   else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
-  await ctx.telegram.sendMessage(-1001738151348,`Delete @` + (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1))
-  await ctx.reply("Your profile will be deleted shortly.❌")
+
+    dell2 = await Post.find({profiledating: 'profiledating', id: ctx.from.id});
+    console.log(dell2[0].idmes);
+    await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+          profile: 'deleted'
+      })
+  await ctx.telegram.deleteMessage(-1001738151348, dell2[0].idmes)
+  await ctx.reply("Your dating profile has been deleted!❌\nPlease restart the bot to continue.\n/start - restart")
+  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+     profiledata: 'You have deleted your profile',
+     idmes: false
+    })
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})} 
 }})
 
-bot.on('text', async(ctx) => {
-  if (ctx.message.chat.id == -1001738151348) {Post.create({username: ctx.from.username,
-    id: ctx.message.id,
-    idmes: 0,})};
+bot.on('message', async(ctx) => {
   if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_1") {
     await ctx.reply(`Your name : ${ctx.message.text}`,
     (Markup.inlineKeyboard(
@@ -336,7 +417,7 @@ bot.on('text', async(ctx) => {
     nameman[([(nameman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, nameman: ctx.message.text})
     }; 
 
-    if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_2") {
+     if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_2") {
       await ctx.reply(`Your gender : ${ctx.message.text}`,
       (Markup.inlineKeyboard(
         [
@@ -406,6 +487,10 @@ bot.on('text', async(ctx) => {
     infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text})
     username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
 
+  }  
+  
+  if ((emailon.find(item => item.emailon == 1)) == undefined){ 
+    emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   }
  if ((emailon[(emailon.findIndex(item => item.id == ctx.from.id))].emailon) == "1") {
     await ctx.reply(`Is your patreon email?\n${ctx.message.text}`,
@@ -415,12 +500,8 @@ bot.on('text', async(ctx) => {
            [Markup.button.callback('Email is correct', 'btn_401')]
       ])))
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text})
-    emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0}) 
-    
+    emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  
    }
-   if ((emailon.find(item => item.emailon == 1)) == undefined){ 
-  
-  }
    })
 
 
