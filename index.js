@@ -13,7 +13,7 @@ mongoose
 .catch((error) => console.log(error))
 
 let bdinfo = []
-let dell2 = []
+
 let info = []
 let prev_action = []
 let nameman = []
@@ -159,7 +159,7 @@ bot.action ('btn_400', async (ctx) => {
        emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})  }  
 
   })
-  
+
   bot.action ('btn_789', (ctx) => {
     ctx.replyWithHTML(`Q`,
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text.toLowerCase()}),
@@ -177,7 +177,7 @@ bot.action ('btn_201', async (ctx) => {
          [Markup.button.callback('Web telegram', 'btn_300'), Markup.button.callback('Detailed instructions', 'btn_301')]
       ]) 
       ) 
-      ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')   
+      ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')  
 })
 
 bot.action ('btn_301', (ctx) => {ctx.replyWithHTML(`How to Open Blocked or Banned Telegram Channels <a href="https://www.followchain.org/open-banned-blocked-telegram-channels">Detailed instructions</a>.`)    
@@ -188,7 +188,7 @@ bot.action ('btn_300', (ctx) => {ctx.replyWithHTML(`<a href="https://web.telegra
 
 
 bot.action ('btn_204', (ctx) => {
-  ctx.replyWithHTML(`<b>To subscribe, go to <a href="https://www.patreon.com/shibaripanda">Patreon</a>.</b>\n\nPlease restart the bot to continue.\n/start ⬅️ restart\n`)    
+  ctx.replyWithHTML(`<b>To subscribe, go to <a href="https://www.patreon.com/shibaripanda">Patreon</a>.</b>\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅`)    
 })
 
 
@@ -197,7 +197,7 @@ bot.action ('btn_401', async (ctx) => {
       email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1
     }) 
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
-    ctx.reply('1Please restart the bot to continue.\n/start ⬅️ restart\n')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
     else{
         if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1))
@@ -241,7 +241,7 @@ bot.action ('btn_405', async (ctx) => {
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
-    ctx.reply('1Please restart the bot to continue.\n/start ⬅️ restart\n')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
     else{
         if (bazaall.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email))
@@ -291,7 +291,7 @@ bot.action ('btn_1', async (ctx) => {
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 0})
   if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){ 
     await ctx.reply("What is your name?")
-  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_7'})
+  prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_1'})
   }
  else {
   }
@@ -300,7 +300,7 @@ bot.action ('btn_1', async (ctx) => {
 
 bot.action ('btn_2', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
   else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("What's your gender?")
@@ -312,7 +312,7 @@ bot.action ('btn_2', (ctx) => {
 
 bot.action ('btn_3', (ctx) => {
    if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
   
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -322,7 +322,7 @@ bot.action ('btn_3', (ctx) => {
 
 bot.action ('btn_4', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
   
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -333,7 +333,7 @@ bot.action ('btn_4', (ctx) => {
 
   bot.action ('btn_5', (ctx) => {
     if ((end1.find(item => item.end1 == 0)) == undefined){ 
-      ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+      ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
     }
     
     else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -344,7 +344,7 @@ bot.action ('btn_4', (ctx) => {
 
     bot.action ('btn_6', (ctx) => {
       if ((end1.find(item => item.end1 == 0)) == undefined){ 
-        ctx.reply('Please restart the bot to continue.\n/start - restart\n')
+        ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
       }
       
       else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -355,7 +355,7 @@ bot.action ('btn_4', (ctx) => {
 
       bot.action ('btn_7', (ctx) => {
         if ((end1.find(item => item.end1 == 0)) == undefined){ 
-          ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+          ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
         }
         
         else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -366,7 +366,7 @@ bot.action ('btn_4', (ctx) => {
 
         bot.action ('btn_8', (ctx) => {
           if ((end1.find(item => item.end1 == 0)) == undefined){ 
-            ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+            ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
           }
           
           else {if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
@@ -380,7 +380,7 @@ bot.action ('btn_4', (ctx) => {
 
 bot.action ('btn_100', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
-    ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){
   ctx.reply ((nameman[(nameman.findIndex(item => item.id == ctx.from.id))].nameman) +' '+ 
@@ -419,10 +419,10 @@ bot.action ('btn_100', (ctx) => {
 bot.action ('btn_101', async (ctx) => {
   bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((post.find(item => item.post == 1)) == undefined){
-    await ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n') 
+    await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }  
   else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'ok'){
-  ctx.reply("You already have a dating profile!\n\nPlease restart the bot to continue.\n/start ⬅️ restart")
+    ctx.replyWithHTML("You already have a dating profile!\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
 }
   else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'delete', (post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
   let mes = []
@@ -432,7 +432,7 @@ bot.action ('btn_101', async (ctx) => {
             idmes: mes.message_id,
       profiledata: mes.text
           })
-  await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start ⬅️ restart")
+  await ctx.replyWithHTML("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})
 }
@@ -444,7 +444,7 @@ else { if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1")
               idmes: mes.message_id,
         profiledata: mes.text
             })
-    await ctx.reply("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\n/start ⬅️ restart")
+    await ctx.replyWithHTML("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
     end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
     post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})
   }}} 
@@ -456,22 +456,21 @@ bot.action ('btn_200', async (ctx) => {
   username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 0})
   if ((del1.find(item => item.del1 == 0)) == undefined){ 
-    ctx.reply('Please restart the bot to continue.\n/start ⬅️ restart\n')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
   else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
-
+    let dell2 = []
     dell2 = await Post.find({profiledating: 'profiledating', id: ctx.from.id});
-    console.log(dell2[0].idmes);
     await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
           profile: 'deleted'
       })
   await ctx.telegram.deleteMessage(-1001738151348, dell2[0].idmes)
-  await ctx.reply("Your dating profile has been deleted!❌\nPlease restart the bot to continue.\n/start ⬅️ restart")
+  await ctx.replyWithHTML("Your dating profile has been deleted! ❌\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
      profiledata: 'You have deleted your profile',
      idmes: false
     })
-  del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})} 
+  del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})}
 }})
 
 bot.on('message', async(ctx) => {
@@ -496,15 +495,22 @@ bot.on('message', async(ctx) => {
     sexman[([(sexman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, sexman: ctx.message.text})
       };
 
-      if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_3") {
+      if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_3") { if (ctx.message.text > '17') {
         await ctx.reply(`Your age : ${ctx.message.text}`,
         (Markup.inlineKeyboard(
           [
                [Markup.button.callback('Edit', 'btn_3')],
                [Markup.button.callback('Next step 4/8', 'btn_4')]
           ])))
-        ageman[([(ageman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, ageman: ctx.message.text})
-        }; 
+        ageman[([(ageman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, ageman: ctx.message.text})}
+        else {await ctx.reply(`Your age : ${ctx.message.text}\nYou must be over 18 years of age to register.\nSorry, but you are not allowed to use these services.\nIf you made a mistake, use:`,
+         (Markup.inlineKeyboard(
+           [
+                [Markup.button.callback('Edit', 'btn_3')],
+           ]))), 
+           ageman[([(ageman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, ageman: ctx.message.text})}
+        }
+
 
 
         if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_4") {
