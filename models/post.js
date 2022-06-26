@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+
 const postSchema = new Schema({
 profiledating: {
     type: String,
@@ -32,8 +33,7 @@ profiledata: {
 }
 }, { timestamps: true});
 
-
-
 const Post = mongoose.model('Post', postSchema);
+
 
 module.exports = Post

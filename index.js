@@ -6,14 +6,68 @@ const mongoose = require('mongoose')
 const db = (process.env.BD_TOKEN)
 const Post = require('./models/post')
 const { hydrate } = require('./models/post')
+const pt = (process.env.PATREON_TOKEN)
 
 mongoose
 .connect(db, {useNewUrlParser: true})
 .then((res)=> console.log('connect to DB'))
 .catch((error) => console.log(error))
 
-let bdinfo = []
+// var url = require('url')
+// var patreon = require('patreon')
+// var patreonAPI = patreon.patreon
+// var patreonOAuth = patreon.oauth
 
+// Use the client id and secret you received when setting up your OAuth account
+//var CLIENT_ID = 'iVSDuHMfr8_yibe1haipBMihmoT9awjzekoLIZTInojaqqI1QT7SgGvT_mByrCya'
+//var CLIENT_SECRET = 'GdXX-AywSj0F4pbFWQo3B8NMWkvLs7uYvnMheO0LFRfoQzRy4E1lqUZqL3RibuG2'
+//var patreonOAuthClient = patreonOAuth(CLIENT_ID, CLIENT_SECRET)
+
+// This should be one of the fully qualified redirect_uri you used when setting up your oauth account
+//var redirectURL = 'http://mypatreonapp.com/oauth/redirect'
+
+//function handleOAuthRedirectRequest(request, response) {
+ //   var oauthGrantCode = url.parse(request.url, true).query.code
+
+ //   patreonOAuthClient
+  //      .getTokens(oauthGrantCode, redirectURL)
+  //      .then(function(tokensResponse) {
+  //          var patreonAPIClient = patreonAPI(tokensResponse.access_token)
+  //          return patreonAPIClient('/current_user')
+  //      })
+  //      .then(function(result) {
+  //          var store = result.store
+  //          // store is a [JsonApiDataStore](https://github.com/beauby/jsonapi-datastore)
+            // You can also ask for result.rawJson if you'd like to work with unparsed data
+  //          response.end(store.findAll('user').map(user => user.serialize()))
+   //     })
+   //     .catch(function(err) {
+   //         console.error('error!', err)
+    //        response.end(err)
+   //     })
+//}
+
+
+//const { patreon, jsonApiURL } = require('patreon')
+//const patreonAPIClient = patreon(pt)
+//const rewards = patreonAPIClient('/current_user/campaigns')
+//.then(function(result) {
+ // var store = result.store
+  // store is a [JsonApiDataStore](https://github.com/beauby/jsonapi-datastore)
+  // You can also ask for result.rawJson if you'd like to work with unparsed data
+//  response.end(store.findAll('user').map(user => user.serialize())
+//)
+
+//console.log(rewards)
+
+let sec = 1
+let sec1 = sec + 1
+function www()
+{console.log(sec1 = sec + 1), sec = sec1}
+setInterval(www, 10000)
+
+
+let bdinfo = []
 let info = []
 let prev_action = []
 let nameman = []
@@ -153,11 +207,8 @@ bot.action ('btn_400', async (ctx) => {
       [
            [Markup.button.callback(`Or click to use it: ${bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email}`, 'btn_405')]
       ])))
-      // email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email})
-       //emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
        prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'}) 
        emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})  }  
-
   })
 
   bot.action ('btn_789', (ctx) => {
@@ -165,7 +216,6 @@ bot.action ('btn_400', async (ctx) => {
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text.toLowerCase()}),
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0}) )    
 })
-
 
 bot.action ('btn_201', async (ctx) => {
   await ctx.replyWithPhoto({ source: "./img/alerteng.jpg" })
@@ -579,8 +629,35 @@ bot.on('message', async(ctx) => {
    }
    })
 
+ //  bot.message_handler(content_types = ['new_chat_members', 'left_chat_member'])
+ //  delete(message):
+ //        bot.delete_message(message.chat.id, message.message_id)
 
 
+
+
+//patreon
+
+//api_client = patreon.API(pt)
+//campaign_id = api_client.get_campaigns().data()[0].id()
+//pledges_response = api_client.fetch_page_of_pledges(
+   // campaign_id,
+  //  25,
+
+
+ //api_client = patreon.API(pt)
+ //campaign_response = api_client.fetch_campaign
+ 
+ //(ctx) =>  campaign_response.data()[0],
+ //console.log(campaign.id()), //</YOUR> The campaign ID (or whatever object you are retrieving)
+ //console.log(campaign.type()), // # Campaign, in this case
+ //console.log(campaign.attributes()), //# This is most of the data you want
+ //console.log(campaign.attribute('patron_count')), //# get a specific attribute
+ //console.log(campaign.relationships()), //# related entities like 'creator' 'goals' and 'rewards'
+ //console.log(campaign.relationship('goals')),
+ //console.log(campaign.relationship_info()), 
+ //# This last one one ends up returning another JSONAPIResource object with it's own method: .resource() that returns a list of more objects 
+ //# for example, to print the campaign's first goal you could use:
  bot.launch()
 
 
