@@ -120,7 +120,7 @@ bot.start(async (ctx) => {
   emailon.push({id: ctx.from.id})
   let d = username1.findIndex(item => item.id == ctx.from.id)
   if (d != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
-  username1.push({id: ctx.from.id})
+  username1.push({id: ctx.from.id, emalion: '0'})
   let f = post.findIndex(item => item.id == ctx.from.id)
   if (f != -1) {post.splice(post.findIndex(item => item.id == ctx.from.id),1)};
   post.push({id: ctx.from.id})
