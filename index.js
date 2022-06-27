@@ -87,7 +87,7 @@ bot.start(async (ctx) => {
   nameman.push({id: ctx.from.id})
   let w = nameman.findIndex(item => item.id == ctx.from.id)
   if (w != -1) {info.splice(info.findIndex(item => item.id == ctx.from.id),1)};
-  info.push({id: ctx.from.id})                  
+  info.push({id: ctx.from.id, email: '0'})                  
   let e = sexman.findIndex(item => item.id == ctx.from.id)
   if (e != -1) {sexman.splice(sexman.findIndex(item => item.id == ctx.from.id),1)};
   sexman.push({id: ctx.from.id})                  
@@ -120,7 +120,7 @@ bot.start(async (ctx) => {
   emailon.push({id: ctx.from.id})
   let d = username1.findIndex(item => item.id == ctx.from.id)
   if (d != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
-  username1.push({id: ctx.from.id, emalion: '0'})
+  username1.push({id: ctx.from.id})
   let f = post.findIndex(item => item.id == ctx.from.id)
   if (f != -1) {post.splice(post.findIndex(item => item.id == ctx.from.id),1)};
   post.push({id: ctx.from.id})
@@ -133,7 +133,7 @@ bot.start(async (ctx) => {
 
 console.log (ctx.from.id, ctx.from.username, nameman.length)
 
-bdinfo = [{id: ctx.from.id}]
+bdinfo = [{id: ctx.from.id, email: '0'}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'deleted') {
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
