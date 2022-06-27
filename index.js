@@ -133,7 +133,7 @@ bot.start(async (ctx) => {
 
 console.log (ctx.from.id, ctx.from.username, nameman.length)
 
-bdinfo = [{id: ctx.from.id, email: '0'}]
+bdinfo = [{id: ctx.from.id, email: 'false'}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'deleted') {
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
@@ -245,7 +245,7 @@ bot.action ('btn_250', (ctx) => {
 
 bot.action ('btn_400', async (ctx) => {
   
-  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) {  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == 'false') {  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   ctx.reply("Enter your patreon email")
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
