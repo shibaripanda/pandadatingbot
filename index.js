@@ -56,16 +56,6 @@ mongoose
   // store is a [JsonApiDataStore](https://github.com/beauby/jsonapi-datastore)
   // You can also ask for result.rawJson if you'd like to work with unparsed data
 //  response.end(store.findAll('user').map(user => user.serialize())
-//)
-
-//console.log(rewards)
-
-let sec = 1
-let sec1 = sec + 1
-function www()
-{console.log(sec1 = sec + 1), sec = sec1}
-setInterval(www, 10000)
-
 
 let bdinfo = []
 let info = []
@@ -90,43 +80,74 @@ const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
 const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
 
 bot.start(async (ctx) => {
-  await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username}, {upsert: true})
-nameman.push({id: ctx.from.id})
-info.push({id: ctx.from.id})
-sexman.push({id: ctx.from.id})
-ageman.push({id: ctx.from.id})
-countryman.push({id: ctx.from.id})
-cityman.push({id: ctx.from.id})
-interes.push({id: ctx.from.id})
-whofind.push({id: ctx.from.id})
-infiwords.push({id:ctx.from.id})
-end1.push({id: ctx.from.id})
-email1.push({id: ctx.from.id.id})
-emailon.push({id: ctx.from.id})
-username1.push({id: ctx.from.id})
-post.push({id: ctx.from.id})
-prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
-del1.push({id: ctx.from.id})
+  await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username, chat: 'off', chatstatus: 'free', chatclient: 'no'}, {upsert: true})
+  
+  let q = nameman.findIndex(item => item.id == ctx.from.id)
+  if (q != -1) {nameman.splice(nameman.findIndex(item => item.id == ctx.from.id),1)};
+  nameman.push({id: ctx.from.id})
+  let w = nameman.findIndex(item => item.id == ctx.from.id)
+  if (w != -1) {info.splice(info.findIndex(item => item.id == ctx.from.id),1)};
+  info.push({id: ctx.from.id})                  
+  let e = sexman.findIndex(item => item.id == ctx.from.id)
+  if (e != -1) {sexman.splice(sexman.findIndex(item => item.id == ctx.from.id),1)};
+  sexman.push({id: ctx.from.id})                  
+  let r = ageman.findIndex(item => item.id == ctx.from.id)
+  if (r != -1) {ageman.splice(ageman.findIndex(item => item.id == ctx.from.id),1)};
+  ageman.push({id: ctx.from.id}) 
+  let t = countryman.findIndex(item => item.id == ctx.from.id)
+  if (t != -1) {countryman.splice(countryman.findIndex(item => item.id == ctx.from.id),1)};
+  countryman.push({id: ctx.from.id})
+  let y = cityman.findIndex(item => item.id == ctx.from.id)
+  if (y != -1) {cityman.splice(cityman.findIndex(item => item.id == ctx.from.id),1)};
+  cityman.push({id: ctx.from.id})
+  let u = interes.findIndex(item => item.id == ctx.from.id)
+  if (u != -1) {interes.splice(interes.findIndex(item => item.id == ctx.from.id),1)};
+  interes.push({id: ctx.from.id})
+  let i = whofind.findIndex(item => item.id == ctx.from.id)
+  if (i != -1) {whofind.splice(whofind.findIndex(item => item.id == ctx.from.id),1)};
+  whofind.push({id: ctx.from.id})
+  let o = infiwords.findIndex(item => item.id == ctx.from.id)
+  if (o != -1) {infiwords.splice(infiwords.findIndex(item => item.id == ctx.from.id),1)};
+  infiwords.push({id: ctx.from.id})
+  let p = end1.findIndex(item => item.id == ctx.from.id)
+  if (p != -1) {end1.splice(end1.findIndex(item => item.id == ctx.from.id),1)};
+  end1.push({id: ctx.from.id})
+  let a = email1.findIndex(item => item.id == ctx.from.id)
+  if (a != -1) {email1.splice(email1.findIndex(item => item.id == ctx.from.id),1)};
+  email1.push({id: ctx.from.id})
+  let s = emailon.findIndex(item => item.id == ctx.from.id)
+  if (s != -1) {emailon.splice(emailon.findIndex(item => item.id == ctx.from.id),1)};
+  emailon.push({id: ctx.from.id})
+  let d = username1.findIndex(item => item.id == ctx.from.id)
+  if (d != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
+  username1.push({id: ctx.from.id})
+  let f = post.findIndex(item => item.id == ctx.from.id)
+  if (f != -1) {post.splice(post.findIndex(item => item.id == ctx.from.id),1)};
+  post.push({id: ctx.from.id})
+  let g = prev_action.findIndex(item => item.id == ctx.from.id)
+  if (g != -1) {prev_action.splice(prev_action.findIndex(item => item.id == ctx.from.id),1)};
+  prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
+  let h = del1.findIndex(item => item.id == ctx.from.id)
+  if (h != -1) {del1.splice(del1.findIndex(item => item.id == ctx.from.id),1)};
+  del1.push({id: ctx.from.id})
 
-console.log (ctx.from.username, ctx.from.id, nameman.length)
+console.log (ctx.from.id, ctx.from.username, nameman.length)
+console.log (ctx.from.id, ctx.from.username, whofind.length)
+console.log (ctx.from.id, ctx.from.username, end1.length)
+console.log (ctx.from.id, ctx.from.username, infiwords.length)
+console.log (ctx.from.id, ctx.from.username, emailon.length)
+console.log (ctx.from.id, ctx.from.username, post.length)
+console.log (ctx.from.id, ctx.from.username, end1.length)
+console.log (ctx.from.id, ctx.from.username, prev_action.length)
 
 bdinfo = [{id: ctx.from.id}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
-
- //  Post.create({
- // profiledating: 'profiledating',
- //            id: ctx.from.id,
- //      username: ctx.from.username,
-//        profile: false,
- //         idmes: false,
- //         email: false
- //       }),
-
   if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'deleted') {
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
   Markup.inlineKeyboard(
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
+     [Markup.button.callback('Rollet', 'btn_170')],
      [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
@@ -145,6 +166,7 @@ else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile
 [
      [Markup.button.callback('View my profile', 'btn_250')],
      [Markup.button.callback('Delete or edit my dating profile ❌', 'btn_200')],
+     [Markup.button.callback('Rollet', 'btn_170')],
      [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
@@ -160,7 +182,7 @@ else{
   Markup.inlineKeyboard(
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
-     
+     [Markup.button.callback('Rollet', 'btn_170')],
      [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
@@ -174,22 +196,55 @@ Markup.inlineKeyboard(
 }
 )
 
-//nameman.splice([([(nameman.findIndex(item => item.id == ctx.from.id))])], 1)
-//info.splice(info.findIndex(item => item.id == ctx.from.id), 1) 
-//sexman.splice(sexman.findIndex(item => item.id == ctx.from.id), 1)
-//ageman.splice(ageman.findIndex(item => item.id == ctx.from.id), 1)
-//countryman.splice(countryman.findIndex(item => item.id == ctx.from.id), 1)
-//cityman.splice(cityman.findIndex(item => item.id == ctx.from.id), 1)
-//interes.splice(interes.findIndex(item => item.id == ctx.from.id), 1)
-//whofind.splice(whofind.findIndex(item => item.id == ctx.from.id), 1)
-//infiwords.splice(infiwords.findIndex(item => item.id == ctx.from.id), 1)
-//end1.splice(end1.findIndex(item => item.id == ctx.from.id), 1)
-//email1.splice(email1.findIndex(item => item.id == ctx.from.id), 1)
-//emailon.splice(emailon.findIndex(item => item.id == ctx.from.id), 1)
-//username1.splice(username1.findIndex(item => item.id == ctx.from.id), 1)
-//post.splice(post.findIndex(item => item.id == ctx.from.id), 1)
-//prev_action.splice(prev_action.findIndex(item => item.id == ctx.from.id), 1)
-//del1.splice(del1.findIndex(item => item.id == ctx.from.id), 1)
+// function pop() 
+// {(ctx) => ctx.reply('hello')}
+
+// bot.action ('btn_170', setInterval(pop, 100))
+// bot.action ('btn_170', async (ctx) => { 
+//   await ctx.answerCbQuery();
+//   let rollet = [];
+//   await Post.updateOne({id: ctx.from.id}, {chat: 'on', chatstatus: 'free', chatclient: 'no'});
+//   ctx.reply('Write a greeting and Panda will connect you with a random person!');
+//   setInterval(pop, 100)
+//   })
+
+  
+  
+
+// bot.action('message', async(ctx) =>{
+//    let q = []
+//    q = await Post.find({id: ctx.from.id}) 
+// if (q[0].chat = 'on') {console.log('yes')}
+// })
+
+
+// bot.action(setInterval()(async(ctx) => {
+//   let w = []
+//   w = await Post.find({id: ctx.from.id})
+//   if (w[0].chat = 'on') {ctx.reply(w[0].mesfyou)}}, 100))
+
+// let rollet = []
+// bot.action ('btn_170', async (ctx) => { await ctx.answerCbQuery()
+  
+//   console.log('*** Cтарт: ' + rollet + '***')
+//   //await Post.updateOne({id: ctx.from.id}, {chat: 'on', chatstatus: 'free', chatclient: 'no'})
+
+//   let a = rollet.findIndex(item => item == ctx.from.username)
+//   if (a != -1) {rollet.splice(rollet.findIndex(item => item ==  ctx.from.username),1)};
+//   rollet.push(ctx.from.username)
+
+//   await ctx.reply('Panda is seaching friend for you...')
+//   let rand = Math.floor(Math.random()*rollet.length)
+//   let rand1 = rollet[rand] 
+//   if (rand != rollet.findIndex(item => item == ctx.from.username)) await Post.updateOne({username: rand1}, {mesfyou: 'Hello, 55555'}) 
+//   let mesbd = []
+//   mesbd = await Post.find({id: ctx.from.id})
+//   await ctx.reply('srart dialog, say hello')
+//   await ctx.replyWithHTML('<b>anonumus</b>\n' + mesbd[0].mesfyou)
+//   console.log(mesbd[0].mesfyou)
+//   console.log('***** Kонец: ' + rollet +' *****')
+//   })
+
 
 bot.action ('btn_250', (ctx) => {
   ctx.reply(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profiledata)
@@ -197,7 +252,7 @@ bot.action ('btn_250', (ctx) => {
 
 bot.action ('btn_400', async (ctx) => {
   
-  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) {
+  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) {  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   ctx.reply("Enter your patreon email")
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
@@ -476,7 +531,10 @@ bot.action ('btn_101', async (ctx) => {
 }
   else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'delete', (post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
   let mes = []
-  mes = await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
+  mes = await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info), Markup.inlineKeyboard(
+    [
+       [Markup.button.callback('Message', 'btn_150'), Markup.button.callback('Message', '150'), Markup.button.callback('Message', '150')]
+    ])), 
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
           profile: 'ok',
             idmes: mes.message_id,
@@ -514,7 +572,7 @@ bot.action ('btn_200', async (ctx) => {
     await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
           profile: 'deleted'
       })
-  await ctx.telegram.deleteMessage(-1001738151348, dell2[0].idmes)
+  await ctx.telegram.deleteMessage(-1001738151348, dell2[0].idmes)  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   await ctx.replyWithHTML("Your dating profile has been deleted! ❌\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
      profiledata: 'You have deleted your profile',
@@ -534,7 +592,6 @@ bot.on('message', async(ctx) => {
   
     nameman[([(nameman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, nameman: ctx.message.text})
     }; 
-
      if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_2") {
       await ctx.reply(`Your gender : ${ctx.message.text}`,
       (Markup.inlineKeyboard(
@@ -544,7 +601,6 @@ bot.on('message', async(ctx) => {
         ])))
     sexman[([(sexman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, sexman: ctx.message.text})
       };
-
       if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_3") { if (ctx.message.text > '17') {
         await ctx.reply(`Your age : ${ctx.message.text}`,
         (Markup.inlineKeyboard(
@@ -560,9 +616,6 @@ bot.on('message', async(ctx) => {
            ]))), 
            ageman[([(ageman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, ageman: ctx.message.text})}
         }
-
-
-
         if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_4") {
           await ctx.reply(`Your country : ${ctx.message.text}`,
           (Markup.inlineKeyboard(
@@ -611,9 +664,7 @@ bot.on('message', async(ctx) => {
       ])))
     infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text})
     username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
-
   }  
-  
   if ((emailon.find(item => item.emailon == 1)) == undefined){ 
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   }
@@ -629,35 +680,8 @@ bot.on('message', async(ctx) => {
    }
    })
 
- //  bot.message_handler(content_types = ['new_chat_members', 'left_chat_member'])
- //  delete(message):
- //        bot.delete_message(message.chat.id, message.message_id)
-
-
-
-
-//patreon
-
-//api_client = patreon.API(pt)
-//campaign_id = api_client.get_campaigns().data()[0].id()
-//pledges_response = api_client.fetch_page_of_pledges(
-   // campaign_id,
-  //  25,
-
-
- //api_client = patreon.API(pt)
- //campaign_response = api_client.fetch_campaign
- 
- //(ctx) =>  campaign_response.data()[0],
- //console.log(campaign.id()), //</YOUR> The campaign ID (or whatever object you are retrieving)
- //console.log(campaign.type()), // # Campaign, in this case
- //console.log(campaign.attributes()), //# This is most of the data you want
- //console.log(campaign.attribute('patron_count')), //# get a specific attribute
- //console.log(campaign.relationships()), //# related entities like 'creator' 'goals' and 'rewards'
- //console.log(campaign.relationship('goals')),
- //console.log(campaign.relationship_info()), 
- //# This last one one ends up returning another JSONAPIResource object with it's own method: .resource() that returns a list of more objects 
- //# for example, to print the campaign's first goal you could use:
+  // bot.message_handler(content_types = ['new_chat_members', 'left_chat_member'])
+  
  bot.launch()
 
 

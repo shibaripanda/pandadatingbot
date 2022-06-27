@@ -30,6 +30,22 @@ email: {
 profiledata: {
     type: String,
     required: true,
+},
+mesfyou: {
+    type: String,
+    required: true,
+},
+chatstatus: {
+    type: String,
+    required: true,
+},
+chat: {
+    type: String,
+    required: true,
+},
+chatclient: {
+    type: String,
+    required: true,
 }
 }, { timestamps: true});
 
