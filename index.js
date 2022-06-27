@@ -132,13 +132,6 @@ bot.start(async (ctx) => {
   del1.push({id: ctx.from.id})
 
 console.log (ctx.from.id, ctx.from.username, nameman.length)
-console.log (ctx.from.id, ctx.from.username, whofind.length)
-console.log (ctx.from.id, ctx.from.username, end1.length)
-console.log (ctx.from.id, ctx.from.username, infiwords.length)
-console.log (ctx.from.id, ctx.from.username, emailon.length)
-console.log (ctx.from.id, ctx.from.username, post.length)
-console.log (ctx.from.id, ctx.from.username, end1.length)
-console.log (ctx.from.id, ctx.from.username, prev_action.length)
 
 bdinfo = [{id: ctx.from.id}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
