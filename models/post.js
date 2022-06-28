@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
-const postSchema = new Schema({
+const belSchema = new Schema({
 profiledating: {
     type: String,
     required: true,
@@ -30,26 +30,10 @@ email: {
 profiledata: {
     type: String,
     required: true,
-},
-mesfyou: {
-    type: String,
-    required: true,
-},
-chatstatus: {
-    type: String,
-    required: true,
-},
-chat: {
-    type: String,
-    required: true,
-},
-chatclient: {
-    type: String,
-    required: true,
 }
 }, { timestamps: true});
 
-const Post = mongoose.model('Post', postSchema);
+const Bel = mongoose.model('Bel', belSchema);
 
 
-module.exports = Post
+module.exports = Bel
