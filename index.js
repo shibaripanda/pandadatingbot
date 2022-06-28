@@ -133,14 +133,14 @@ bot.start(async (ctx) => {
 
 console.log (ctx.from.id, ctx.from.username, nameman.length)
 
-bdinfo = [{id: ctx.from.id, email: 'false'}]
+bdinfo = [{id: ctx.from.id}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'deleted') {
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
   Markup.inlineKeyboard(
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
-     [Markup.button.callback('Rollet', 'btn_170')],
+    //  [Markup.button.callback('Rollet', 'btn_170')],
      [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
@@ -154,12 +154,11 @@ Markup.inlineKeyboard(
 
 else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'ok') {
   await ctx.replyWithHTML(`<b>Hi, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}</b>!\n<b>Welcome to ShibaripandaClub!</b>`,
-  
   Markup.inlineKeyboard(
 [
      [Markup.button.callback('View my profile', 'btn_250')],
      [Markup.button.callback('Delete or edit my dating profile ❌', 'btn_200')],
-     [Markup.button.callback('Rollet', 'btn_170')],
+     //[Markup.button.callback('Rollet', 'btn_170')],
      [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
@@ -175,7 +174,7 @@ else{
   Markup.inlineKeyboard(
 [
      [Markup.button.callback('Add dating profile ✅', 'btn_1')],
-     [Markup.button.callback('Rollet', 'btn_170')],
+     //[Markup.button.callback('Rollet', 'btn_170')],
      [Markup.button.callback('ShibaripandaClub Free', 'btn_201')]
 ]) 
 ),
@@ -244,8 +243,8 @@ bot.action ('btn_250', (ctx) => {
   })
 
 bot.action ('btn_400', async (ctx) => {
-  
-  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == 'false') {  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
+  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) {  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   ctx.reply("Enter your patreon email")
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
@@ -291,6 +290,12 @@ bot.action ('btn_204', (ctx) => {
 
 
 bot.action ('btn_401', async (ctx) => {
+  let n = email1.findIndex(item => item == ctx.from.id)
+  if (n != -1) {
+    console.log(n)
+    ctx.replyWithHTML('1Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
+  }
+  else {
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
       email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1
     }) 
@@ -332,7 +337,7 @@ bot.action ('btn_401', async (ctx) => {
       [Markup.button.callback('Edit email', 'btn_400')],
       [Markup.button.callback('Subscribe 💵', 'btn_204')]
     ]))} 
-    }
+    }}
 })
 
 bot.action ('btn_405', async (ctx) => {
@@ -575,6 +580,10 @@ bot.action ('btn_200', async (ctx) => {
 }})
 
 bot.on('message', async(ctx) => {
+  prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
+  if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == undefined) {
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')};
+
   if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_1") {
     await ctx.reply(`Your name : ${ctx.message.text}`,
     (Markup.inlineKeyboard(
@@ -668,6 +677,7 @@ bot.on('message', async(ctx) => {
            [Markup.button.callback('Edit', 'btn_400')],
            [Markup.button.callback('Email is correct', 'btn_401')]
       ])))
+    email1 = [{id: ctx.from.id, email1: 'not found'}]
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text.toLowerCase()})
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  
    }
