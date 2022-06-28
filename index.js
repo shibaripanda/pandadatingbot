@@ -120,7 +120,7 @@ bot.start(async (ctx) => {
   emailon.push({id: ctx.from.id})
   let d = username1.findIndex(item => item.id == ctx.from.id)
   if (d != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
-  username1.push({id: ctx.from.id})
+  username1.push({id: ctx.from.id, username1: ctx.from.username})
   let f = post.findIndex(item => item.id == ctx.from.id)
   if (f != -1) {post.splice(post.findIndex(item => item.id == ctx.from.id),1)};
   post.push({id: ctx.from.id})
@@ -390,14 +390,23 @@ bot.action ('btn_405', async (ctx) => {
 bot.action ('btn_900')
 
 bot.action ('btn_1', async (ctx) => {
+  // let l = username1.findIndex(item => item.id == ctx.from.id)
+  // if (l != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
+  // username1.push({id: ctx.from.id, username1: ctx.from.username})
+
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 0})
+
+  if (username1[([(username1.findIndex(item => item.id == ctx.from.id))])] == 'undefined'){
+    await ctx.reply("You don't have a username set, people can't find you.\nSet the username in the telegram settings. After, restart the bot and try again.\nThank you for your attention!")
+  }
+else{
   if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0"){ 
     await ctx.reply("What is your name?")
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_1'})
   }
  else {
-  }
+  }}
 })
 
 
@@ -664,9 +673,15 @@ bot.on('message', async(ctx) => {
            [Markup.button.callback('Edit', 'btn_8')],
            [Markup.button.callback('See what your profile will look like', 'btn_100')]
       ])))
-    infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text})
-    username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
-  }  
+    infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text});
+
+
+if (username1[([(username1.findIndex(item => item.id == ctx.from.id))])] == 'undefined') {
+    username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})}
+else {username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1:' '})}
+}
+
+  
   if ((emailon.find(item => item.emailon == 1)) == undefined){ 
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   }
