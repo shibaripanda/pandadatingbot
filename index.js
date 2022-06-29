@@ -622,7 +622,7 @@ bot.on('message', async(ctx) => {
         ])))
     sexman[([(sexman.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, sexman: ctx.message.text})
       };
-      if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_3") { if (ctx.message.text > '17') {
+      if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == "step_3") { if (ctx.message.text > 17) {
         await ctx.reply(`Your age : ${ctx.message.text}`,
         (Markup.inlineKeyboard(
           [
