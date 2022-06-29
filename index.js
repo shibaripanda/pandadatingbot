@@ -13,6 +13,7 @@ mongoose
 .then((res)=> console.log('connect to DB'))
 .catch((error) => console.log(error))
 const group = -1001738151348
+
 // var url = require('url')
 // var patreon = require('patreon')
 // var patreonAPI = patreon.patreon
@@ -393,9 +394,9 @@ bot.action ('btn_405', async (ctx) => {
 bot.action ('btn_900')
 
 bot.action ('btn_1', async (ctx) => {
-  // let l = username1.findIndex(item => item.id == ctx.from.id)
-  // if (l != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
-  // username1.push({id: ctx.from.id, username1: ctx.from.username})
+  let m = username1.findIndex(item => item.id == ctx.from.id)
+  if (m != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
+  username1.push({id: ctx.from.id, username1: ctx.from.username})
 
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 0})
