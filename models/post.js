@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
-const belSchema = new Schema({
+const postSchema = new Schema({
 profiledating: {
     type: String,
     required: true,
@@ -33,7 +33,7 @@ profiledata: {
 }
 }, { timestamps: true});
 
-const Bel = mongoose.model('Bel', belSchema);
+const Post = mongoose.model('Post', postSchema);
 
 
-module.exports = Bel
+module.exports = Post
