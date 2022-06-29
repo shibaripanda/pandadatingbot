@@ -12,7 +12,7 @@ mongoose
 .connect(db, {useNewUrlParser: true})
 .then((res)=> console.log('connect to DB'))
 .catch((error) => console.log(error))
-
+const group = -1001738151348
 // var url = require('url')
 // var patreon = require('patreon')
 // var patreonAPI = patreon.patreon
@@ -239,7 +239,10 @@ Markup.inlineKeyboard(
 
 
 bot.action ('btn_250', (ctx) => {
-  ctx.reply(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profiledata)
+  let c = bdinfo.findIndex(item => item.id == ctx.from.id)
+  if (c == -1) {ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')}
+  else{
+  ctx.reply(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profiledata)}
   })
 
 bot.action ('btn_400', async (ctx) => {
@@ -538,7 +541,7 @@ bot.action ('btn_101', async (ctx) => {
 }
   else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'delete', (post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
   let mes = []
-  mes = await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info), Markup.inlineKeyboard(
+  mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info), Markup.inlineKeyboard(
     [
        [Markup.button.callback('Message', 'btn_150'), Markup.button.callback('Message', '150'), Markup.button.callback('Message', '150')]
     ])), 
@@ -553,7 +556,7 @@ bot.action ('btn_101', async (ctx) => {
 }
 else { if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
     let mes = []
-    mes = await ctx.telegram.sendMessage(-1001738151348, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
+    mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
     await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
             profile: 'ok',
               idmes: mes.message_id,
@@ -568,6 +571,9 @@ else { if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1")
 
 
 bot.action ('btn_200', async (ctx) => {
+  let dell3 = []
+  dell3 = await Post.find({profiledating: 'profiledating', id: ctx.from.id})
+if (dell3[0].profile == 'ok') {
   username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 0})
   if ((del1.find(item => item.del1 == 0)) == undefined){ 
@@ -576,17 +582,20 @@ bot.action ('btn_200', async (ctx) => {
   else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
     let dell2 = []
     dell2 = await Post.find({profiledating: 'profiledating', id: ctx.from.id});
-    await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-          profile: 'deleted'
-      })
-  await ctx.telegram.deleteMessage(-1001738151348, dell2[0].idmes)  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  await ctx.telegram.deleteMessage(group, dell2[0].idmes)  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   await ctx.replyWithHTML("Your dating profile has been deleted! ❌\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
      profiledata: 'You have deleted your profile',
-     idmes: false
+     idmes: false,
+    profile: 'deleted'
     })
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})}
-}})
+}}
+else {await ctx.replyWithHTML("У вас нет анкеты.\n\nПерезапуск ➡️ <b>/start</b> ✅")}
+})
+
+
+
 
 bot.on('message', async(ctx) => {
   prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
