@@ -1,62 +1,23 @@
+const group = -1001738151348
+
 const { Telegraf, Markup } = require('telegraf')
 require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
-const baza = require('./const')
-const mongoose = require('mongoose')
 const db = (process.env.BD_TOKEN)
-const Post = require('./models/post')
-const { hydrate } = require('./models/post')
 const pt = (process.env.PATREON_TOKEN)
+const mongoose = require('mongoose')
+const Post = require('./models/post')
+const Patreon = require('./models/post')
+const { hydrate } = require('./models/post')
+const { patreon, jsonApiURL } = require('patreon')
+const patreonAPIClient = patreon(pt)
 
 mongoose
 .connect(db, {useNewUrlParser: true})
 .then((res)=> console.log('connect to DB'))
 .catch((error) => console.log(error))
-const group = -1001738151348
-
-// var url = require('url')
-// var patreon = require('patreon')
-// var patreonAPI = patreon.patreon
-// var patreonOAuth = patreon.oauth
-
-// Use the client id and secret you received when setting up your OAuth account
-//var CLIENT_ID = 'iVSDuHMfr8_yibe1haipBMihmoT9awjzekoLIZTInojaqqI1QT7SgGvT_mByrCya'
-//var CLIENT_SECRET = 'GdXX-AywSj0F4pbFWQo3B8NMWkvLs7uYvnMheO0LFRfoQzRy4E1lqUZqL3RibuG2'
-//var patreonOAuthClient = patreonOAuth(CLIENT_ID, CLIENT_SECRET)
-
-// This should be one of the fully qualified redirect_uri you used when setting up your oauth account
-//var redirectURL = 'http://mypatreonapp.com/oauth/redirect'
-
-//function handleOAuthRedirectRequest(request, response) {
- //   var oauthGrantCode = url.parse(request.url, true).query.code
-
- //   patreonOAuthClient
-  //      .getTokens(oauthGrantCode, redirectURL)
-  //      .then(function(tokensResponse) {
-  //          var patreonAPIClient = patreonAPI(tokensResponse.access_token)
-  //          return patreonAPIClient('/current_user')
-  //      })
-  //      .then(function(result) {
-  //          var store = result.store
-  //          // store is a [JsonApiDataStore](https://github.com/beauby/jsonapi-datastore)
-            // You can also ask for result.rawJson if you'd like to work with unparsed data
-  //          response.end(store.findAll('user').map(user => user.serialize()))
-   //     })
-   //     .catch(function(err) {
-   //         console.error('error!', err)
-    //        response.end(err)
-   //     })
-//}
 
 
-//const { patreon, jsonApiURL } = require('patreon')
-//const patreonAPIClient = patreon(pt)
-//const rewards = patreonAPIClient('/current_user/campaigns')
-//.then(function(result) {
- // var store = result.store
-  // store is a [JsonApiDataStore](https://github.com/beauby/jsonapi-datastore)
-  // You can also ask for result.rawJson if you'd like to work with unparsed data
-//  response.end(store.findAll('user').map(user => user.serialize())
 
 let bdinfo = []
 let info = []
@@ -76,11 +37,72 @@ let post = []
 let email1 = []
 let emailon  = []
 
-const bazaall = ["test@mail.com", "vip2@mail.com", "vip@mail.com", "2vip@mail.com"]
-const bazashcf1 = ["vip@mail.com", "2vip@mail.com"]
-const bazashcf2 = ["vip2@mail.com", "2vip@mail.com"]
+let bazaall = []
+let bazashcf1 = []
+let bazashcf2 = []
+
+
+
+patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-default-includes=true`)
+  .then (async({ store }) => {
+      const pledges = store.findAll("pledge");
+      for (let x of pledges) {
+        await Patreon.updateOne ({patron_email: x.patron.email}, {patron_full_name: x.patron.full_name,
+                                                                      ptreonclient: 'patron',
+                                                                    declined_since: x.declined_since,
+                                                                      reward_title: x.reward.title}, {upsert: true})
+      }
+           let top1 = []
+           top1 = await Patreon.find({reward_title:[
+            "!NEW! ShibaripandaClub XL",
+            "!NEW! ShibaripandaClub XXL",
+            "Live shibari lessons #1",
+            "Shibari course for beginners 2022.2",
+            "Cookies and tea for Fat Panda!))",
+            "Live shibari lessons #2",
+            "Shibari course for beginners 2022.2",
+            "Shibari course for beginners 2022.2",
+            "Shibari course for beginners LSHL#3",
+            "Shibari course for beginners2022.2",
+            "VIP Patron",
+            "Let`s make shibari course",
+            "Your rope fantasies."]}, {patron_email: 1, _id: 0})
+           bazaall = top1.map(item => item.patron_email)
+           console.log(bazaall.length)
+
+           let top2 = []
+           top2 = await Patreon.find({reward_title:[
+            "Live shibari lessons #1",
+            "Live shibari lessons #2",
+            "Shibari course for beginners LSHL#3",
+            "VIP Patron",
+            "Your rope fantasies."]}, {patron_email: 1, _id: 0})
+           bazashcf1 = top2.map(item => item.patron_email)
+           console.log(bazashcf1.length) 
+
+           let top3 = []
+           top3 = await Patreon.find({reward_title:[
+            "Shibari course for beginners 2022.2", 
+            "Shibari course for beginners 2022.2",
+            "Shibari course for beginners 2022.2",
+            "Shibari course for beginners2022.2",
+            "VIP Patron",
+            "Your rope fantasies."]}, {patron_email: 1, _id: 0})
+           bazashcf2 = top3.map(item => item.patron_email)
+           console.log(bazashcf2.length)
+                               
+  })
+  .catch(err => {
+      console.log("caught");
+      console.error("error!", err);
+      response.end(err);
+  });
+
 
 bot.start(async (ctx) => {
+// let top = []
+// top = await Patreon.findOne({declined_since: null}, {patron_email: 1})
+// console.log(top)
   await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username, chat: 'off', chatstatus: 'free', chatclient: 'no'}, {upsert: true})
   
   let q = nameman.findIndex(item => item.id == ctx.from.id)
@@ -132,7 +154,7 @@ bot.start(async (ctx) => {
   if (h != -1) {del1.splice(del1.findIndex(item => item.id == ctx.from.id),1)};
   del1.push({id: ctx.from.id})
 
-console.log (ctx.from.id, ctx.from.username, nameman.length)
+console.log(ctx.from.id, ctx.from.username, nameman.length)
 
 bdinfo = [{id: ctx.from.id}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
