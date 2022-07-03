@@ -12,6 +12,7 @@ const { hydrate } = require('./models/post')
 const { patreon, jsonApiURL } = require('patreon')
 const patreonAPIClient = patreon(pt)
 
+
 mongoose
 .connect(db, {useNewUrlParser: true})
 .then((res)=> console.log('connect to DB'))
@@ -43,7 +44,7 @@ let bazashcf2 = []
 
 
 
-patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-default-includes=true`)
+function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-default-includes=true`) // обновление партреона
   .then (async({ store }) => {
       const pledges = store.findAll("pledge");
       for (let x of pledges) {
@@ -66,7 +67,7 @@ patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-
             "Shibari course for beginners2022.2",
             "VIP Patron",
             "Let`s make shibari course",
-            "Your rope fantasies."]}, {patron_email: 1, _id: 0})
+            "Your rope fantasies."], declined_since: null}, {patron_email: 1, _id: 0})
            bazaall = top1.map(item => item.patron_email)
            console.log(bazaall.length)
 
@@ -76,7 +77,7 @@ patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-
             "Live shibari lessons #2",
             "Shibari course for beginners LSHL#3",
             "VIP Patron",
-            "Your rope fantasies."]}, {patron_email: 1, _id: 0})
+            "Your rope fantasies."], declined_since: null}, {patron_email: 1, _id: 0})
            bazashcf1 = top2.map(item => item.patron_email)
            console.log(bazashcf1.length) 
 
@@ -87,7 +88,7 @@ patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-
             "Shibari course for beginners 2022.2",
             "Shibari course for beginners2022.2",
             "VIP Patron",
-            "Your rope fantasies."]}, {patron_email: 1, _id: 0})
+            "Your rope fantasies."], declined_since: null}, {patron_email: 1, _id: 0})
            bazashcf2 = top3.map(item => item.patron_email)
            console.log(bazashcf2.length)
                                
@@ -96,13 +97,10 @@ patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-
       console.log("caught");
       console.error("error!", err);
       response.end(err);
-  });
+  });}
 
-
+// старт
 bot.start(async (ctx) => {
-// let top = []
-// top = await Patreon.findOne({declined_since: null}, {patron_email: 1})
-// console.log(top)
   await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username, chat: 'off', chatstatus: 'free', chatclient: 'no'}, {upsert: true})
   
   let q = nameman.findIndex(item => item.id == ctx.from.id)
@@ -260,29 +258,38 @@ Markup.inlineKeyboard(
 //   console.log('***** Kонец: ' + rollet +' *****')
 //   })
 
-
-bot.action ('btn_250', (ctx) => {
+// вывод анкеты в бот
+bot.action ('btn_250', async (ctx) => {
   let c = bdinfo.findIndex(item => item.id == ctx.from.id)
   if (c == -1) {ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')}
   else{
-  ctx.reply(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profiledata)}
+    await ctx.reply(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profiledata)
+  await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
+}
   })
 
 bot.action ('btn_400', async (ctx) => {
- bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
-  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) {  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  patreonstart()
+  // let promise = new Promise((resolve, reject) => {
+  //   resolve();
+  // });
+      bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
+  if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) { 
   ctx.reply("Enter your patreon email")
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
     }
-  else {ctx.reply("Enter your new patreon email:",
+  else {ctx.reply("Hello, you are already registered!",
     (Markup.inlineKeyboard(
       [
-           [Markup.button.callback(`Or click to use it: ${bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email}`, 'btn_405')]
+           [Markup.button.callback(`Click to enter ${bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email}`, 'btn_405')]
       ])))
        prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'}) 
-       emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})  }  
-  })
+       emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  }  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+})
+
+
 
   bot.action ('btn_789', (ctx) => {
     ctx.replyWithHTML(`Q`,
@@ -290,6 +297,7 @@ bot.action ('btn_400', async (ctx) => {
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0}) )    
 })
 
+// free chanal enter
 bot.action ('btn_201', async (ctx) => {
   await ctx.replyWithPhoto({ source: "./img/alerteng.jpg" })
   await ctx.replyWithHTML(`To enter the channel, use this link <a href="https://t.me/+Ap62Lp2sjdM3NDYy">ShibaripandaClub</a>.\n\n<b> If, when you try to log in, you see a message like in the photo above. You need to enable “Disable filtering” in the settingsin the web or computer version of the telegram application.</b>`, {
@@ -319,12 +327,19 @@ bot.action ('btn_401', async (ctx) => {
   let n = email1.findIndex(item => item == ctx.from.id)
   if (n != -1) {
     console.log(n)
-    ctx.replyWithHTML('1Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
+    ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
-  else {
-  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-      email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1
-    }) 
+  else {  
+    
+    let logon1 = []
+    logon1 = await Patreon.find({profiledating: 'profiledating', email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1})
+    console.log('enter1 '+ logon1.length)
+    let logonlength1 = logon1.length
+    console.log('1l ' + logonlength1)
+
+    if(logonlength1 < 1){
+
+  
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
@@ -340,31 +355,60 @@ bot.action ('btn_401', async (ctx) => {
        [Markup.button.callback('ShibaripandaDating 🐼', 'btn_901')],
        [Markup.button.callback('ShibaripandaLive 🐼', 'btn_902')],
        [Markup.button.callback('ShibaripandaChat 🐼', 'btn_903')]
-    ]) )}
+    ]) )
+  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+      email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1
+    }) 
+
+  }
 
       if (bazashcf1.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)){
         await ctx.reply('Your learning class:',
   Markup.inlineKeyboard(
     [
-       [Markup.button.callback('Shibari course for beginners 📚', 'btn_904')]
+       [Markup.button.callback('Shibari course for beginners 2022 📚', 'btn_904')]
     ]))
       }    
     if (bazashcf2.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)){
       await ctx.reply('Your learning class:',
       Markup.inlineKeyboard(
         [
-           [Markup.button.callback('Shibari course for beginners2 📚', 'btn_905')]
+           [Markup.button.callback('Shibari course for beginners 2022.2 📚', 'btn_905')]
         ]) )} 
   }
     if (!bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
-  ctx.reply(`You didn't subscribe or entered your email incorrectly`,
+  ctx.reply(`You cannot login\n
+  Perhaps you are not subscribed to the paid section\n
+  There may be a problem with the last payment\n
+  You may have entered your email incorrectly\n\n
+  Check if everything is in order by subscription and payment`,
   Markup.inlineKeyboard(
     [ 
       [Markup.button.callback('Edit email', 'btn_400')],
       [Markup.button.callback('Subscribe 💵', 'btn_204')]
-    ]))} 
+    ]))
+   
+  } 
     }}
+
+    else {
+      await ctx.reply('The email is already in use.\nYou cannot log in twice with the same subscription',
+      Markup.inlineKeyboard(
+        [
+          [Markup.button.callback('Edit email', 'btn_400')],
+          [Markup.button.callback('Subscribe 💵', 'btn_204')]
+        ]))
+        await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
+    }
+}
 })
+
+
+
+ 
+
+
+
 
 bot.action ('btn_405', async (ctx) => {
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
@@ -373,6 +417,11 @@ bot.action ('btn_405', async (ctx) => {
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
     else{
+      let logon = await Patreon.find({profiledating: 'profiledating', email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1})
+      console.log('enter2 '+ logon.length)
+      let logonlength = logon.length
+      console.log('2l '+ logonlength)
+      if (logonlength == 1) {
         if (bazaall.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email))
     
     { 
@@ -390,23 +439,38 @@ bot.action ('btn_405', async (ctx) => {
         await ctx.reply('Your learning class:',
   Markup.inlineKeyboard(
     [
-       [Markup.button.callback('Shibari course for beginners 📚', 'btn_904')]
+       [Markup.button.callback('Shibari course for beginners 2022 📚', 'btn_904')]
     ]))
       }    
     if (bazashcf2.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)){
       await ctx.reply('Your learning class:',
       Markup.inlineKeyboard(
         [
-           [Markup.button.callback('Shibari course for beginners2 📚', 'btn_905')]
+           [Markup.button.callback('Shibari course for beginners 2022.2 📚', 'btn_905')]
         ]) )} 
   }
     if (!bazaall.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)) {
-  ctx.reply(`You didn't subscribe or entered your email incorrectly`,
+  await ctx.reply(`You cannot login\n
+  There may be a problem with the last payment\n\n
+  Check if everything is in order by subscription and payment`,
   Markup.inlineKeyboard(
     [ 
+      [Markup.button.callback('Subscribe 💵', 'btn_204')]
+    ]))
+   await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
+  
+  } 
+    } 
+    
+    else {
+      await ctx.reply('The email is already in use.\nYou cannot log in twice with the same subscription',
+  Markup.inlineKeyboard(
+    [
       [Markup.button.callback('Edit email', 'btn_400')],
       [Markup.button.callback('Subscribe 💵', 'btn_204')]
-    ]))} 
+    ]))
+    await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
+    }
     }
 })
 
@@ -515,7 +579,7 @@ bot.action ('btn_4', (ctx) => {
 
 
 
-
+// сбор анкеты и подготовка к публикации
 bot.action ('btn_100', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
