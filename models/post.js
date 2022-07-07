@@ -48,6 +48,10 @@ const patreonSchema = new Schema({
         type: String,
         required: true,
     },
+    idmeschanel: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -57,6 +61,10 @@ const patreonSchema = new Schema({
         required: true,
     },
     profiledating: {
+        type: String,
+        required: true,
+    },
+    level: {
         type: String,
         required: true,
     }

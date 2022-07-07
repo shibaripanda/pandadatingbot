@@ -1,4 +1,11 @@
-const group = -1001738151348
+const group = -1001639457688 // test
+const group1 = -1001623077893 //test1
+const group2 = -1001622222769 //test2
+const group3 = -1001773316805 //test3
+const group4 = -1001718400708 //test4
+const group5 = -1001533172251 //test5
+const chanel =  -1001666894195 //test1
+
 
 const { Telegraf, Markup } = require('telegraf')
 require('dotenv').config()
@@ -18,10 +25,13 @@ mongoose
 .then((res)=> console.log('connect to DB'))
 .catch((error) => console.log(error))
 
-
+const timewait = 15000
+const timewaitstart = 0
+const timewaitfull = 3600000
 
 let bdinfo = []
 let info = []
+let info3 = []
 let prev_action = []
 let nameman = []
 let sexman = []
@@ -42,6 +52,8 @@ let bazaall = []
 let bazashcf1 = []
 let bazashcf2 = []
 
+
+ 
 
 
 function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-default-includes=true`) // обновление партреона
@@ -99,10 +111,19 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
       response.end(err);
   });}
 
+  patreonstart()
+  setInterval(patreonstart, timewaitfull)
+
 // старт
 bot.start(async (ctx) => {
-  await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username, chat: 'off', chatstatus: 'free', chatclient: 'no'}, {upsert: true})
-  
+  // ctx.reply("Please wait while we update the data for you...")
+  // setTimeout(async () => ctx.reply("A couple more seconds..."),5000)
+  // patreonstart(),
+  setTimeout(async () => {
+  await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username, chat: 'off', chatstatus: 'free', chatclient: 'no', level: 'level_0'}, {upsert: true})
+  let vv = info3.findIndex(item => item.id == ctx.from.id)
+  if (vv != -1) {info3.splice(info3.findIndex(item => item.id == ctx.from.id),1)};
+  info3.push({id: ctx.from.id})
   let q = nameman.findIndex(item => item.id == ctx.from.id)
   if (q != -1) {nameman.splice(nameman.findIndex(item => item.id == ctx.from.id),1)};
   nameman.push({id: ctx.from.id})
@@ -152,7 +173,7 @@ bot.start(async (ctx) => {
   if (h != -1) {del1.splice(del1.findIndex(item => item.id == ctx.from.id),1)};
   del1.push({id: ctx.from.id})
 
-console.log(ctx.from.id, ctx.from.username, nameman.length)
+console.log(ctx.from.id, ctx.from.username, nameman.length, ctx.chat.id)
 
 bdinfo = [{id: ctx.from.id}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
@@ -205,7 +226,7 @@ Markup.inlineKeyboard(
    [Markup.button.callback('Login', 'btn_400')],
    [Markup.button.callback('Subscribe 💵', 'btn_204')]
    
-]))}
+]))}},timewaitstart)
 }
 )
 
@@ -268,12 +289,41 @@ bot.action ('btn_250', async (ctx) => {
 }
   })
 
-bot.action ('btn_400', async (ctx) => {
-  patreonstart()
-  // let promise = new Promise((resolve, reject) => {
-  //   resolve();
-  // });
-      bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
+
+//   bot.action ('btn_400', (ctx) => {
+//     const prom = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       ctx.reply("..................");
+//        patreonstart()
+//      resolve()
+//     }, 5000);})  
+   
+//     prom.then(() => {
+// bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = Post.findOne({id: ctx.from.id})
+//     if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) { 
+//     ctx.reply("Enter your patreon email")
+//     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
+//     prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
+//       }
+//     else {ctx.reply("Hello, you are already registered!",
+//       (Markup.inlineKeyboard(
+//         [
+//              [Markup.button.callback(`Click to enter ${bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email}`, 'btn_405')]
+//         ])))
+//          prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'}) 
+//          emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  }  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+//     })})
+        
+
+
+
+
+bot.action ('btn_400', async (ctx) => { 
+  ctx.reply("Please wait while we update the data for you...")
+  setTimeout(async () => ctx.reply("A couple more seconds..."),5000)
+  patreonstart(),
+  setTimeout(async () => {bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) { 
   ctx.reply("Enter your patreon email")
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
@@ -285,9 +335,10 @@ bot.action ('btn_400', async (ctx) => {
            [Markup.button.callback(`Click to enter ${bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email}`, 'btn_405')]
       ])))
        prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'}) 
-       emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  }  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
-})
+       emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0}) } },timewait)
+      }) 
+      
+
 
 
 
@@ -343,38 +394,42 @@ bot.action ('btn_401', async (ctx) => {
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
-    else{
-        if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1))
+    else {
+        if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) { 
     
-    { 
-         if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
-  await ctx.replyWithHTML(`Welcome!\nGoodies available for you, enjoy :`,
-  Markup.inlineKeyboard(
-    [
-       [Markup.button.callback('ShibaripandaClub XL 🐼', 'btn_900')],
-       [Markup.button.callback('ShibaripandaDating 🐼', 'btn_901')],
-       [Markup.button.callback('ShibaripandaLive 🐼', 'btn_902')],
-       [Markup.button.callback('ShibaripandaChat 🐼', 'btn_903')]
-    ]) )
-  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-      email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1
-    }) 
-
-  }
+      if (bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
+        let link = await ctx.telegram.createChatInviteLink(group,{member_limit: 1})
+        let link1 = await ctx.telegram.createChatInviteLink(group1,{member_limit: 1})
+        let link2 = await ctx.telegram.createChatInviteLink(group2,{member_limit: 1})
+        let link3 = await ctx.telegram.createChatInviteLink(group3,{member_limit: 1})
+        await ctx.replyWithHTML(`Welcome!\nGoodies available for you, enjoy :`,
+        Markup.inlineKeyboard(
+          [
+             [Markup.button.url('ShibaripandaClub XL 🐼', url = link.invite_link)],
+             [Markup.button.url('ShibaripandaDating 🐼', url = link1.invite_link)],
+             [Markup.button.url('ShibaripandaLive 🐼', url = link2.invite_link)],
+             [Markup.button.url('ShibaripandaChat 🐼', url = link3.invite_link)]
+          ]) )
+          await Post.updateOne ({id: ctx.from.id}, {email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1, level: 'level_1'})}
 
       if (bazashcf1.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)){
+        let link4 = await ctx.telegram.createChatInviteLink(group4,{member_limit: 1})
         await ctx.reply('Your learning class:',
   Markup.inlineKeyboard(
     [
-       [Markup.button.callback('Shibari course for beginners 2022 📚', 'btn_904')]
+       [Markup.button.url('Shibari course for beginners 2022', url = link4.invite_link)]
     ]))
+    await Post.updateOne ({id: ctx.from.id}, {level: 'level_2'})
       }    
     if (bazashcf2.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)){
+      let link5 = await ctx.telegram.createChatInviteLink(group5,{member_limit: 1})
       await ctx.reply('Your learning class:',
       Markup.inlineKeyboard(
         [
-           [Markup.button.callback('Shibari course for beginners 2022.2 📚', 'btn_905')]
-        ]) )} 
+           [Markup.button.url('Shibari course for beginners 2022.2 📚', url = link5.invite_link)]
+        ]) )
+        await Post.updateOne ({id: ctx.from.id}, {level: 'level_3'})
+      } 
   }
     if (!bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
   ctx.reply(`You cannot login\n
@@ -389,7 +444,9 @@ bot.action ('btn_401', async (ctx) => {
     ]))
    
   } 
-    }}
+    }
+  
+  }
 
     else {
       await ctx.reply('The email is already in use.\nYou cannot log in twice with the same subscription',
@@ -404,12 +461,6 @@ bot.action ('btn_401', async (ctx) => {
 })
 
 
-
- 
-
-
-
-
 bot.action ('btn_405', async (ctx) => {
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
@@ -417,7 +468,7 @@ bot.action ('btn_405', async (ctx) => {
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
     else{
-      let logon = await Patreon.find({profiledating: 'profiledating', email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1})
+      let logon = await Patreon.find({profiledating: 'profiledating', email:  bdinfo[([( bdinfo.findIndex(item => item.id == ctx.from.id))])].email})
       console.log('enter2 '+ logon.length)
       let logonlength = logon.length
       console.log('2l '+ logonlength)
@@ -426,28 +477,39 @@ bot.action ('btn_405', async (ctx) => {
     
     { 
          if (bazaall.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)) {
+  let link = await ctx.telegram.createChatInviteLink(group,{member_limit: 1})
+  let link1 = await ctx.telegram.createChatInviteLink(group1,{member_limit: 1})
+  let link2 = await ctx.telegram.createChatInviteLink(group2,{member_limit: 1})
+  let link3 = await ctx.telegram.createChatInviteLink(group3,{member_limit: 1})
   await ctx.replyWithHTML(`Welcome!\nGoodies available for you, enjoy :`,
   Markup.inlineKeyboard(
     [
-       [Markup.button.callback('ShibaripandaClub XL 🐼', 'btn_900')],
-       [Markup.button.callback('ShibaripandaDating 🐼', 'btn_901')],
-       [Markup.button.callback('ShibaripandaLive 🐼', 'btn_902')],
-       [Markup.button.callback('ShibaripandaChat 🐼', 'btn_903')]
-    ]) )}
+       [Markup.button.url('ShibaripandaClub XL 🐼', url = link.invite_link)],
+       [Markup.button.url('ShibaripandaDating 🐼', url = link1.invite_link)],
+       [Markup.button.url('ShibaripandaLive 🐼', url = link2.invite_link)],
+       [Markup.button.url('ShibaripandaChat 🐼', url = link3.invite_link)]
+    ]) )
+    await Post.updateOne ({id: ctx.from.id}, {level: 'level_1'})
+  }
 
       if (bazashcf1.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)){
+        let link4 = await ctx.telegram.createChatInviteLink(group4,{member_limit: 1})
         await ctx.reply('Your learning class:',
   Markup.inlineKeyboard(
     [
-       [Markup.button.callback('Shibari course for beginners 2022 📚', 'btn_904')]
+       [Markup.button.url('Shibari course for beginners 2022 📚', url = link4.invite_link)]
     ]))
+    await Post.updateOne ({id: ctx.from.id}, {level: 'level_2'})
       }    
     if (bazashcf2.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)){
+      let link5 = await ctx.telegram.createChatInviteLink(group5,{member_limit: 1})
       await ctx.reply('Your learning class:',
       Markup.inlineKeyboard(
         [
-           [Markup.button.callback('Shibari course for beginners 2022.2 📚', 'btn_905')]
-        ]) )} 
+           [Markup.button.url('Shibari course for beginners 2022.2 📚', url = link5.invite_link)]
+        ]) )
+        await Post.updateOne ({id: ctx.from.id}, {level: 'level_3'})
+      } 
   }
     if (!bazaall.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)) {
   await ctx.reply(`You cannot login\n
@@ -477,7 +539,10 @@ bot.action ('btn_405', async (ctx) => {
 
 
 
-bot.action ('btn_900')
+
+
+
+
 
 bot.action ('btn_1', async (ctx) => {
   let m = username1.findIndex(item => item.id == ctx.from.id)
@@ -604,7 +669,7 @@ bot.action ('btn_100', (ctx) => {
     ]))
     info[([(info.findIndex(item => item.id == ctx.from.id))])] =
     ({id: ctx.from.id, info: (nameman[(nameman.findIndex(item => item.id == ctx.from.id))].nameman) +' '+ 
-    (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n\n'+ 
+    (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n'+ 
     (countryman[(countryman.findIndex(item => item.id == ctx.from.id))].countryman) +' '+ 
     (cityman[(cityman.findIndex(item => item.id == ctx.from.id))].cityman) +'\nGender: '+ 
     (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ 'My interests: '+ 
@@ -612,6 +677,16 @@ bot.action ('btn_100', (ctx) => {
     (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
     (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\n@'+ 
     (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1)})
+
+    info3[([(info3.findIndex(item => item.id == ctx.from.id))])] =
+    ({id: ctx.from.id, info3: 'Name available in XL subscription $1 age '+ 
+    (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n'+ 
+    (countryman[(countryman.findIndex(item => item.id == ctx.from.id))].countryman) +' '+ 
+    (cityman[(cityman.findIndex(item => item.id == ctx.from.id))].cityman) +'\nGender: '+ 
+    (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ '<b>My interests:</b> '+ 
+    (interes[(interes.findIndex(item => item.id == ctx.from.id))].interes)+'\n'+ 'Who I want to find: '+ 
+    (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
+    (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\nContact details available in XL subscription $1'})
 
     prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})}
  else { 
@@ -627,10 +702,15 @@ bot.action ('btn_101', async (ctx) => {
     ctx.replyWithHTML("You already have a dating profile!\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
 }
   else if ((bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profile) == 'delete', (post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
-  let mes = []
+  let mes1 = []
+  mes1 = await ctx.telegram.sendMessage(chanel, (info3[(info3.findIndex(item => item.id == ctx.from.id))].info3))
+  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+       idmeschanel: mes1.message_id
+    })
+  let mes = []                                              //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info), Markup.inlineKeyboard(
     [
-       [Markup.button.callback('Message', 'btn_150'), Markup.button.callback('Message', '150'), Markup.button.callback('Message', '150')]
+       [Markup.button.callback('Message', 'btn_150')]
     ])), 
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
           profile: 'ok',
@@ -642,7 +722,12 @@ bot.action ('btn_101', async (ctx) => {
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})
 }
 else { if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1") {
-    let mes = []
+  let mes1 = []
+  mes1 = await ctx.telegram.sendMessage(chanel, (info3[(info3.findIndex(item => item.id == ctx.from.id))].info3))
+  await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+idmeschanel: mes1.message_id
+    })
+    let mes = []                                                                             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
     await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
             profile: 'ok',
@@ -669,12 +754,15 @@ if (dell3[0].profile == 'ok') {
   else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
     let dell2 = []
     dell2 = await Post.find({profiledating: 'profiledating', id: ctx.from.id});
-  await ctx.telegram.deleteMessage(group, dell2[0].idmes)  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  await ctx.telegram.deleteMessage(group, dell2[0].idmes)
+  await ctx.telegram.deleteMessage(chanel, dell2[0].idmeschanel)
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   await ctx.replyWithHTML("Your dating profile has been deleted! ❌\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
      profiledata: 'You have deleted your profile',
-     idmes: false,
-    profile: 'deleted'
+          idmes: false,
+        profile: 'deleted',
+    idmeschanel: false
     })
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})}
 }}
@@ -682,7 +770,55 @@ else {await ctx.replyWithHTML("У вас нет анкеты.\n\nПерезап�
 })
 
 
+bot.on('new_chat_members', async(ctx) =>{
+  let entergroup = []
+  entergroup = await Post.find({profiledating: 'profiledating', id: ctx.from.id})
+  let levelv = entergroup.findIndex(item => item.id = 'level')
+  console.log(levelv)
+  if (ctx.from.id == 599773731){ console.log('Admin')}
+  else {
+  if (levelv == -1) {
+     let ads = ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true);
+     ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
+     console.log('0')
+     console.log(ads)}
 
+     else if  (entergroup[0].level == 'level_1' && ctx.chat.id == group || group1 || group2 || group3) {
+      let delmes = await ctx.telegram.sendMessage(ctx.chat.id,`Hello1! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
+      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes.message_id), 10000)
+      console.log('1')}
+
+     else if (entergroup[0].level == 'level_2' && ctx.chat.id == group || group1 || group2 || group3 || group4) {
+     let delmes1 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello2! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
+     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes1.message_id), 10000)
+     console.log('2')}
+
+     else if (entergroup[0].level == 'level_3' && ctx.chat.id == group || group1 || group2 || group3 || group5) {
+     let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello3! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
+     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), 10000)
+     console.log('3')}
+  else {
+    ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
+    ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
+    console.log('4')
+  // console.log(hh)
+  // console.log(hh.from.id)
+}
+}})
+
+// {
+//   message_id: 692,
+//   from: {
+//     id: 5466664209,
+//     is_bot: true,
+//     first_name: 'test1',
+//     username: 'testpanda1bot'
+//   },-1001639457688
+//   chat: { id: -1001639457688, title: 'testbulbagroup', type: 'supergroup' },
+//   date: 1657125667,
+//   text: 'Hello!',
+//   has_protected_content: true
+// }
 
 bot.on('message', async(ctx) => {
   prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
@@ -792,13 +928,38 @@ else {username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({i
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text.toLowerCase()})
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  
    }
+
+
+
+  // if (ctx.message.new_chat_member.id == true) {async (ctx) => {
+  //  ctx.reply('Welcome')}}
+
+
    })
 
-  // bot.message_handler(content_types = ['new_chat_members', 'left_chat_member'])
+
+   
+   
+ 
+
+//    bot.on('new_chat_members', async (ctx) => {
+//     console.log(ctx.message.new_chat_members)
+//    await ctx.reply(`@${ctx.message.from.username}, вы не можете писать в данный чат 
+// //Обратитесь к администратору`) 
+    
+//     for(let i = -1; i <= -1; i++){ 
+//                setTimeout(() => {
+//                ctx.deleteMessage(ctx.message.message_id-i) 
+                
+//             },1000 * 15)
+//           }
+   
+// })
   
+
+
+
  bot.launch()
-
-
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
