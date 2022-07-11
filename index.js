@@ -1,10 +1,3 @@
-const group = -1001639457688 // test
-const group1 = -1001623077893 //test1
-const group2 = -1001622222769 //test2
-const group3 = -1001773316805 //test3
-const group4 = -1001718400708 //test4
-const group5 = -1001533172251 //test5
-const chanel =  -1001666894195 //test1
 
 
 const { Telegraf, Markup } = require('telegraf')
@@ -18,6 +11,14 @@ const Patreon = require('./models/post')
 const { hydrate } = require('./models/post')
 const { patreon, jsonApiURL } = require('patreon')
 const patreonAPIClient = patreon(pt)
+
+const group = -1001639457688 // test
+const group1 = -1001623077893  //test1
+const group2 = -1001622222769 //test2
+const group3 = -1001773316805 //test3
+const group4 = -1001718400708 //test4
+const group5 = -1001533172251 //test5
+const chanel =  -1001666894195 //test1
 
 
 mongoose
@@ -53,7 +54,6 @@ let bazashcf1 = []
 let bazashcf2 = []
 
 
- 
 
 
 function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-default-includes=true`) // обновление партреона
@@ -102,8 +102,8 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
             "VIP Patron",
             "Your rope fantasies."], declined_since: null}, {patron_email: 1, _id: 0})
            bazashcf2 = top3.map(item => item.patron_email)
-           console.log(bazashcf2.length)
-                               
+           console.log(bazashcf2.length)   
+         
   })
   .catch(err => {
       console.log("caught");
@@ -111,8 +111,13 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
       response.end(err);
   });}
 
+ 
+  
+
   patreonstart()
   setInterval(patreonstart, timewaitfull)
+
+
 
 // старт
 bot.start(async (ctx) => {
@@ -230,54 +235,6 @@ Markup.inlineKeyboard(
 }
 )
 
-// function pop() 
-// {(ctx) => ctx.reply('hello')}
-
-// bot.action ('btn_170', setInterval(pop, 100))
-// bot.action ('btn_170', async (ctx) => { 
-//   await ctx.answerCbQuery();
-//   let rollet = [];
-//   await Post.updateOne({id: ctx.from.id}, {chat: 'on', chatstatus: 'free', chatclient: 'no'});
-//   ctx.reply('Write a greeting and Panda will connect you with a random person!');
-//   setInterval(pop, 100)
-//   })
-
-  
-  
-
-// bot.action('message', async(ctx) =>{
-//    let q = []
-//    q = await Post.find({id: ctx.from.id}) 
-// if (q[0].chat = 'on') {console.log('yes')}
-// })
-
-
-// bot.action(setInterval()(async(ctx) => {
-//   let w = []
-//   w = await Post.find({id: ctx.from.id})
-//   if (w[0].chat = 'on') {ctx.reply(w[0].mesfyou)}}, 100))
-
-// let rollet = []
-// bot.action ('btn_170', async (ctx) => { await ctx.answerCbQuery()
-  
-//   console.log('*** Cтарт: ' + rollet + '***')
-//   //await Post.updateOne({id: ctx.from.id}, {chat: 'on', chatstatus: 'free', chatclient: 'no'})
-
-//   let a = rollet.findIndex(item => item == ctx.from.username)
-//   if (a != -1) {rollet.splice(rollet.findIndex(item => item ==  ctx.from.username),1)};
-//   rollet.push(ctx.from.username)
-
-//   await ctx.reply('Panda is seaching friend for you...')
-//   let rand = Math.floor(Math.random()*rollet.length)
-//   let rand1 = rollet[rand] 
-//   if (rand != rollet.findIndex(item => item == ctx.from.username)) await Post.updateOne({username: rand1}, {mesfyou: 'Hello, 55555'}) 
-//   let mesbd = []
-//   mesbd = await Post.find({id: ctx.from.id})
-//   await ctx.reply('srart dialog, say hello')
-//   await ctx.replyWithHTML('<b>anonumus</b>\n' + mesbd[0].mesfyou)
-//   console.log(mesbd[0].mesfyou)
-//   console.log('***** Kонец: ' + rollet +' *****')
-//   })
 
 // вывод анкеты в бот
 bot.action ('btn_250', async (ctx) => {
@@ -288,35 +245,6 @@ bot.action ('btn_250', async (ctx) => {
   await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
 }
   })
-
-
-//   bot.action ('btn_400', (ctx) => {
-//     const prom = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       ctx.reply("..................");
-//        patreonstart()
-//      resolve()
-//     }, 5000);})  
-   
-//     prom.then(() => {
-// bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = Post.findOne({id: ctx.from.id})
-//     if (bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email == undefined) { 
-//     ctx.reply("Enter your patreon email")
-//     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
-//     prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
-//       }
-//     else {ctx.reply("Hello, you are already registered!",
-//       (Markup.inlineKeyboard(
-//         [
-//              [Markup.button.callback(`Click to enter ${bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email}`, 'btn_405')]
-//         ])))
-//          prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'}) 
-//          emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  }  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
-//     })})
-        
-
-
 
 
 bot.action ('btn_400', async (ctx) => { 
@@ -339,9 +267,6 @@ bot.action ('btn_400', async (ctx) => {
       }) 
       
 
-
-
-
   bot.action ('btn_789', (ctx) => {
     ctx.replyWithHTML(`Q`,
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text.toLowerCase()}),
@@ -359,18 +284,20 @@ bot.action ('btn_201', async (ctx) => {
          [Markup.button.callback('Web telegram', 'btn_300'), Markup.button.callback('Detailed instructions', 'btn_301')]
       ]) 
       ) 
-      ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')  
+      await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')  
 })
 
-bot.action ('btn_301', (ctx) => {ctx.replyWithHTML(`How to Open Blocked or Banned Telegram Channels <a href="https://www.followchain.org/open-banned-blocked-telegram-channels">Detailed instructions</a>.`)    
+bot.action ('btn_301', async (ctx) => {await ctx.replyWithHTML(`How to Open Blocked or Banned Telegram Channels <a href="https://www.followchain.org/open-banned-blocked-telegram-channels">Detailed instructions</a>.`)
+await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')     
 })
 
-bot.action ('btn_300', (ctx) => {ctx.replyWithHTML(`<a href="https://web.telegram.org/">Web telegram</a>.`)    
+bot.action ('btn_300', async (ctx) => {await ctx.replyWithHTML(`<a href="https://web.telegram.org/">Web telegram</a>.`)
+await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')     
 })
 
 
-bot.action ('btn_204', (ctx) => {
-  ctx.replyWithHTML(`<b>To subscribe, go to <a href="https://www.patreon.com/shibaripanda">Patreon</a>.</b>\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅`)    
+bot.action ('btn_204', async (ctx) => {
+  await ctx.replyWithHTML(`<b>To subscribe, go to <a href="https://www.patreon.com/shibaripanda">Patreon</a>.</b>\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅`)    
 })
 
 
@@ -538,12 +465,6 @@ bot.action ('btn_405', async (ctx) => {
 
 
 
-
-
-
-
-
-
 bot.action ('btn_1', async (ctx) => {
   let m = username1.findIndex(item => item.id == ctx.from.id)
   if (m != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
@@ -683,7 +604,7 @@ bot.action ('btn_100', (ctx) => {
     (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n'+ 
     (countryman[(countryman.findIndex(item => item.id == ctx.from.id))].countryman) +' '+ 
     (cityman[(cityman.findIndex(item => item.id == ctx.from.id))].cityman) +'\nGender: '+ 
-    (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ '<b>My interests:</b> '+ 
+    (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ 'My interests: '+ 
     (interes[(interes.findIndex(item => item.id == ctx.from.id))].interes)+'\n'+ 'Who I want to find: '+ 
     (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
     (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\nContact details available in XL subscription $1'})
@@ -740,8 +661,6 @@ idmeschanel: mes1.message_id
   }}} 
 )
 
-
-
 bot.action ('btn_200', async (ctx) => {
   let dell3 = []
   dell3 = await Post.find({profiledating: 'profiledating', id: ctx.from.id})
@@ -771,6 +690,7 @@ else {await ctx.replyWithHTML("У вас нет анкеты.\n\nПерезап�
 
 
 bot.on('new_chat_members', async(ctx) =>{
+  ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
   let entergroup = []
   entergroup = await Post.find({profiledating: 'profiledating', id: ctx.from.id})
   let levelv = entergroup.findIndex(item => item.id = 'level')
@@ -783,29 +703,138 @@ bot.on('new_chat_members', async(ctx) =>{
      console.log('0')
      console.log(ads)}
 
-     else if  (entergroup[0].level == 'level_1' && ctx.chat.id == group || group1 || group2 || group3) {
+     else if  (entergroup[0].level == 'level_1' && (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3)) {
       let delmes = await ctx.telegram.sendMessage(ctx.chat.id,`Hello1! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
-      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes.message_id), 10000)
+      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes.message_id), 30000)
+      if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+             group: true})}
+      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+            group1: true})}
+      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+           group2: true})}
+      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+           group3: true})}   
       console.log('1')}
 
-     else if (entergroup[0].level == 'level_2' && ctx.chat.id == group || group1 || group2 || group3 || group4) {
+     else if (entergroup[0].level == 'level_2' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4)) {
      let delmes1 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello2! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
-     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes1.message_id), 10000)
+     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes1.message_id), 30000)
+     if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+     group: true})}
+     else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+     group1: true})}
+     else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+     group2: true})}
+     else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+     group3: true})}   
+     else if (ctx.chat.id == group4) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+     group4: true})} 
      console.log('2')}
 
-     else if (entergroup[0].level == 'level_3' && ctx.chat.id == group || group1 || group2 || group3 || group5) {
+     else if (entergroup[0].level == 'level_3' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group5)) {
      let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello3! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
-     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), 10000)
+     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), 30000)
+     if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+      group: true})}
+      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+      group1: true})}
+      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+      group2: true})}
+      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+      group3: true})}   
+      else if (ctx.chat.id == group5) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+      group5: true})}
      console.log('3')}
+
   else {
     ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
+    console.log('delete1: '+ ctx.from.id)
     ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
     console.log('4')
-  // console.log(hh)
-  // console.log(hh.from.id)
+
 }
+
+            // let memberlevel = []
+            // memberlevel = await Post.find({profiledating: 'profiledating', group: true}, {email: 1, id: 1, _id: 0})
+            // console.log("Длинна массива тру участников "+ memberlevel.length)
+            // console.log(memberlevel)
+            // for (let em of memberlevel) {
+            // if (bazaall.includes(em.email)) { 
+            // console.log('ok: '+ em.id)}
+            // else {
+            // if (memberlevel.id == 599773731) {
+            // console.log('admin')}
+            // else {
+            // console.log('delete: '+ em.id)
+            // await ctx.telegram.banChatMember(group, em.id, false, true)
+            // await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, level: 'level_0'})
+            // ctx.telegram.unbanChatMember}
+            // }}
+
+            let memberlevel = []
+            memberlevel = await Post.find({profiledating: 'profiledating', level: ['level_1', 'level_2', 'level_3']}, {email: 1, id: 1, _id: 0})
+            console.log("Длинна массива тру участников "+ memberlevel.length)
+            console.log(memberlevel)
+            for (let em of memberlevel) {
+            if (bazaall.includes(em.email)) { 
+
+              if (bazashcf1.includes(em.email)){
+                await ctx.telegram.banChatMember(group5, em.id, false, true)
+            await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group5: false, level: 'level_2'})
+            ctx.telegram.unbanChatMember(group5, em.id)
+            console.log('ok1: '+ em.id)}
+
+              else {await ctx.telegram.banChatMember(group4, em.id, false, true)
+                await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, level: 'level_3'})
+                ctx.telegram.unbanChatMember(group4, em.id)
+                console.log('ok: '+ em.id)}
+              }
+
+
+            else {
+            if (memberlevel.id == 599773731) {
+            console.log('admin')}
+            else {
+            console.log('delete: '+ em.id)
+            await ctx.telegram.banChatMember(group, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group, em.id)
+            await ctx.telegram.banChatMember(group1, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group1, em.id)
+            await ctx.telegram.banChatMember(group2, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group2, em.id)
+            await ctx.telegram.banChatMember(group3, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group3, em.id)
+            await ctx.telegram.banChatMember(group4, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group4, em.id)
+            await ctx.telegram.banChatMember(group5, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group5, em.id)
+            await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, level: 'level_0'})
+            }
+            }}
 }})
 
+bot.on('left_chat_member', async(ctx) =>{
+  ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
+  
+      if  (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4 || ctx.chat.id == group5) {
+
+      if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+             group: false})}
+      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+             group1: false})}
+      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+             group2: false})}
+      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+             group3: false})}
+      else if (ctx.chat.id == group4) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+             group4: false})}
+      else if (ctx.chat.id == group5) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
+             group5: false})}   
+      console.log('delete user')}
+  else {
+    console.log('not delete user')
+}
+})
 // {
 //   message_id: 692,
 //   from: {
@@ -907,13 +936,10 @@ bot.on('message', async(ctx) => {
       ])))
     infiwords[([(infiwords.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, infiwords: ctx.message.text});
 
-
 if (username1[([(username1.findIndex(item => item.id == ctx.from.id))])].username1 == undefined) {
     username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1:' '})}
 else {username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, username1: ctx.from.username})}
-}
-
-  
+} 
   if ((emailon.find(item => item.emailon == 1)) == undefined){ 
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   }
@@ -927,37 +953,8 @@ else {username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({i
     email1 = [{id: ctx.from.id, email1: 'not found'}]
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text.toLowerCase()})
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  
-   }
-
-
-
-  // if (ctx.message.new_chat_member.id == true) {async (ctx) => {
-  //  ctx.reply('Welcome')}}
-
-
-   })
-
-
-   
-   
- 
-
-//    bot.on('new_chat_members', async (ctx) => {
-//     console.log(ctx.message.new_chat_members)
-//    await ctx.reply(`@${ctx.message.from.username}, вы не можете писать в данный чат 
-// //Обратитесь к администратору`) 
-    
-//     for(let i = -1; i <= -1; i++){ 
-//                setTimeout(() => {
-//                ctx.deleteMessage(ctx.message.message_id-i) 
-                
-//             },1000 * 15)
-//           }
-   
-// })
+   }})
   
-
-
 
  bot.launch()
 // Enable graceful stop

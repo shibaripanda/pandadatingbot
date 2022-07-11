@@ -67,6 +67,30 @@ const patreonSchema = new Schema({
     level: {
         type: String,
         required: true,
+    },
+    group: {
+        type: String,
+        required: true,
+    },
+    group1: {
+        type: String,
+        required: true,
+    },
+    group2: {
+        type: String,
+        required: true,
+    },
+    group3: {
+        type: String,
+        required: true,
+    },
+    group4: {
+        type: String,
+        required: true,
+    },
+    group5: {
+        type: String,
+        required: true,
     }
     }, { timestamps: true});
 
