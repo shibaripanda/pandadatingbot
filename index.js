@@ -1,3 +1,5 @@
+// const commands = require('./const/commands')
+
 const { Telegraf, Markup } = require('telegraf')
 require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -10,13 +12,41 @@ const { hydrate } = require('./models/post')
 const { patreon, jsonApiURL } = require('patreon')
 const patreonAPIClient = patreon(pt)
 
-const group = -1001639457688 // test
-const group1 = -1001623077893  //test1
-const group2 = -1001622222769 //test2
-const group3 = -1001773316805 //test3
-const group4 = -1001718400708 //test4
-const group5 = -1001533172251 //test5
-const chanel =  -1001666894195 //test1
+// const xl = require('./const.js')
+// const dating = require('./const.js')
+// const live = require('./const.js')
+// const chat = require('./const.js')
+// const course1 = require('./const.js')
+// const course2 = require('./const.js')
+// const free = require('./const.js')
+// const course3  = require('./const.js')
+
+// const group = -1001451309256 //xl
+// const group1 = -1001608755158 //dating
+// const group2 = -1001584007834 //live
+// const group3 = -1001558239696 // chat
+// const group4 = -1001771841588 // course1 
+// const group5 = -1001756174074 // course2 
+// const chanel = -1001316209146 //free 
+// const group6 = -1001533172251 //course2_test
+
+const group = -1001623077893 //xl_test
+const group1 = -1001639457688 //dating_test
+const group2 = -1001622222769 //live_test
+const group3 = -1001773316805 //chat_test
+const group4 = -1001718400708 //course1_test
+const group5 = -1001533172251 //course2_test
+const chanel = -1001666894195 //free_test
+const group6 = -1001646458928 //course3_test
+
+// const group = xl 
+// const group1 = dating
+// const group2 = live
+// const group3 = chat
+// const group4 = course1
+// const group5 = course2
+// const chanel = free  
+// const group6 = course3 
 
 
 mongoose
@@ -50,8 +80,7 @@ let emailon  = []
 let bazaall = []
 let bazashcf1 = []
 let bazashcf2 = []
-
-
+let bazashcf3 = []
 
 
 function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-default-includes=true`) // обновление партреона
@@ -75,9 +104,7 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
             "Shibari course for beginners 2022.2",
             "Shibari course for beginners LSHL#3",
             "Shibari course for beginners2022.2",
-            "VIP Patron",
-            "Let`s make shibari course",
-            "Your rope fantasies."], declined_since: null}, {patron_email: 1, _id: 0})
+            "Shibari course for beginners 3"], declined_since: null}, {patron_email: 1, _id: 0})
            bazaall = top1.map(item => item.patron_email)
            console.log(bazaall.length)
 
@@ -85,9 +112,7 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
            top2 = await Patreon.find({reward_title:[
             "Live shibari lessons #1",
             "Live shibari lessons #2",
-            "Shibari course for beginners LSHL#3",
-            "VIP Patron",
-            "Your rope fantasies."], declined_since: null}, {patron_email: 1, _id: 0})
+            "Shibari course for beginners LSHL#3"], declined_since: null}, {patron_email: 1, _id: 0})
            bazashcf1 = top2.map(item => item.patron_email)
            console.log(bazashcf1.length) 
 
@@ -96,12 +121,15 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
             "Shibari course for beginners 2022.2", 
             "Shibari course for beginners 2022.2",
             "Shibari course for beginners 2022.2",
-            "Shibari course for beginners2022.2",
-            "VIP Patron",
-            "Your rope fantasies."], declined_since: null}, {patron_email: 1, _id: 0})
+            "Shibari course for beginners2022.2"], declined_since: null}, {patron_email: 1, _id: 0})
            bazashcf2 = top3.map(item => item.patron_email)
            console.log(bazashcf2.length)   
          
+           let top4 = []
+           top4 = await Patreon.find({reward_title:[
+            "Shibari course for beginners 3"], declined_since: null}, {patron_email: 1, _id: 0})
+           bazashcf3 = top4.map(item => item.patron_email)
+           console.log(bazashcf3.length)   
   })
   .catch(err => {
       console.log("caught");
@@ -110,11 +138,9 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
   });}
 
  
-  
 
   patreonstart()
   setInterval(patreonstart, timewaitfull)
-
 
 
 // старт
@@ -123,7 +149,7 @@ bot.start(async (ctx) => {
   // setTimeout(async () => ctx.reply("A couple more seconds..."),5000)
   // patreonstart(),
   setTimeout(async () => {
-  await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username, chat: 'off', chatstatus: 'free', chatclient: 'no', level: 'level_0'}, {upsert: true})
+  await Post.updateOne ({id: ctx.from.id}, {profiledating: 'profiledating', username: ctx.from.username, chat: 'off', chatstatus: 'free', chatclient: 'no'}, {upsert: true})
   let vv = info3.findIndex(item => item.id == ctx.from.id)
   if (vv != -1) {info3.splice(info3.findIndex(item => item.id == ctx.from.id),1)};
   info3.push({id: ctx.from.id})
@@ -177,6 +203,7 @@ bot.start(async (ctx) => {
   del1.push({id: ctx.from.id})
 
 console.log(ctx.from.id, ctx.from.username, nameman.length, ctx.chat.id)
+
 
 bdinfo = [{id: ctx.from.id}]
 bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
@@ -234,6 +261,84 @@ Markup.inlineKeyboard(
 )
 
 
+bot.help((ctx) => ctx.reply('help'))
+
+
+bot.command('del', async (ctx) => {
+  let memberlevel = []
+            memberlevel = await Post.find({profiledating: 'profiledating', level: ['level_1', 'level_2', 'level_3', 'level_4']}, {email: 1, id: 1, _id: 0})
+            console.log("count level users: "+ memberlevel.length)
+            console.log(memberlevel)
+            for (let em of memberlevel) {
+            if (bazaall.includes(em.email)) { 
+
+              if (bazashcf1.includes(em.email)){
+                await ctx.telegram.banChatMember(group5, em.id, false, true)
+                await ctx.telegram.banChatMember(group6, em.id, false, true)
+                await ctx.telegram.unbanChatMember(group5, em.id)
+                await ctx.telegram.unbanChatMember(group6, em.id)
+                await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group5: false, group6: false, level: 'level_2'})
+          
+            console.log('ok1: '+ em.id)}
+
+              else if (bazashcf2.includes(em.email)) {
+                await ctx.telegram.banChatMember(group4, em.id, false, true) 
+                await ctx.telegram.banChatMember(group6, em.id, false, true)
+                await ctx.telegram.unbanChatMember(group4, em.id)
+                await ctx.telegram.unbanChatMember(group6, em.id) 
+                await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group6: false, level: 'level_3'})
+               
+                console.log('ok2: '+ em.id)}
+
+                else if (bazashcf3.includes(em.email)) {
+                  await ctx.telegram.banChatMember(group4, em.id, false, true) 
+                  await ctx.telegram.banChatMember(group5, em.id, false, true)
+                  await ctx.telegram.unbanChatMember(group4, em.id)
+                  await ctx.telegram.unbanChatMember(group5, em.id) 
+                  await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group5: false, level: 'level_4'})
+                
+                  console.log('ok3: '+ em.id)}
+
+                  else{
+                    await ctx.telegram.banChatMember(group4, em.id, false, true) 
+                    await ctx.telegram.banChatMember(group5, em.id, false, true)
+                    await ctx.telegram.banChatMember(group6, em.id, false, true)
+                    await ctx.telegram.unbanChatMember(group4, em.id)
+                    await ctx.telegram.unbanChatMember(group5, em.id)
+                    await ctx.telegram.unbanChatMember(group6, em.id) 
+                    await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false,  group5: false, group6: false, level: 'level_1'})
+                    console.log('ok4: '+ em.id)
+                  }
+  
+              }
+
+
+            else {
+            if (memberlevel.id == 599773731) {
+            console.log('admin')}
+            else {
+            console.log('delete: '+ em.id)
+            await ctx.telegram.banChatMember(group, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group, em.id) 
+            await ctx.telegram.banChatMember(group1, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group1, em.id) 
+            await ctx.telegram.banChatMember(group2, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group2, em.id) 
+            await ctx.telegram.banChatMember(group3, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group3, em.id) 
+            await ctx.telegram.banChatMember(group4, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group4, em.id) 
+            await ctx.telegram.banChatMember(group5, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group5, em.id) 
+            await ctx.telegram.banChatMember(group6, em.id, false, true)
+            await ctx.telegram.unbanChatMember(group6, em.id) 
+            await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, group6: false, level: 'level_0'})
+            }
+            }}
+
+})
+
+
 // вывод анкеты в бот
 bot.action ('btn_250', async (ctx) => {
   let c = bdinfo.findIndex(item => item.id == ctx.from.id)
@@ -247,6 +352,7 @@ bot.action ('btn_250', async (ctx) => {
 
 bot.action ('btn_400', async (ctx) => { 
   ctx.reply("Please wait while we update the data for you...")
+  
   setTimeout(async () => ctx.reply("A couple more seconds..."),5000)
   patreonstart(),
   setTimeout(async () => {bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
@@ -255,7 +361,7 @@ bot.action ('btn_400', async (ctx) => {
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 1})
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})
     }
-  else {ctx.reply("Hello, you are already registered!",
+  else {ctx.reply("You are already registered!",
     (Markup.inlineKeyboard(
       [
            [Markup.button.callback(`Click to enter ${bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email}`, 'btn_405')]
@@ -300,6 +406,7 @@ bot.action ('btn_204', async (ctx) => {
 
 
 bot.action ('btn_401', async (ctx) => {
+
   let n = email1.findIndex(item => item == ctx.from.id)
   if (n != -1) {
     console.log(n)
@@ -309,9 +416,8 @@ bot.action ('btn_401', async (ctx) => {
     
     let logon1 = []
     logon1 = await Patreon.find({profiledating: 'profiledating', email: email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1})
-    console.log('enter1 '+ logon1.length)
+    console.log('Unregistered email '+ logon1.length)
     let logonlength1 = logon1.length
-    console.log('1l ' + logonlength1)
 
     if(logonlength1 < 1){
 
@@ -355,6 +461,17 @@ bot.action ('btn_401', async (ctx) => {
         ]) )
         await Post.updateOne ({id: ctx.from.id}, {level: 'level_3'})
       } 
+      if (bazashcf3.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)){
+        let link6 = await ctx.telegram.createChatInviteLink(group6,{member_limit: 1})
+        await ctx.reply('Your learning class:',
+        Markup.inlineKeyboard(
+          [
+             [Markup.button.url('Shibari course for beginners 3 📚', url = link6.invite_link)]
+          ]) )
+          await Post.updateOne ({id: ctx.from.id}, {level: 'level_4'})
+        } 
+
+
   }
     if (!bazaall.includes(email1[([(email1.findIndex(item => item.id == ctx.from.id))])].email1)) {
   ctx.reply(`You cannot login\n
@@ -387,6 +504,7 @@ bot.action ('btn_401', async (ctx) => {
 
 
 bot.action ('btn_405', async (ctx) => {
+
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
@@ -394,9 +512,8 @@ bot.action ('btn_405', async (ctx) => {
   }
     else{
       let logon = await Patreon.find({profiledating: 'profiledating', email:  bdinfo[([( bdinfo.findIndex(item => item.id == ctx.from.id))])].email})
-      console.log('enter2 '+ logon.length)
+      console.log('registered email '+ logon.length)
       let logonlength = logon.length
-      console.log('2l '+ logonlength)
       if (logonlength == 1) {
         if (bazaall.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email))
     
@@ -425,7 +542,8 @@ bot.action ('btn_405', async (ctx) => {
        [Markup.button.url('Shibari course for beginners 2022 📚', url = link4.invite_link)]
     ]))
     await Post.updateOne ({id: ctx.from.id}, {level: 'level_2'})
-      }    
+      }  
+
     if (bazashcf2.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)){
       let link5 = await ctx.telegram.createChatInviteLink(group5,{member_limit: 1})
       await ctx.reply('Your learning class:',
@@ -435,6 +553,18 @@ bot.action ('btn_405', async (ctx) => {
         ]) )
         await Post.updateOne ({id: ctx.from.id}, {level: 'level_3'})
       } 
+
+      if (bazashcf3.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)){
+        let link6 = await ctx.telegram.createChatInviteLink(group6,{member_limit: 1})
+        await ctx.reply('Your learning class:',
+        Markup.inlineKeyboard(
+          [
+             [Markup.button.url('Shibari course for beginners 3 📚', url = link6.invite_link)]
+          ]) )
+          await Post.updateOne ({id: ctx.from.id}, {level: 'level_4'})
+        } 
+
+
   }
     if (!bazaall.includes(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].email)) {
   await ctx.reply(`You cannot login\n
@@ -460,7 +590,6 @@ bot.action ('btn_405', async (ctx) => {
     }
     }
 })
-
 
 
 bot.action ('btn_1', async (ctx) => {
@@ -562,7 +691,6 @@ bot.action ('btn_4', (ctx) => {
           }})  
 
 
-
 // сбор анкеты и подготовка к публикации
 bot.action ('btn_100', (ctx) => {
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
@@ -598,14 +726,14 @@ bot.action ('btn_100', (ctx) => {
     (username1[(username1.findIndex(item => item.id == ctx.from.id))].username1)})
 
     info3[([(info3.findIndex(item => item.id == ctx.from.id))])] =
-    ({id: ctx.from.id, info3: 'Name available in XL subscription $1 age '+ 
+    ({id: ctx.from.id, info3: 'Name and contact details\navailable in XL subscription $1\nAge:'+ 
     (ageman[(ageman.findIndex(item => item.id == ctx.from.id))].ageman) +'\n'+ 
     (countryman[(countryman.findIndex(item => item.id == ctx.from.id))].countryman) +' '+ 
     (cityman[(cityman.findIndex(item => item.id == ctx.from.id))].cityman) +'\nGender: '+ 
     (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ 'My interests: '+ 
     (interes[(interes.findIndex(item => item.id == ctx.from.id))].interes)+'\n'+ 'Who I want to find: '+ 
     (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
-    (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\nContact details available in XL subscription $1'})
+    (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\n@DatingPandaBot'})
 
     prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})}
  else { 
@@ -627,10 +755,12 @@ bot.action ('btn_101', async (ctx) => {
        idmeschanel: mes1.message_id
     })
   let mes = []                                              //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info), Markup.inlineKeyboard(
-    [
-       [Markup.button.callback('Message', 'btn_150')]
-    ])), 
+  mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info)
+  // , Markup.inlineKeyboard(
+  //   [
+  //      [Markup.button.callback('Message', 'btn_150')]
+  //   ])
+    ), 
   await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
           profile: 'ok',
             idmes: mes.message_id,
@@ -686,69 +816,64 @@ if (dell3[0].profile == 'ok') {
 else {await ctx.replyWithHTML("У вас нет анкеты.\n\nПерезапуск ➡️ <b>/start</b> ✅")}
 })
 
-
 bot.on('new_chat_members', async(ctx) =>{
   ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
+  console.log('new user' + ctx.from.id)
   let entergroup = []
   entergroup = await Post.find({profiledating: 'profiledating', id: ctx.from.id})
   let levelv = entergroup.findIndex(item => item.id = 'level')
-  console.log(levelv)
-  if (ctx.from.id == 599773731){ console.log('Admin')}
+  console.log('level detected ' + levelv)
+  if (ctx.from.id == 599773731){console.log('Admin enter')}
   else {
   if (levelv == -1) {
-     let ads = ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true);
+     ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
      ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
-     console.log('0')
-     console.log(ads)}
+     console.log('level unfineded')
+     }
 
-     else if  (entergroup[0].level == 'level_1' && (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3)) {
-      let delmes = await ctx.telegram.sendMessage(ctx.chat.id,`Hello1! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
-      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes.message_id), 30000)
-      if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-             group: true})}
-      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-            group1: true})}
-      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-           group2: true})}
-      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-           group3: true})}   
-      console.log('1')}
+  else if  (entergroup[0].level == 'level_1' && (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3)) {
+      let delmes = await ctx.telegram.sendMessage(ctx.chat.id,`Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`);
+      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes.message_id), 15000)
+             if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+      console.log('level_1')}
 
      else if (entergroup[0].level == 'level_2' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4)) {
-     let delmes1 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello2! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
-     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes1.message_id), 30000)
-     if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-     group: true})}
-     else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-     group1: true})}
-     else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-     group2: true})}
-     else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-     group3: true})}   
-     else if (ctx.chat.id == group4) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-     group4: true})} 
-     console.log('2')}
+     let delmes1 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`);
+     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes1.message_id), 15000)
+            if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+     else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+     else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+     else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+     else if (ctx.chat.id == group4) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group4: 'true'})} 
+     console.log('level_2')}
 
      else if (entergroup[0].level == 'level_3' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group5)) {
-     let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello3! ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}`);
-     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), 30000)
-     if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-      group: true})}
-      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-      group1: true})}
-      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-      group2: true})}
-      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-      group3: true})}   
-      else if (ctx.chat.id == group5) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-      group5: true})}
-     console.log('3')}
+     let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`);
+     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), 15000)
+             if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+      else if (ctx.chat.id == group5) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group5: 'true'})}
+     console.log('level_3')}
+
+     else if (entergroup[0].level == 'level_4' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group6)) {
+       let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`);
+       setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), 15000)
+               if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+        else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+        else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+        else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+        else if (ctx.chat.id == group6) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group6: 'true'})}
+       console.log('level_4')}
 
   else {
     ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
-    console.log('delete1: '+ ctx.from.id)
     ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
-    console.log('4')
+    console.log('level false delete: '+ ctx.from.id)
 
 }
 
@@ -769,70 +894,94 @@ bot.on('new_chat_members', async(ctx) =>{
             // ctx.telegram.unbanChatMember}
             // }}
 
-            let memberlevel = []
-            memberlevel = await Post.find({profiledating: 'profiledating', level: ['level_1', 'level_2', 'level_3']}, {email: 1, id: 1, _id: 0})
-            console.log("Длинна массива тру участников "+ memberlevel.length)
-            console.log(memberlevel)
-            for (let em of memberlevel) {
-            if (bazaall.includes(em.email)) { 
+            // let memberlevel = []
+            // memberlevel = await Post.find({profiledating: 'profiledating', level: ['level_1', 'level_2', 'level_3', 'level_4']}, {email: 1, id: 1, _id: 0})
+            // console.log("count level users: "+ memberlevel.length)
+            // console.log(memberlevel)
+            // for (let em of memberlevel) {
+            // if (bazaall.includes(em.email)) { 
 
-              if (bazashcf1.includes(em.email)){
-                await ctx.telegram.banChatMember(group5, em.id, false, true)
-            await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group5: false, level: 'level_2'})
-            ctx.telegram.unbanChatMember(group5, em.id)
-            console.log('ok1: '+ em.id)}
+            //   if (bazashcf1.includes(em.email)){
+            //     await ctx.telegram.banChatMember(group5, em.id, false, true)
+            //     await ctx.telegram.banChatMember(group6, em.id, false, true)
+            //     await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group5: false, group6: false, level: 'level_2'})
+          
+            // console.log('ok1: '+ em.id)}
 
-              else {await ctx.telegram.banChatMember(group4, em.id, false, true)
-                await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, level: 'level_3'})
-                ctx.telegram.unbanChatMember(group4, em.id)
-                console.log('ok: '+ em.id)}
-              }
+            //   else if (bazashcf2.includes(em.email)) {
+            //     await ctx.telegram.banChatMember(group4, em.id, false, true) 
+            //     await ctx.telegram.banChatMember(group6, em.id, false, true) 
+            //     await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group6: false, level: 'level_3'})
+               
+            //     console.log('ok2: '+ em.id)}
+
+            //     else if (bazashcf3.includes(em.email)) {
+            //       await ctx.telegram.banChatMember(group4, em.id, false, true) 
+            //       await ctx.telegram.banChatMember(group5, em.id, false, true) 
+            //       await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group5: false, level: 'level_4'})
+                
+            //       console.log('ok3: '+ em.id)}
+
+            //       else{
+            //         await ctx.telegram.banChatMember(group4, em.id, false, true) 
+            //         await ctx.telegram.banChatMember(group5, em.id, false, true)
+            //         await ctx.telegram.banChatMember(group6, em.id, false, true) 
+            //         await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false,  group5: false, group6: false, level: 'level_1'})
+            //         console.log('ok4: '+ em.id)
+            //       }
+  
+            //   }
 
 
-            else {
-            if (memberlevel.id == 599773731) {
-            console.log('admin')}
-            else {
-            console.log('delete: '+ em.id)
-            await ctx.telegram.banChatMember(group, em.id, false, true)
-            await ctx.telegram.unbanChatMember(group, em.id)
-            await ctx.telegram.banChatMember(group1, em.id, false, true)
-            await ctx.telegram.unbanChatMember(group1, em.id)
-            await ctx.telegram.banChatMember(group2, em.id, false, true)
-            await ctx.telegram.unbanChatMember(group2, em.id)
-            await ctx.telegram.banChatMember(group3, em.id, false, true)
-            await ctx.telegram.unbanChatMember(group3, em.id)
-            await ctx.telegram.banChatMember(group4, em.id, false, true)
-            await ctx.telegram.unbanChatMember(group4, em.id)
-            await ctx.telegram.banChatMember(group5, em.id, false, true)
-            await ctx.telegram.unbanChatMember(group5, em.id)
-            await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, level: 'level_0'})
-            }
-            }}
+            // else {
+            // if (memberlevel.id == 599773731) {
+            // console.log('admin')}
+            // else {
+            // console.log('delete: '+ em.id)
+            // await ctx.telegram.banChatMember(group, em.id, false, true)
+            
+            // await ctx.telegram.banChatMember(group1, em.id, false, true)
+            
+            // await ctx.telegram.banChatMember(group2, em.id, false, true)
+            
+            // await ctx.telegram.banChatMember(group3, em.id, false, true)
+            
+            // await ctx.telegram.banChatMember(group4, em.id, false, true)
+            
+            // await ctx.telegram.banChatMember(group5, em.id, false, true)
+            
+            // await ctx.telegram.banChatMember(group6, em.id, false, true)
+            
+            // await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, group6: false, level: 'level_0'})
+            // }
+            // }}
 }})
 
 bot.on('left_chat_member', async(ctx) =>{
   ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
   
-      if  (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4 || ctx.chat.id == group5) {
+      if  (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4 || ctx.chat.id == group5 || ctx.chat.id == group6) {
 
-      if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-             group: false})}
-      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-             group1: false})}
-      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-             group2: false})}
-      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-             group3: false})}
-      else if (ctx.chat.id == group4) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-             group4: false})}
-      else if (ctx.chat.id == group5) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
-             group5: false})}   
-      console.log('delete user')}
+            if (ctx.chat.id == group) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'false'})
+      console.log('false 0')}
+      else if (ctx.chat.id == group1) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'false'})
+      console.log('false 1')}
+      else if (ctx.chat.id == group2) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'false'})
+      console.log('false 2')}
+      else if (ctx.chat.id == group3) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'false'})
+      console.log('false 3')}
+      else if (ctx.chat.id == group4) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group4: 'false'})
+      console.log('false 4')}
+      else if (ctx.chat.id == group5) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group5: 'false'})
+      console.log('false 5')}
+      else if (ctx.chat.id == group6) {await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group6: 'false'})
+      console.log('false 6')}   
+      }
   else {
-    console.log('not delete user')
+    console.log('not delete users')
 }
 })
+
 // {
 //   message_id: 692,
 //   from: {
@@ -953,7 +1102,6 @@ else {username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({i
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  
    }})
   
-
  bot.launch()
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))

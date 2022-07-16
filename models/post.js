@@ -91,6 +91,10 @@ const patreonSchema = new Schema({
     group5: {
         type: String,
         required: true,
+    },
+    group6: {
+        type: String,
+        required: true,
     }
     }, { timestamps: true});
 
