@@ -1,5 +1,3 @@
-// const commands = require('./const/commands')
-
 const { Telegraf, Markup } = require('telegraf')
 require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -12,42 +10,14 @@ const { hydrate } = require('./models/post')
 const { patreon, jsonApiURL } = require('patreon')
 const patreonAPIClient = patreon(pt)
 
-// const xl = require('./const.js')
-// const dating = require('./const.js')
-// const live = require('./const.js')
-// const chat = require('./const.js')
-// const course1 = require('./const.js')
-// const course2 = require('./const.js')
-// const free = require('./const.js')
-// const course3  = require('./const.js')
-
-// const group = -1001451309256 //xl
-// const group1 = -1001608755158 //dating
-// const group2 = -1001584007834 //live
-// const group3 = -1001558239696 // chat
-// const group4 = -1001771841588 // course1 
-// const group5 = -1001756174074 // course2 
-// const chanel = -1001316209146 //free 
-// const group6 = -1001533172251 //course2_test
-
-const group = -1001623077893 //xl_test
-const group1 = -1001639457688 //dating_test
-const group2 = -1001622222769 //live_test
-const group3 = -1001773316805 //chat_test
-const group4 = -1001718400708 //course1_test
-const group5 = -1001533172251 //course2_test
-const chanel = -1001666894195 //free_test
-const group6 = -1001646458928 //course3_test
-
-// const group = xl 
-// const group1 = dating
-// const group2 = live
-// const group3 = chat
-// const group4 = course1
-// const group5 = course2
-// const chanel = free  
-// const group6 = course3 
-
+const group = -1001451309256 //xl
+const group1 = -1001608755158 //dating
+const group2 = -1001584007834 //live
+const group3 = -1001558239696 //chat
+const group4 = -1001771841588 //course1 
+const group5 = -1001756174074 //course2 
+const chanel = -1001316209146 //free 
+const group6 = -1001674072830 //course3
 
 mongoose
 .connect(db, {useNewUrlParser: true})
@@ -81,7 +51,6 @@ let bazaall = []
 let bazashcf1 = []
 let bazashcf2 = []
 let bazashcf3 = []
-
 
 function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcount%5D=10000&json-api-use-default-includes=true`) // обновление партреона
   .then (async({ store }) => {
@@ -137,14 +106,12 @@ function patreonstart() {patreonAPIClient(`/campaigns/6763510/pledges?page%5Bcou
       response.end(err);
   });}
 
- 
-
   patreonstart()
   setInterval(patreonstart, timewaitfull)
 
-
 // старт
 bot.start(async (ctx) => {
+  try {
   // ctx.reply("Please wait while we update the data for you...")
   // setTimeout(async () => ctx.reply("A couple more seconds..."),5000)
   // patreonstart(),
@@ -256,7 +223,8 @@ Markup.inlineKeyboard(
    [Markup.button.callback('Login', 'btn_400')],
    [Markup.button.callback('Subscribe 💵', 'btn_204')]
    
-]))}},timewaitstart)
+]))}},timewaitstart)}
+catch(e){console.log('Start error :' + e)}
 }
 )
 
@@ -265,6 +233,7 @@ bot.help((ctx) => ctx.reply('help'))
 
 
 bot.command('del', async (ctx) => {
+  try{
   let memberlevel = []
             memberlevel = await Post.find({profiledating: 'profiledating', level: ['level_1', 'level_2', 'level_3', 'level_4']}, {email: 1, id: 1, _id: 0})
             console.log("count level users: "+ memberlevel.length)
@@ -314,7 +283,7 @@ bot.command('del', async (ctx) => {
 
 
             else {
-            if (memberlevel.id == 599773731) {
+            if (memberlevel.id == 599773731 || memberlevel.id == 2123157583) {
             console.log('admin')}
             else {
             console.log('delete: '+ em.id)
@@ -334,23 +303,26 @@ bot.command('del', async (ctx) => {
             await ctx.telegram.unbanChatMember(group6, em.id) 
             await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, group6: false, level: 'level_0'})
             }
-            }}
-
+            }}}
+catch(e) {console.log('del users command: ' + e)}
 })
 
 
 // вывод анкеты в бот
 bot.action ('btn_250', async (ctx) => {
+  try{
   let c = bdinfo.findIndex(item => item.id == ctx.from.id)
   if (c == -1) {ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')}
   else{
     await ctx.reply(bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])].profiledata)
   await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
-}
+}}
+catch(e){console.log('profile show error: ' + e)}
   })
 
 
-bot.action ('btn_400', async (ctx) => { 
+bot.action ('btn_400', async (ctx) => {
+  try{
   ctx.reply("Please wait while we update the data for you...")
   
   setTimeout(async () => ctx.reply("A couple more seconds..."),5000)
@@ -368,6 +340,8 @@ bot.action ('btn_400', async (ctx) => {
       ])))
        prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'}) 
        emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0}) } },timewait)
+    }
+       catch(e){console.log('Enter error: ' + e)}
       }) 
       
 
@@ -379,6 +353,7 @@ bot.action ('btn_400', async (ctx) => {
 
 // free chanal enter
 bot.action ('btn_201', async (ctx) => {
+  try{
   await ctx.replyWithPhoto({ source: "./img/alerteng.jpg" })
   await ctx.replyWithHTML(`To enter the channel, use this link <a href="https://t.me/+Ap62Lp2sjdM3NDYy">ShibaripandaClub</a>.\n\n<b> If, when you try to log in, you see a message like in the photo above. You need to enable “Disable filtering” in the settingsin the web or computer version of the telegram application.</b>`, {
     disable_web_page_preview: true})
@@ -388,7 +363,9 @@ bot.action ('btn_201', async (ctx) => {
          [Markup.button.callback('Web telegram', 'btn_300'), Markup.button.callback('Detailed instructions', 'btn_301')]
       ]) 
       ) 
-      await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')  
+      await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅') 
+    } 
+    catch(e){console.log('free enter error: ' + e)}
 })
 
 bot.action ('btn_301', async (ctx) => {await ctx.replyWithHTML(`How to Open Blocked or Banned Telegram Channels <a href="https://www.followchain.org/open-banned-blocked-telegram-channels">Detailed instructions</a>.`)
@@ -406,6 +383,7 @@ bot.action ('btn_204', async (ctx) => {
 
 
 bot.action ('btn_401', async (ctx) => {
+  try{
 
   let n = email1.findIndex(item => item == ctx.from.id)
   if (n != -1) {
@@ -499,12 +477,14 @@ bot.action ('btn_401', async (ctx) => {
         ]))
         await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
     }
-}
+}}
+
+catch(e) {console.log('unregistered enter error:' + e)}
 })
 
 
 bot.action ('btn_405', async (ctx) => {
-
+try {
   emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})
   bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((emailon.find(item => item.emailon == 0)) == undefined){ 
@@ -588,11 +568,13 @@ bot.action ('btn_405', async (ctx) => {
     ]))
     await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
     }
-    }
+    }}
+    catch(e) {console.log('registered enter error:' + e)}
 })
 
 
 bot.action ('btn_1', async (ctx) => {
+  try{
   let m = username1.findIndex(item => item.id == ctx.from.id)
   if (m != -1) {username1.splice(username1.findIndex(item => item.id == ctx.from.id),1)};
   username1.push({id: ctx.from.id, username1: ctx.from.username})
@@ -609,11 +591,13 @@ else{
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_1'})
   }
  else {
-  }}
+  }}}
+  catch(e) {console.log('start profile add error1 :' + e)}
 })
 
 
 bot.action ('btn_2', (ctx) => {
+  try{
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
@@ -622,10 +606,13 @@ bot.action ('btn_2', (ctx) => {
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_2'})}
   else {
   } 
-  }})
+  }}
+  catch(e) {console.log('start profile add error2 :' + e)}
+})
 
 
 bot.action ('btn_3', (ctx) => {
+  try{
    if ((end1.find(item => item.end1 == 0)) == undefined){ 
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
@@ -633,9 +620,12 @@ bot.action ('btn_3', (ctx) => {
   else { if ((end1[(end1.findIndex(item => item.id == ctx.from.id))].end1) == "0") {
   ctx.reply("How old are you?")
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_3'})}
-  }})
+  }}
+  catch(e) {console.log('old error:' + e)}
+})
 
 bot.action ('btn_4', (ctx) => {
+  try{
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
@@ -644,9 +634,12 @@ bot.action ('btn_4', (ctx) => {
   ctx.reply("What country are you from?")
   prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_4'})
   post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
-  }})
+  }}
+  catch(e) {console.log('country error:' + e)}
+})
 
   bot.action ('btn_5', (ctx) => {
+    try{
     if ((end1.find(item => item.end1 == 0)) == undefined){ 
       ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
     }
@@ -655,9 +648,12 @@ bot.action ('btn_4', (ctx) => {
     ctx.reply("Which city are you from?")
     prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_5'})
     post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
-    }})
+    }}
+    catch(e) {console.log('city  error:' + e)}
+  })
 
     bot.action ('btn_6', (ctx) => {
+      try{
       if ((end1.find(item => item.end1 == 0)) == undefined){ 
         ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
       }
@@ -666,9 +662,12 @@ bot.action ('btn_4', (ctx) => {
       ctx.reply("What interests do you have?")
       prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_6'})
       post[([(post.findIndex(item => item.id == ctx.from.id.id))])] = ({id: ctx.from.id, post: 1})}
-      }})
+      }}
+      catch(e) {console.log('interes enter error:' + e)}
+    })
 
       bot.action ('btn_7', (ctx) => {
+        try{
         if ((end1.find(item => item.end1 == 0)) == undefined){ 
           ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
         }
@@ -677,9 +676,12 @@ bot.action ('btn_4', (ctx) => {
         ctx.reply("Who would you like to find?")
         prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_7'})
         post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})}
-        }})
+        }}
+        catch(e) {console.log('what find error:' + e)}
+      })
 
         bot.action ('btn_8', (ctx) => {
+          try{
           if ((end1.find(item => item.end1 == 0)) == undefined){ 
             ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
           }
@@ -688,11 +690,14 @@ bot.action ('btn_4', (ctx) => {
           ctx.reply("That tell about yourself?")
           prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_8'})
           post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 1})} 
-          }})  
+          }}
+          catch(e) {console.log('about yourself error:' + e)}
+        })  
 
 
 // сбор анкеты и подготовка к публикации
 bot.action ('btn_100', (ctx) => {
+  try{
   if ((end1.find(item => item.end1 == 0)) == undefined){ 
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
   }
@@ -733,14 +738,17 @@ bot.action ('btn_100', (ctx) => {
     (sexman[(sexman.findIndex(item => item.id == ctx.from.id))].sexman) +'\n'+ 'My interests: '+ 
     (interes[(interes.findIndex(item => item.id == ctx.from.id))].interes)+'\n'+ 'Who I want to find: '+ 
     (whofind[(whofind.findIndex(item => item.id == ctx.from.id))].whofind) +'\n'+ 'About me: '+ 
-    (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\n@DatingPandaBot'})
+    (infiwords[(infiwords.findIndex(item => item.id == ctx.from.id))].infiwords) +'\n@ShibaripandaBot'})
 
     prev_action[([(prev_action.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, prev_action: 'step_0'})}
  else { 
 } }}
+catch(e) {console.log('forming profile error:' + e)}
+}
 )
 
 bot.action ('btn_101', async (ctx) => {
+  try{
   bdinfo[([(bdinfo.findIndex(item => item.id == ctx.from.id))])] = await Post.findOne({id: ctx.from.id})
   if ((post.find(item => item.post == 1)) == undefined){
     await ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')
@@ -755,7 +763,7 @@ bot.action ('btn_101', async (ctx) => {
        idmeschanel: mes1.message_id
     })
   let mes = []                                              //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info)
+  mes = await ctx.telegram.sendMessage(group1, (info[(info.findIndex(item => item.id == ctx.from.id))].info)
   // , Markup.inlineKeyboard(
   //   [
   //      [Markup.button.callback('Message', 'btn_150')]
@@ -777,7 +785,7 @@ else { if ((post[(post.findIndex(item => item.id == ctx.from.id))].post) == "1")
 idmeschanel: mes1.message_id
     })
     let mes = []                                                                             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    mes = await ctx.telegram.sendMessage(group, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
+    mes = await ctx.telegram.sendMessage(group1, (info[(info.findIndex(item => item.id == ctx.from.id))].info)), 
     await Post.updateOne({profiledating: 'profiledating', id: ctx.from.id}, { 
             profile: 'ok',
               idmes: mes.message_id,
@@ -786,10 +794,13 @@ idmeschanel: mes1.message_id
     await ctx.replyWithHTML("Your profile has been published!✅\n\nAfter publishing the profile, restart the bot to edit information!.\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
     end1[([(end1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, end1: 1})
     post[([(post.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, post: 0})
-  }}} 
+  }}}
+  catch(e) {console.log('delete1 error:' + e)}
+} 
 )
 
 bot.action ('btn_200', async (ctx) => {
+  try{
   let dell3 = []
   dell3 = await Post.find({profiledating: 'profiledating', id: ctx.from.id})
 if (dell3[0].profile == 'ok') {
@@ -801,7 +812,7 @@ if (dell3[0].profile == 'ok') {
   else {if ((del1[(del1.findIndex(item => item.id == ctx.from.id))].del1) == "0") {
     let dell2 = []
     dell2 = await Post.find({profiledating: 'profiledating', id: ctx.from.id});
-  await ctx.telegram.deleteMessage(group, dell2[0].idmes)
+  await ctx.telegram.deleteMessage(group1, dell2[0].idmes)
   await ctx.telegram.deleteMessage(chanel, dell2[0].idmeschanel)
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   await ctx.replyWithHTML("Your dating profile has been deleted! ❌\n\nPlease restart the bot to continue.\nRestart ➡️ <b>/start</b> ✅")
@@ -814,16 +825,21 @@ if (dell3[0].profile == 'ok') {
   del1[([(del1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, del1: 1})}
 }}
 else {await ctx.replyWithHTML("У вас нет анкеты.\n\nПерезапуск ➡️ <b>/start</b> ✅")}
+  }
+  catch(e) {console.log('delete2 error:' + e)}
 })
 
+
+
 bot.on('new_chat_members', async(ctx) =>{
+  try {
   ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
   console.log('new user' + ctx.from.id)
   let entergroup = []
   entergroup = await Post.find({profiledating: 'profiledating', id: ctx.from.id})
   let levelv = entergroup.findIndex(item => item.id = 'level')
   console.log('level detected ' + levelv)
-  if (ctx.from.id == 599773731){console.log('Admin enter')}
+  if (ctx.from.id == 599773731 || ctx.from.id ==  2123157583){console.log('Admin enter')}
   else {
   if (levelv == -1) {
      ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
@@ -955,9 +971,14 @@ bot.on('new_chat_members', async(ctx) =>{
             // await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, group6: false, level: 'level_0'})
             // }
             // }}
-}})
+}}
+catch(e) {console.log('new chat member error: ' + e)}
+})
+
+
 
 bot.on('left_chat_member', async(ctx) =>{
+  try {
   ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
   
       if  (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4 || ctx.chat.id == group5 || ctx.chat.id == group6) {
@@ -979,7 +1000,8 @@ bot.on('left_chat_member', async(ctx) =>{
       }
   else {
     console.log('not delete users')
-}
+}}
+catch(e) {console.log('left chat member error: ' + e)}
 })
 
 // {
@@ -997,6 +1019,7 @@ bot.on('left_chat_member', async(ctx) =>{
 // }
 
 bot.on('message', async(ctx) => {
+  try{
   prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
   if ((prev_action[(prev_action.findIndex(item => item.id == ctx.from.id))].prev_action) == undefined) {
     ctx.replyWithHTML('Please restart the bot to continue.\n\nRestart ➡️ <b>/start</b> ✅')};
@@ -1100,8 +1123,13 @@ else {username1[([(username1.findIndex(item => item.id == ctx.from.id))])] = ({i
     email1 = [{id: ctx.from.id, email1: 'not found'}]
     email1[([(email1.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, email1: ctx.message.text.toLowerCase()})
     emailon[([(emailon.findIndex(item => item.id == ctx.from.id))])] = ({id: ctx.from.id, emailon: 0})  
-   }})
+   }}
+   catch(e) {console.log('steps : ' + e)}
+  })
   
+
+
+
  bot.launch()
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
