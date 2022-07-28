@@ -95,6 +95,118 @@ const patreonSchema = new Schema({
     group6: {
         type: String,
         required: true,
+    },
+    photoshop: {
+        type: String,
+        required: true,
+    },
+    shop: {
+        type: String,
+        required: true,
+    },
+    idmesshoppic1: {
+        type: String,
+        required: true,
+    },
+    idmesshoppic2: {
+        type: String,
+        required: true,
+    },
+    idmesshoppic3: {
+        type: String,
+        required: true,
+    },
+    idmesshoppic4: {
+        type: String,
+        required: true,
+    },
+    idmesshoppic5: {
+        type: String,
+        required: true,
+    },
+    idmesshoptex1: {
+        type: String,
+        required: true,
+    },
+    idmesshoptex2: {
+        type: String,
+        required: true,
+    },
+    idmesshoptex3: {
+        type: String,
+        required: true,
+    },
+    idmesshoptex4: {
+        type: String,
+        required: true,
+    },
+    idmesshoptex5: {
+        type: String,
+        required: true,
+    },
+    idmesshoppicgroup1: {
+        type: String,
+        required: true,
+    },
+    idmesshoppicgroup2: {
+        type: String,
+        required: true,
+    },
+    idmesshoppicgroup3: {
+        type: String,
+        required: true,
+    },
+    idmesshoppicgroup4: {
+        type: String,
+        required: true,
+    },
+    idmesshoppicgroup5: {
+        type: String,
+        required: true,
+    },
+    idmesshoptexgroup1: {
+        type: String,
+        required: true,
+    },
+    idmesshoptexgroup2: {
+        type: String,
+        required: true,
+    },
+    idmesshoptexgroup3: {
+        type: String,
+        required: true,
+    },
+    idmesshoptexgroup4: {
+        type: String,
+        required: true,
+    },
+    idmesshoptexgroup5: {
+        type: String,
+        required: true,
+    },
+    namelisting1: {
+        type: String,
+        required: true,
+    },
+    namelisting2: {
+        type: String,
+        required: true,
+    },
+    namelisting3: {
+        type: String,
+        required: true,
+    },
+    namelisting4: {
+        type: String,
+        required: true,
+    },
+    namelisting5: {
+        type: String,
+        required: true,
+    },
+    publishtime: {
+        type: String,
+        required: true,
     }
     }, { timestamps: true});
 
@@ -104,3 +216,4 @@ const Patreon = mongoose.model('Patreon', patreonSchema);
 
 module.exports = Post
 module.exports = Patreon
+
