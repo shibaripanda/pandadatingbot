@@ -960,177 +960,177 @@ else {await ctx.replyWithHTML("You don't have a profile.\nRestart ➡️ <b>/sta
   catch(e) {console.log('delete2 error:' + e)
   await ctx.replyWithHTML(errorcatch)}
 })
-bot.on('new_chat_members', async(ctx) =>{
-  try {
-  ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
-  console.log('new user' + ctx.from.id)
-  let entergroup = []
-  entergroup = await Patreon.find({profiledating: 'profiledating', id: ctx.from.id})
-  let levelv = entergroup.findIndex(item => item.id = 'level')
+// bot.on('new_chat_members', async(ctx) =>{
+//   try {
+//   ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
+//   console.log('new user' + ctx.from.id)
+//   let entergroup = []
+//   entergroup = await Patreon.find({profiledating: 'profiledating', id: ctx.from.id})
+//   let levelv = entergroup.findIndex(item => item.id = 'level')
  
-  if (ctx.from.id == 599773731 || ctx.from.id ==  2123157583){console.log('Admin enter')}
-  else {
-  if (levelv == -1) {
-     ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
-     ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
-     console.log('level unfineded')
-     }
+//   if (ctx.from.id == 599773731 || ctx.from.id ==  2123157583){console.log('Admin enter')}
+//   else {
+//   if (levelv == -1) {
+//      ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
+//      ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
+//      console.log('level unfineded')
+//      }
 
-  else if  (entergroup[0].level == 'level_1' && (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3)) {
-      let delmes = await ctx.telegram.sendMessage(ctx.chat.id,`Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
-      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes.message_id), dellhelllomes)
-             if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
-      else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
-      else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
-      else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
-      console.log('level_1')}
+//   else if  (entergroup[0].level == 'level_1' && (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3)) {
+//       let delmes = await ctx.telegram.sendMessage(ctx.chat.id,`Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
+//       setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes.message_id), dellhelllomes)
+//              if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+//       else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+//       else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+//       else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+//       console.log('level_1')}
 
-     else if (entergroup[0].level == 'level_2' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4)) {
-     let delmes1 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
-     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes1.message_id), dellhelllomes)
-            if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
-     else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
-     else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
-     else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
-     else if (ctx.chat.id == group4) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group4: 'true'})} 
-     console.log('level_2')}
+//      else if (entergroup[0].level == 'level_2' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4)) {
+//      let delmes1 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
+//      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes1.message_id), dellhelllomes)
+//             if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+//      else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+//      else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+//      else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+//      else if (ctx.chat.id == group4) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group4: 'true'})} 
+//      console.log('level_2')}
 
-     else if (entergroup[0].level == 'level_3' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group5)) {
-     let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
-     setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), dellhelllomes)
-             if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
-      else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
-      else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
-      else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
-      else if (ctx.chat.id == group5) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group5: 'true'})}
-     console.log('level_3')}
+//      else if (entergroup[0].level == 'level_3' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group5)) {
+//      let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
+//      setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), dellhelllomes)
+//              if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+//       else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+//       else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+//       else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+//       else if (ctx.chat.id == group5) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group5: 'true'})}
+//      console.log('level_3')}
 
-     else if (entergroup[0].level == 'level_4' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group6)) {
-       let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
-       setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), dellhelllomes)
-               if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
-        else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
-        else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
-        else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
-        else if (ctx.chat.id == group6) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group6: 'true'})}
-       console.log('level_4')}
+//      else if (entergroup[0].level == 'level_4' && (ctx.chat.id == group || ctx.chat.id == group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group6)) {
+//        let delmes2 = await ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.message.from.first_name ? ctx.message.from.first_name : 'noname'}!`,{disable_notification: true});
+//        setTimeout(async () => await ctx.telegram.deleteMessage(ctx.chat.id, delmes2.message_id), dellhelllomes)
+//                if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'true'})}
+//         else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'true'})}
+//         else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'true'})}
+//         else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'true'})}   
+//         else if (ctx.chat.id == group6) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group6: 'true'})}
+//        console.log('level_4')}
 
-  else {
-    ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
-    ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
-    console.log('level false delete: '+ ctx.from.id)
+//   else {
+//     ctx.telegram.banChatMember(ctx.chat.id, ctx.from.id, false, true)
+//     ctx.telegram.unbanChatMember(ctx.chat.id, ctx.from.id)
+//     console.log('level false delete: '+ ctx.from.id)
 
-}
+// }
 
-            // let memberlevel = []
-            // memberlevel = await Post.find({profiledating: 'profiledating', group: true}, {email: 1, id: 1, _id: 0})
-            // console.log("Длинна массива тру участников "+ memberlevel.length)
-            // console.log(memberlevel)
-            // for (let em of memberlevel) {
-            // if (bazaall.includes(em.email)) { 
-            // console.log('ok: '+ em.id)}
-            // else {
-            // if (memberlevel.id == 599773731) {
-            // console.log('admin')}
-            // else {
-            // console.log('delete: '+ em.id)
-            // await ctx.telegram.banChatMember(group, em.id, false, true)
-            // await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, level: 'level_0'})
-            // ctx.telegram.unbanChatMember}
-            // }}
+//             // let memberlevel = []
+//             // memberlevel = await Post.find({profiledating: 'profiledating', group: true}, {email: 1, id: 1, _id: 0})
+//             // console.log("Длинна массива тру участников "+ memberlevel.length)
+//             // console.log(memberlevel)
+//             // for (let em of memberlevel) {
+//             // if (bazaall.includes(em.email)) { 
+//             // console.log('ok: '+ em.id)}
+//             // else {
+//             // if (memberlevel.id == 599773731) {
+//             // console.log('admin')}
+//             // else {
+//             // console.log('delete: '+ em.id)
+//             // await ctx.telegram.banChatMember(group, em.id, false, true)
+//             // await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, level: 'level_0'})
+//             // ctx.telegram.unbanChatMember}
+//             // }}
 
-            // let memberlevel = []
-            // memberlevel = await Post.find({profiledating: 'profiledating', level: ['level_1', 'level_2', 'level_3', 'level_4']}, {email: 1, id: 1, _id: 0})
-            // console.log("count level users: "+ memberlevel.length)
-            // console.log(memberlevel)
-            // for (let em of memberlevel) {
-            // if (bazaall.includes(em.email)) { 
+//             // let memberlevel = []
+//             // memberlevel = await Post.find({profiledating: 'profiledating', level: ['level_1', 'level_2', 'level_3', 'level_4']}, {email: 1, id: 1, _id: 0})
+//             // console.log("count level users: "+ memberlevel.length)
+//             // console.log(memberlevel)
+//             // for (let em of memberlevel) {
+//             // if (bazaall.includes(em.email)) { 
 
-            //   if (bazashcf1.includes(em.email)){
-            //     await ctx.telegram.banChatMember(group5, em.id, false, true)
-            //     await ctx.telegram.banChatMember(group6, em.id, false, true)
-            //     await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group5: false, group6: false, level: 'level_2'})
+//             //   if (bazashcf1.includes(em.email)){
+//             //     await ctx.telegram.banChatMember(group5, em.id, false, true)
+//             //     await ctx.telegram.banChatMember(group6, em.id, false, true)
+//             //     await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group5: false, group6: false, level: 'level_2'})
           
-            // console.log('ok1: '+ em.id)}
+//             // console.log('ok1: '+ em.id)}
 
-            //   else if (bazashcf2.includes(em.email)) {
-            //     await ctx.telegram.banChatMember(group4, em.id, false, true) 
-            //     await ctx.telegram.banChatMember(group6, em.id, false, true) 
-            //     await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group6: false, level: 'level_3'})
+//             //   else if (bazashcf2.includes(em.email)) {
+//             //     await ctx.telegram.banChatMember(group4, em.id, false, true) 
+//             //     await ctx.telegram.banChatMember(group6, em.id, false, true) 
+//             //     await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group6: false, level: 'level_3'})
                
-            //     console.log('ok2: '+ em.id)}
+//             //     console.log('ok2: '+ em.id)}
 
-            //     else if (bazashcf3.includes(em.email)) {
-            //       await ctx.telegram.banChatMember(group4, em.id, false, true) 
-            //       await ctx.telegram.banChatMember(group5, em.id, false, true) 
-            //       await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group5: false, level: 'level_4'})
+//             //     else if (bazashcf3.includes(em.email)) {
+//             //       await ctx.telegram.banChatMember(group4, em.id, false, true) 
+//             //       await ctx.telegram.banChatMember(group5, em.id, false, true) 
+//             //       await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false, group5: false, level: 'level_4'})
                 
-            //       console.log('ok3: '+ em.id)}
+//             //       console.log('ok3: '+ em.id)}
 
-            //       else{
-            //         await ctx.telegram.banChatMember(group4, em.id, false, true) 
-            //         await ctx.telegram.banChatMember(group5, em.id, false, true)
-            //         await ctx.telegram.banChatMember(group6, em.id, false, true) 
-            //         await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false,  group5: false, group6: false, level: 'level_1'})
-            //         console.log('ok4: '+ em.id)
-            //       }
+//             //       else{
+//             //         await ctx.telegram.banChatMember(group4, em.id, false, true) 
+//             //         await ctx.telegram.banChatMember(group5, em.id, false, true)
+//             //         await ctx.telegram.banChatMember(group6, em.id, false, true) 
+//             //         await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group4: false,  group5: false, group6: false, level: 'level_1'})
+//             //         console.log('ok4: '+ em.id)
+//             //       }
   
-            //   }
+//             //   }
 
 
-            // else {
-            // if (memberlevel.id == 599773731) {
-            // console.log('admin')}
-            // else {
-            // console.log('delete: '+ em.id)
-            // await ctx.telegram.banChatMember(group, em.id, false, true)
+//             // else {
+//             // if (memberlevel.id == 599773731) {
+//             // console.log('admin')}
+//             // else {
+//             // console.log('delete: '+ em.id)
+//             // await ctx.telegram.banChatMember(group, em.id, false, true)
             
-            // await ctx.telegram.banChatMember(group1, em.id, false, true)
+//             // await ctx.telegram.banChatMember(group1, em.id, false, true)
             
-            // await ctx.telegram.banChatMember(group2, em.id, false, true)
+//             // await ctx.telegram.banChatMember(group2, em.id, false, true)
             
-            // await ctx.telegram.banChatMember(group3, em.id, false, true)
+//             // await ctx.telegram.banChatMember(group3, em.id, false, true)
             
-            // await ctx.telegram.banChatMember(group4, em.id, false, true)
+//             // await ctx.telegram.banChatMember(group4, em.id, false, true)
             
-            // await ctx.telegram.banChatMember(group5, em.id, false, true)
+//             // await ctx.telegram.banChatMember(group5, em.id, false, true)
             
-            // await ctx.telegram.banChatMember(group6, em.id, false, true)
+//             // await ctx.telegram.banChatMember(group6, em.id, false, true)
             
-            // await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, group6: false, level: 'level_0'})
-            // }
-            // }}
-}}
-catch(e) {console.log('new chat member error: ' + e)
-await ctx.replyWithHTML(errorcatch)}
-})
-bot.on('left_chat_member', async(ctx) =>{
-  try {
-  ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
+//             // await Post.updateOne({profiledating: 'profiledating', id: em.id}, {group: false, group1: false, group2: false, group3: false, group4: false, group5: false, group6: false, level: 'level_0'})
+//             // }
+//             // }}
+// }}
+// catch(e) {console.log('new chat member error: ' + e)
+// await ctx.replyWithHTML(errorcatch)}
+// })
+// bot.on('left_chat_member', async(ctx) =>{
+//   try {
+//   ctx.telegram.deleteMessage(ctx.chat.id, ctx.message.message_id)
   
-      if  (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4 || ctx.chat.id == group5 || ctx.chat.id == group6) {
+//       if  (ctx.chat.id == group || ctx.chat.id ==  group1 || ctx.chat.id == group2 || ctx.chat.id == group3 || ctx.chat.id == group4 || ctx.chat.id == group5 || ctx.chat.id == group6) {
 
-            if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'false'})
-      console.log('false 0')}
-      else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'false'})
-      console.log('false 1')}
-      else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'false'})
-      console.log('false 2')}
-      else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'false'})
-      console.log('false 3')}
-      else if (ctx.chat.id == group4) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group4: 'false'})
-      console.log('false 4')}
-      else if (ctx.chat.id == group5) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group5: 'false'})
-      console.log('false 5')}
-      else if (ctx.chat.id == group6) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group6: 'false'})
-      console.log('false 6')}   
-      }
-  else {
-    console.log('not delete users')
-}}
-catch(e) {console.log('left chat member error: ' + e)
-await ctx.replyWithHTML(errorcatch)}
-})
+//             if (ctx.chat.id == group) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group: 'false'})
+//       console.log('false 0')}
+//       else if (ctx.chat.id == group1) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group1: 'false'})
+//       console.log('false 1')}
+//       else if (ctx.chat.id == group2) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group2: 'false'})
+//       console.log('false 2')}
+//       else if (ctx.chat.id == group3) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group3: 'false'})
+//       console.log('false 3')}
+//       else if (ctx.chat.id == group4) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group4: 'false'})
+//       console.log('false 4')}
+//       else if (ctx.chat.id == group5) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group5: 'false'})
+//       console.log('false 5')}
+//       else if (ctx.chat.id == group6) {await Patreon.updateOne({profiledating: 'profiledating', id: ctx.from.id}, {group6: 'false'})
+//       console.log('false 6')}   
+//       }
+//   else {
+//     console.log('not delete users')
+// }}
+// catch(e) {console.log('left chat member error: ' + e)
+// await ctx.replyWithHTML(errorcatch)}
+// })
 bot.on('text', async(ctx) => {
   try{
   prev_action.push({id: ctx.from.id, prev_action: 'step_0'})
